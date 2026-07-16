@@ -26,12 +26,6 @@ DiceFrame 插件标准和开发说明见主项目文档：
 - [DiceFrame](https://github.com/EOEOY/diceframe)
 - [插件开发指南](https://github.com/EOEOY/diceframe/blob/main/docs/PLUGIN_DEVELOPMENT_CN.md)
 
-## 交流与反馈
-
-QQ 群：1060613588
-
-维护者精力有限，Issue、PR 和群内反馈可能无法即时处理，感谢理解。
-
 ## 许可证
 
 本仓库本身使用 MIT License。所收录的插件使用其各自仓库中声明的许可证。
