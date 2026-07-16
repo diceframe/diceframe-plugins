@@ -1,18 +1,31 @@
-# DiceFrame 插件仓库
+# DiceFrame 插件中心
 
-这里是 DiceFrame 社区插件索引仓库。DiceFrame 主程序的插件商店会读取本仓库的 `plugin_details.json`，并通过镜像源在国内网络环境下提高访问成功率。
+欢迎来到 DiceFrame 社区插件索引仓库。
 
-## 文件说明
+这里收录由社区开发、适用于 [DiceFrame](https://github.com/EOEOY/diceframe) 的插件。我们的目标是建立一个开放、透明、便于发现和安装的插件生态，让玩家和主持人可以按需扩展 DiceFrame 的连接方式、工具能力和跑团体验。
 
-- `plugins.json`：轻量插件列表，便于人工审查和脚本处理。
-- `plugin_details.json`：插件商店读取的完整索引。
-- `schemas/plugin_details.schema.json`：`plugin_details.json` 的结构说明。
-- `CONTRIBUTING.md`：插件提交和收录规则。
+## 插件索引
 
-## 当前状态
+本仓库通过维护 `plugins.json` 与 `plugin_details.json` 来索引社区插件。插件本身通常以独立的公开 GitHub 仓库形式存在，本仓库只保存插件元数据、展示信息和收录说明。
 
-插件商店索引刚建立，默认列表为空。后续每个插件建议使用独立公开 GitHub 仓库，并在仓库根目录放置 DiceFrame 标准 `plugin.json`、`config.schema.json` 和 `README_CN.md`。
+## 如何贡献插件
 
-## 镜像源
+欢迎提交 DiceFrame 插件。插件仓库建议包含：
 
-DiceFrame 主程序会按镜像源优先级尝试读取本仓库的 raw 文件。镜像源只用于提高可用性，不改变插件来源展示；安装前仍会校验插件包内的 `plugin.json`。
+- `plugin.json`
+- `config.schema.json`
+- `README_CN.md`
+- `LICENSE`
+
+提交前请阅读 [贡献指南](./CONTRIBUTING.md)，其中包含插件包结构、索引条目格式和基础审查要求。
+
+## 插件开发文档
+
+DiceFrame 插件标准和开发说明见主项目文档：
+
+- [DiceFrame](https://github.com/EOEOY/diceframe)
+- [插件开发指南](https://github.com/EOEOY/diceframe/blob/main/docs/PLUGIN_DEVELOPMENT_CN.md)
+
+## 许可证
+
+本仓库本身使用 MIT License。所收录的插件使用其各自仓库中声明的许可证。
