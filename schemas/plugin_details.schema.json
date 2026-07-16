@@ -39,13 +39,17 @@
       },
       "manifest": {
         "type": "object",
-        "required": ["schema_version", "id", "name", "version", "description"],
+        "required": ["schema_version", "id", "name", "version", "description", "plugin_type"],
         "properties": {
           "schema_version": { "const": 1 },
           "id": { "type": "string" },
           "name": { "type": "string" },
           "version": { "type": "string" },
           "description": { "type": "string" },
+          "plugin_type": {
+            "type": "string",
+            "enum": ["channel-adapter", "content-pack", "theme", "map-pack", "import-export", "provider", "tool"]
+          },
           "capabilities": {
             "type": "array",
             "items": { "type": "string" }

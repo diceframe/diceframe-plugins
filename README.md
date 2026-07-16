@@ -2,7 +2,7 @@
 
 欢迎来到 DiceFrame 社区插件索引仓库。
 
-这里收录由社区开发、适用于 [DiceFrame](https://github.com/EOEOY/diceframe) 的插件。我们的目标是建立一个开放、透明、便于发现和安装的插件生态，让玩家和主持人可以按需扩展 DiceFrame 的连接方式、工具能力和跑团体验。
+这里收录由社区开发、适用于 [DiceFrame](https://github.com/diceframe/diceframe) 的插件。我们的目标是建立一个开放、透明、便于发现和安装的插件生态，让玩家和主持人可以按需扩展 DiceFrame 的连接方式、工具能力和跑团体验。
 
 ## 插件索引
 
@@ -23,8 +23,8 @@
 
 DiceFrame 插件标准和开发说明见主项目文档：
 
-- [DiceFrame](https://github.com/EOEOY/diceframe)
-- [插件开发指南](https://github.com/EOEOY/diceframe/blob/main/docs/PLUGIN_DEVELOPMENT_CN.md)
+- [DiceFrame](https://github.com/diceframe/diceframe)
+- [插件开发指南](https://github.com/diceframe/diceframe/blob/main/docs/PLUGIN_DEVELOPMENT_CN.md)
 
 ## 许可证
 
