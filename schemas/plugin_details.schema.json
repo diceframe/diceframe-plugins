@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DiceFrame plugin marketplace details",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["id", "repository_url", "manifest"],
+    "properties": {
+      "id": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+      },
+      "repository_url": {
+        "type": "string",
+        "format": "uri"
+      },
+      "repositoryUrl": {
+        "type": "string",
+        "format": "uri"
+      },
+      "package_url": {
+        "type": "string",
+        "format": "uri"
+      },
+      "branch": {
+        "type": "string",
+        "default": "main"
+      },
+      "tags": {
+        "type": "array",
+        "items": { "type": "string" }
+      },
+      "author": {},
+      "license": {
+        "type": "string"
+      },
+      "homepage": {
+        "type": "string"
+      },
+      "manifest": {
+        "type": "object",
+        "required": ["schema_version", "id", "name", "version", "description"],
+        "properties": {
+          "schema_version": { "const": 1 },
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "version": { "type": "string" },
+          "description": { "type": "string" },
+          "capabilities": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "docs": { "type": "string" }
+        },
+        "additionalProperties": true
+      }
+    },
+    "additionalProperties": true
+  }
+}
