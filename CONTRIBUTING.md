@@ -1,70 +1,59 @@
 # DiceFrame 插件收录指南
 
-欢迎提交 DiceFrame 插件。本仓库用于收录社区插件索引，帮助用户在 DiceFrame 插件商店中发现和安装插件。
+中文 | [English](CONTRIBUTING_EN.md)
 
-## 插件仓库要求
+## 作者需要准备什么
 
-插件建议放在独立公开 GitHub 仓库，仓库根目录至少包含：
+插件必须放在独立、公开的 GitHub 仓库中，且仓库根目录就是插件目录。根目录至少包含：
 
 - `plugin.json`
-- `config.schema.json`
-- `README_CN.md`
-- `LICENSE`，推荐但暂不强制
+- `README_CN.md` 或 `README.md`
+- `LICENSE` 或 `LICENSE.md`
+- `config.schema.json`（如果 `plugin.json.config_schema` 声明了它）
 
-`plugin.json` 必须遵守 DiceFrame 插件标准：
+插件必须先创建至少一个非草稿、非预发布的 GitHub Release。Release 指向的版本中，`plugin.json.version` 必须使用三段式版本号，例如 `1.0.0`。
 
-```json
-{
-  "schema_version": 1,
-  "id": "example-plugin",
-  "name": "示例插件",
-  "version": "0.1.0",
-  "description": "一句话说明插件用途",
-  "entrypoint": ["{python}", "plugins/example-plugin/main.py"],
-  "config_schema": "config.schema.json",
-  "capabilities": ["bot-adapter"],
-  "docs": "README_CN.md"
-}
-```
+作者不需要上传插件 ZIP，也不需要计算 SHA-256。DiceFrame 使用 Release 所指向的固定 Git commit 下载仓库源码快照。
 
-## 索引条目
+## 第一次投稿
 
-向 `plugins.json` 添加轻量条目：
+1. 打开 [添加插件](https://github.com/diceframe/diceframe-plugins/issues/new/choose)。
+2. 填写插件 ID 和公开仓库地址。
+3. 等待机器人评论检查结果。
+4. 如果失败，按错误修改自己的仓库，然后回复 `/recheck`。
+5. 检查通过后等待维护者批准。
 
-```json
-{
-  "id": "example-plugin",
-  "repositoryUrl": "https://github.com/username/example-plugin",
-  "branch": "main"
-}
-```
+作者不应修改本仓库的 `plugins.json` 或 `plugin_details.json`。Pull Request 投稿方式不再使用。
 
-向 `plugin_details.json` 添加商店展示条目：
+## 后续更新
 
-```json
-{
-  "id": "example-plugin",
-  "repository_url": "https://github.com/username/example-plugin",
-  "branch": "main",
-  "tags": ["adapter"],
-  "manifest": {
-    "schema_version": 1,
-    "id": "example-plugin",
-    "name": "示例插件",
-    "version": "0.1.0",
-    "description": "一句话说明插件用途",
-    "capabilities": ["bot-adapter"],
-    "docs": "README_CN.md"
-  }
-}
-```
+发布更新时，作者只需：
 
-如果插件仓库不是“根目录即插件目录”的结构，请提供 `package_url`，指向已经按 DiceFrame 标准打好的 zip 包。
+1. 更新 `plugin.json.version`。
+2. 提交代码并创建新的 Git tag。
+3. 创建非草稿、非预发布的 GitHub Release。
 
-## 收录检查
+声明型插件在权限和运行方式不变时可自动更新。进程型插件只通知用户。增加权限、从声明型改为进程型、转移仓库或更换插件 ID 时，必须重新提交审核。
 
-- 插件 ID 与 `plugin.json.id` 一致。
-- 插件包内只有一个 `plugin.json`。
-- 不包含 token、cookie、私钥、个人路径和运行数据。
-- 配置项中的敏感字段使用 `ui.control: "secret"` 或 `ui.sensitive: true`。
-- README 写清安装、配置、使用和卸载注意事项。
+## 自动检查范围
+
+自动检查会验证：
+
+- GitHub 仓库公开、未归档，URL 与插件声明一致。
+- 最新 Release、tag、固定 commit 和 `plugin.json` 可读取。
+- 插件 ID、版本、类型、权限和必填字段合法。
+- README、LICENSE 和配置 Schema 存在。
+- 文件数量、总体积不超过安装限制。
+- 没有 `.env`、私钥、凭据 JSON 等明显秘密文件。
+- ID 和仓库没有重复收录。
+
+自动检查不会执行插件入口代码，也不能证明代码没有恶意行为。
+
+## 风险与更新等级
+
+- `declarative`：无进程入口的内容、主题或地图插件；权限不扩大时允许自动更新。
+- `unrestricted-process`：包含进程入口；以用户权限运行，只提示更新。
+- `bundled`：由 DiceFrame 组织维护并随主程序发布。
+- `approval-required`：新版本扩大权限或改变运行方式，暂停安装与更新。
+
+收录表示插件符合索引规则，不构成安全保证或功能质量保证。

@@ -1,0 +1,43 @@
+name: 添加插件 / Add plugin
+description: 提交一个公开 GitHub 插件仓库；无需 Fork 或编辑索引
+title: "[Plugin Submission] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        只需提供插件 ID 和公开仓库地址。机器人会读取最新 GitHub Release，检查完成后由维护者回复 `/approve`。
+  - type: input
+    id: plugin_id
+    attributes:
+      label: 插件 ID / Plugin ID
+      description: 必须与仓库根目录 plugin.json.id 一致，例如 example-plugin
+      placeholder: example-plugin
+    validations:
+      required: true
+  - type: input
+    id: repository
+    attributes:
+      label: 仓库地址 / Repository URL
+      description: 插件仓库必须公开，且根目录就是插件目录
+      placeholder: https://github.com/username/example-plugin
+    validations:
+      required: true
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: 投稿确认 / Confirmation
+      options:
+        - label: 仓库根目录包含 plugin.json、README 和 LICENSE
+          required: true
+        - label: 已发布至少一个非草稿、非预发布的 GitHub Release
+          required: true
+        - label: 仓库中没有 Token、Cookie、私钥、个人路径或运行数据
+          required: true
+        - label: 我理解自动检查通过不代表 DiceFrame 对代码安全作出保证
+          required: true
+  - type: textarea
+    id: note
+    attributes:
+      label: 补充说明 / Additional information
+      description: 可选；说明外部依赖、网络访问或需要维护者注意的风险
+

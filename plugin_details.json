@@ -2,11 +2,14 @@
   {
     "id": "qq-napcat",
     "repository_url": "https://github.com/diceframe/diceframe",
-    "package_url": "https://github.com/diceframe/diceframe-plugins/raw/main/packages/qq-napcat-1.1.0.zip",
     "branch": "main",
-    "tags": ["official", "channel-adapter", "qq", "napcat"],
-    "license": "AGPL-3.0-or-later",
-    "homepage": "https://github.com/diceframe/diceframe",
+    "plugin_path": "plugins/qq-napcat",
+    "distribution": "bundled",
+    "risk_level": "bundled",
+    "update_policy": "application",
+    "trust_level": "official",
+    "installable": false,
+    "verification_error": "此插件随 DiceFrame 提供并跟随主程序更新",
     "manifest": {
       "schema_version": 1,
       "id": "qq-napcat",

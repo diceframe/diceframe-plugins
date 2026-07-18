@@ -4,57 +4,35 @@
   "type": "array",
   "items": {
     "type": "object",
-    "required": ["id", "repository_url", "manifest"],
+    "required": ["id", "repository_url", "distribution", "risk_level", "update_policy", "installable", "manifest"],
     "properties": {
-      "id": {
-        "type": "string",
-        "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
-      },
-      "repository_url": {
-        "type": "string",
-        "format": "uri"
-      },
-      "repositoryUrl": {
-        "type": "string",
-        "format": "uri"
-      },
-      "package_url": {
-        "type": "string",
-        "format": "uri"
-      },
-      "branch": {
-        "type": "string",
-        "default": "main"
-      },
-      "tags": {
-        "type": "array",
-        "items": { "type": "string" }
-      },
-      "author": {},
-      "license": {
-        "type": "string"
-      },
-      "homepage": {
-        "type": "string"
-      },
+      "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+      "repository_url": {"type": "string", "format": "uri"},
+      "branch": {"type": "string"},
+      "plugin_path": {"type": "string"},
+      "release_tag": {"type": "string"},
+      "release_url": {"type": "string", "format": "uri"},
+      "commit_sha": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+      "archive_url": {"type": "string", "format": "uri"},
+      "distribution": {"enum": ["repository", "bundled"]},
+      "risk_level": {"enum": ["declarative", "unrestricted-process", "bundled", "unknown"]},
+      "update_policy": {"enum": ["automatic", "notify", "application", "approval-required", "blocked"]},
+      "trust_level": {"enum": ["official", "community"]},
+      "installable": {"type": "boolean"},
+      "verification_error": {"type": "string"},
+      "approved_permissions": {"type": "array", "items": {"type": "string"}},
+      "permission_changes": {"type": "array", "items": {"type": "string"}},
       "manifest": {
         "type": "object",
-        "required": ["schema_version", "id", "name", "version", "description", "plugin_type"],
         "properties": {
-          "schema_version": { "const": 1 },
-          "id": { "type": "string" },
-          "name": { "type": "string" },
-          "version": { "type": "string" },
-          "description": { "type": "string" },
-          "plugin_type": {
-            "type": "string",
-            "enum": ["channel-adapter", "content-pack", "theme", "map-pack", "import-export", "provider", "tool"]
-          },
-          "capabilities": {
-            "type": "array",
-            "items": { "type": "string" }
-          },
-          "docs": { "type": "string" }
+          "schema_version": {"const": 1},
+          "id": {"type": "string"},
+          "name": {"type": "string"},
+          "version": {"type": "string"},
+          "description": {"type": "string"},
+          "plugin_type": {"type": "string"},
+          "capabilities": {"type": "array", "items": {"type": "string"}},
+          "permissions": {"type": "array", "items": {"type": "string"}}
         },
         "additionalProperties": true
       }
