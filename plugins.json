@@ -1,6 +1,23 @@
 [
   {
     "id": "qq-napcat",
-    "repositoryUrl": "https://github.com/diceframe/diceframe"
+    "repository_url": "https://github.com/diceframe/diceframe",
+    "branch": "main",
+    "plugin_path": "plugins/qq-napcat",
+    "distribution": "bundled",
+    "risk_level": "bundled",
+    "update_policy": "application",
+    "approved_permissions": [],
+    "trust_level": "official",
+    "manifest": {
+      "schema_version": 1,
+      "id": "qq-napcat",
+      "name": "QQ / NapCat",
+      "version": "1.1.0",
+      "description": "通过 NapCat WebSocket 服务器将 QQ 群聊连接到 DiceFrame。",
+      "plugin_type": "channel-adapter",
+      "capabilities": ["channel.group", "channel.private", "game.action"],
+      "docs": "README_CN.md"
+    }
   }
 ]

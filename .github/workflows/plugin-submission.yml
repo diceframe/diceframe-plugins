@@ -1,0 +1,78 @@
+name: Plugin submission
+
+on:
+  issues:
+    types: [opened, edited]
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: plugin-submission-${{ github.event.issue.number }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    if: >-
+      startsWith(github.event.issue.title, '[Plugin Submission]') &&
+      (github.event_name == 'issues' || github.event.comment.body == '/recheck')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: node scripts/submission.cjs validate
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  approve:
+    if: >-
+      startsWith(github.event.issue.title, '[Plugin Submission]') &&
+      github.event_name == 'issue_comment' &&
+      github.event.comment.body == '/approve'
+    runs-on: ubuntu-latest
+    concurrency:
+      group: plugin-registry-write
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - id: approve
+        run: node scripts/submission.cjs approve
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Commit registry update
+        run: |
+          git config user.name "diceframe-registry[bot]"
+          git config user.email "diceframe-registry[bot]@users.noreply.github.com"
+          git add plugins.json plugin_details.json
+          git commit -m "Add ${{ steps.approve.outputs.plugin_id }} plugin"
+          git push
+      - run: node scripts/submission.cjs finish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PLUGIN_ID: ${{ steps.approve.outputs.plugin_id }}
+          APPROVED_BY: ${{ steps.approve.outputs.approved_by }}
+
+  reject:
+    if: >-
+      startsWith(github.event.issue.title, '[Plugin Submission]') &&
+      github.event_name == 'issue_comment' &&
+      startsWith(github.event.comment.body, '/reject')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: node scripts/submission.cjs reject
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
