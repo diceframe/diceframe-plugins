@@ -6,7 +6,7 @@
 
 ## 投稿
 
-插件作者在 [Issues](https://github.com/diceframe/diceframe-plugins/issues/new/choose) 中选择“添加插件”，只需填写插件 ID 和公开仓库地址。无需 Fork、无需修改 JSON、无需计算 SHA-256。
+插件作者在 [Issues](https://github.com/diceframe/diceframe-plugins/issues/new/choose) 中选择“添加插件”，只需填写插件 ID 和公开仓库地址。
 
 机器人会读取最新 GitHub Release，验证 `plugin.json`、版本、仓库结构、权限声明、README、LICENSE 和明显的秘密文件。验证通过后，维护者只需回复：
 
