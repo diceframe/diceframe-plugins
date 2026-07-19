@@ -1,0 +1,11 @@
+.codex/
+.claude/
+AGENTS.md
+CLAUDE.md
+
+__pycache__/
+.pytest_cache/
+*.py[cod]
+.env
+.env.*
+!.env.example

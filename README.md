@@ -4,21 +4,18 @@
 
 本仓库是 DiceFrame 社区插件的公开索引。插件源码由作者在各自 GitHub 仓库中维护；这里不复制插件源码，也不保存作者制作的 ZIP 包。
 
+## 玩家如何使用
+
+- 在 DiceFrame 中打开“设置 → 插件 → 插件商店”，即可浏览和安装已收录插件。
+- 不需要下载或克隆本索引仓库；DiceFrame 会从插件作者的公开仓库获取正式 Release。
+- 从网盘、聊天群等渠道获得的插件，应是 `.dfplugin` 文件，可在“本地安装”中选择。
+- QQ / NapCat 是 DiceFrame 内置插件，随主程序更新，不需要从商店重复安装。
+
 ## 投稿
 
 插件作者在 [Issues](https://github.com/diceframe/diceframe-plugins/issues/new/choose) 中选择“添加插件”，只需填写插件 ID 和公开仓库地址。
 
-机器人会读取最新 GitHub Release，验证 `plugin.json`、版本、仓库结构、权限声明、README、LICENSE 和明显的秘密文件。验证通过后，维护者只需回复：
-
-```text
-/approve
-```
-
-拒绝时回复：
-
-```text
-/reject 原因
-```
+机器人会读取最新 GitHub Release，验证 `plugin.json`、版本、仓库结构、权限声明、README、LICENSE 和明显的秘密文件。自动检查通过后，DiceFrame 维护者会在投稿 Issue 中完成审核，并给出收录或拒绝结果。
 
 完整要求见 [贡献指南](CONTRIBUTING.md)。
 

@@ -4,21 +4,18 @@
 
 This repository is the public index for DiceFrame community plugins. Plugin source code remains in repositories maintained by each author. This registry does not copy plugin source code or store author-built ZIP archives.
 
+## Using plugins
+
+- In DiceFrame, open Settings → Plugins → Plugin Store to browse and install listed plugins.
+- You do not need to download or clone this registry. DiceFrame obtains stable Releases from each author's public repository.
+- Plugins shared through file hosting, chat groups, or other private channels should be provided as `.dfplugin` files and selected under Local Install.
+- QQ / NapCat is bundled with DiceFrame, updates with the application, and is not installed again from the store.
+
 ## Submitting a plugin
 
 Open [Issues](https://github.com/diceframe/diceframe-plugins/issues/new/choose), choose “Add plugin”, and provide only the plugin ID and public repository URL. No fork, JSON editing, SHA-256 calculation, or uploaded package is required.
 
-Automation checks the latest GitHub Release, `plugin.json`, version, repository structure, declared permissions, documentation, license, and obvious secret files. After validation, a maintainer approves by replying:
-
-```text
-/approve
-```
-
-To reject a submission:
-
-```text
-/reject reason
-```
+Automation checks the latest GitHub Release, `plugin.json`, version, repository structure, declared permissions, documentation, license, and obvious secret files. After automated validation, DiceFrame maintainers complete the review in the submission Issue and provide an acceptance or rejection result.
 
 See the [contribution guide](CONTRIBUTING_EN.md) for the complete requirements.
 
