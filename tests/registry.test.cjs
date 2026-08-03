@@ -5,6 +5,7 @@ const assert = require("node:assert/strict");
 const {
   addedPermissions,
   classifyManifest,
+  detailFromSnapshot,
   effectivePermissions,
   normalizeRepositoryUrl,
   parseSubmission,
@@ -54,6 +55,35 @@ test("manifest validation rejects unknown permissions", () => {
 
 test("permission expansion is detected", () => {
   assert.deepEqual(addedPermissions(["content.read"], ["content.read", "network.client"]), ["network.client"]);
+});
+
+test("detailFromSnapshot carries the GitHub star count", () => {
+  const entry = {
+    id: "demo-pack",
+    repository_url: "https://github.com/example/demo-pack",
+    approved_permissions: ["content.read"],
+    risk_level: "declarative",
+    trust_level: "community",
+  };
+  const snapshot = {
+    id: "demo-pack",
+    repositoryUrl: "https://github.com/example/demo-pack",
+    owner: "example",
+    repo: "demo-pack",
+    branch: "main",
+    stars: 42,
+    releaseTag: "v1.0.0",
+    releaseUrl: "https://github.com/example/demo-pack/releases/tag/v1.0.0",
+    commitSha: "0".repeat(40),
+    manifest: baseManifest,
+    riskLevel: "declarative",
+    updatePolicy: "automatic",
+    permissions: ["content.read"],
+  };
+  const detail = detailFromSnapshot(entry, snapshot);
+  assert.equal(detail.stars, 42);
+  assert.equal(detail.id, "demo-pack");
+  assert.equal(detail.installable, true);
 });
 
 test("permissions are inferred exactly like the host when omitted", () => {

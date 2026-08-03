@@ -216,6 +216,7 @@ async function loadReleaseSnapshot(repositoryUrl, expectedId, token) {
     owner: parsed.owner,
     repo: parsed.repo,
     branch: repoInfo.default_branch,
+    stars: Number(repoInfo.stargazers_count) || 0,
     releaseTag: release.tag_name,
     releaseUrl: release.html_url,
     commitSha: commit.sha,
@@ -232,6 +233,7 @@ function detailFromSnapshot(entry, snapshot) {
     id: entry.id,
     repository_url: entry.repository_url,
     branch: snapshot.branch,
+    stars: snapshot.stars,
     release_tag: snapshot.releaseTag,
     release_url: snapshot.releaseUrl,
     commit_sha: snapshot.commitSha,
@@ -264,6 +266,7 @@ async function generateDetails(entries, token) {
         trust_level: "official",
         installable: false,
         verification_error: "此插件随 DiceFrame 提供并跟随主程序更新",
+        stars: 0,
         manifest: entry.manifest || {},
       });
       continue;
@@ -282,6 +285,7 @@ async function generateDetails(entries, token) {
         trust_level: entry.trust_level || "community",
         installable: false,
         verification_error: `同步失败：${error.message}`,
+        stars: 0,
         manifest: {},
       });
     }
