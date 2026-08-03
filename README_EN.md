@@ -2,7 +2,7 @@
 
 [中文](README.md) | English
 
-This repository is the public index for DiceFrame community plugins. Plugin source code remains in repositories maintained by each author. This registry does not copy plugin source code or store author-built ZIP archives.
+This repository is the public index for DiceFrame community plugins. Plugin source code remains in repositories maintained by each author.
 
 ## Submitting a plugin
 

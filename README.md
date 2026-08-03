@@ -2,7 +2,7 @@
 
 中文 | [English](README_EN.md)
 
-本仓库是 DiceFrame 社区插件的公开索引。插件源码由作者在各自 GitHub 仓库中维护；这里不复制插件源码，也不保存作者制作的 ZIP 包。
+本仓库是 DiceFrame 社区插件的公开索引。插件源码由作者在各自 GitHub 仓库中维护。
 
 ## 投稿
 
