@@ -9,6 +9,7 @@
       "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
       "repository_url": {"type": "string", "format": "uri"},
       "branch": {"type": "string"},
+      "stars": {"type": "integer", "minimum": 0, "description": "GitHub 仓库 star 数，作为商店受欢迎度展示"},
       "plugin_path": {"type": "string"},
       "release_tag": {"type": "string"},
       "release_url": {"type": "string", "format": "uri"},
