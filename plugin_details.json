@@ -1,5 +1,69 @@
 [
   {
+    "id": "frieren-journey",
+    "repository_url": "https://github.com/EOEOY/frieren-journey",
+    "branch": "master",
+    "release_tag": "v1.0.0",
+    "release_url": "https://github.com/EOEOY/frieren-journey/releases/tag/v1.0.0",
+    "commit_sha": "22f9f0f8317e6a17847af1e927bbaf32393f6e0e",
+    "archive_url": "https://github.com/EOEOY/frieren-journey/archive/22f9f0f8317e6a17847af1e927bbaf32393f6e0e.zip",
+    "distribution": "repository",
+    "risk_level": "declarative",
+    "update_policy": "automatic",
+    "approved_permissions": [
+      "content.import",
+      "content.read",
+      "plugin.config"
+    ],
+    "permission_changes": [],
+    "trust_level": "community",
+    "installable": true,
+    "verification_error": "",
+    "manifest": {
+      "schema_version": 1,
+      "id": "frieren-journey",
+      "name": "葬送的芙莉莲·旅途",
+      "version": "1.0.0",
+      "description": "以《葬送的芙莉莲》为蓝本的完整奇幻冒险规则包：魔王战后的百年旅程、魔法使等级、人类魔法、魔力制限与魔族。启用后创建游戏即可选择本世界与规则。非官方同人，版权归原作所有。",
+      "plugin_type": "content-pack",
+      "config_schema": "config.schema.json",
+      "capabilities": [
+        "content.rule",
+        "content.world",
+        "content.character-template"
+      ],
+      "permissions": [
+        "plugin.config",
+        "content.read",
+        "content.import"
+      ],
+      "contributes": {
+        "rules": [
+          "content/rules/*.json"
+        ],
+        "world_templates": [
+          "content/worlds/*.json"
+        ],
+        "character_templates": [
+          "content/characters/*.json"
+        ],
+        "npcs": [
+          "content/npc/*.json"
+        ],
+        "items": [
+          "content/items/*.json"
+        ],
+        "spells": [
+          "content/spells/*.json"
+        ],
+        "classes": [
+          "content/classes/*.json"
+        ]
+      },
+      "docs": "README_CN.md"
+    }
+  },
+  {
     "id": "qq-napcat",
     "repository_url": "https://github.com/diceframe/diceframe",
     "branch": "main",
