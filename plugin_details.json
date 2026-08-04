@@ -3,6 +3,7 @@
     "id": "frieren-journey",
     "repository_url": "https://github.com/EOEOY/frieren-journey",
     "branch": "master",
+    "stars": 1,
     "release_tag": "v1.0.0",
     "release_url": "https://github.com/EOEOY/frieren-journey/releases/tag/v1.0.0",
     "commit_sha": "22f9f0f8317e6a17847af1e927bbaf32393f6e0e",
@@ -74,6 +75,7 @@
     "trust_level": "official",
     "installable": false,
     "verification_error": "此插件随 DiceFrame 提供并跟随主程序更新",
+    "stars": 0,
     "manifest": {
       "schema_version": 1,
       "id": "qq-napcat",
