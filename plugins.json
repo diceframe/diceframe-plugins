@@ -17,6 +17,23 @@
     "approved_at": "2026-08-03T01:52:44.739Z"
   },
   {
+    "id": "office-night",
+    "repository_url": "https://github.com/EOEOY/office-night",
+    "branch": "main",
+    "approved_release_tag": "v1.0.0",
+    "approved_commit": "edb39c325045790db0073dcd8d55e808fbd03f79",
+    "risk_level": "declarative",
+    "update_policy": "automatic",
+    "approved_permissions": [
+      "content.import",
+      "content.read",
+      "plugin.config"
+    ],
+    "trust_level": "community",
+    "approved_by": "EOEOY",
+    "approved_at": "2026-08-04T12:36:12.993Z"
+  },
+  {
     "id": "qq-napcat",
     "repository_url": "https://github.com/diceframe/diceframe",
     "branch": "main",
