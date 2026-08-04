@@ -233,6 +233,7 @@ function detailFromSnapshot(entry, snapshot) {
     id: entry.id,
     repository_url: entry.repository_url,
     branch: snapshot.branch,
+    author: snapshot.owner,
     stars: snapshot.stars,
     release_tag: snapshot.releaseTag,
     release_url: snapshot.releaseUrl,
