@@ -16,6 +16,20 @@
       "release_url": {"type": "string", "format": "uri"},
       "commit_sha": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
       "archive_url": {"type": "string", "format": "uri"},
+      "latest": {
+        "type": "object",
+        "description": "插件仓库最新正式 Release 的解析结果，由每日同步刷新",
+        "required": ["version", "release_tag", "release_url", "commit_sha", "requires_approval"],
+        "properties": {
+          "version": {"type": "string", "description": "最新 Release 中 plugin.json 的版本"},
+          "release_tag": {"type": "string"},
+          "release_url": {"type": "string", "format": "uri"},
+          "commit_sha": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+          "published_at": {"type": "string"},
+          "requires_approval": {"type": "boolean", "description": "新版本是否扩大权限或改变运行方式，需要重新审核"}
+        },
+        "additionalProperties": false
+      },
       "distribution": {"enum": ["repository", "bundled"]},
       "risk_level": {"enum": ["declarative", "unrestricted-process", "bundled", "unknown"]},
       "update_policy": {"enum": ["automatic", "notify", "application", "approval-required", "blocked"]},
