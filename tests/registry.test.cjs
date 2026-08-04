@@ -85,6 +85,44 @@ test("detailFromSnapshot carries the GitHub star count", () => {
   assert.equal(detail.author, "example");
   assert.equal(detail.id, "demo-pack");
   assert.equal(detail.installable, true);
+  assert.deepEqual(detail.latest, {
+    version: "1.2.3",
+    release_tag: "v1.0.0",
+    release_url: "https://github.com/example/demo-pack/releases/tag/v1.0.0",
+    commit_sha: "0".repeat(40),
+    published_at: "",
+    requires_approval: false,
+  });
+});
+
+test("latest marks requires_approval when permissions expand", () => {
+  const entry = {
+    id: "demo-pack",
+    repository_url: "https://github.com/example/demo-pack",
+    approved_permissions: ["content.read"],
+    risk_level: "declarative",
+    trust_level: "community",
+  };
+  const snapshot = {
+    id: "demo-pack",
+    repositoryUrl: "https://github.com/example/demo-pack",
+    owner: "example",
+    repo: "demo-pack",
+    branch: "main",
+    stars: 0,
+    releaseTag: "v1.1.0",
+    releaseUrl: "https://github.com/example/demo-pack/releases/tag/v1.1.0",
+    publishedAt: "2026-08-01T10:00:00Z",
+    commitSha: "1".repeat(40),
+    manifest: { ...baseManifest, version: "1.3.0", permissions: ["content.read", "network.client"] },
+    riskLevel: "declarative",
+    updatePolicy: "automatic",
+    permissions: ["content.read", "network.client"],
+  };
+  const detail = detailFromSnapshot(entry, snapshot);
+  assert.equal(detail.latest.requires_approval, true);
+  assert.equal(detail.update_policy, "approval-required");
+  assert.equal(detail.installable, false);
 });
 
 test("permissions are inferred exactly like the host when omitted", () => {
