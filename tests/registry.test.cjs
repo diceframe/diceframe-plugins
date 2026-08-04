@@ -82,6 +82,7 @@ test("detailFromSnapshot carries the GitHub star count", () => {
   };
   const detail = detailFromSnapshot(entry, snapshot);
   assert.equal(detail.stars, 42);
+  assert.equal(detail.author, "example");
   assert.equal(detail.id, "demo-pack");
   assert.equal(detail.installable, true);
 });
