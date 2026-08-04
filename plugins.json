@@ -17,6 +17,23 @@
     "approved_at": "2026-08-03T01:52:44.739Z"
   },
   {
+    "id": "hyouka",
+    "repository_url": "https://github.com/EOEOY/hyouka",
+    "branch": "main",
+    "approved_release_tag": "v1.0.0",
+    "approved_commit": "2e3edcdb4ffdd47c00330b0e93d4f1a4024ae941",
+    "risk_level": "declarative",
+    "update_policy": "automatic",
+    "approved_permissions": [
+      "content.import",
+      "content.read",
+      "plugin.config"
+    ],
+    "trust_level": "community",
+    "approved_by": "EOEOY",
+    "approved_at": "2026-08-04T12:44:37.112Z"
+  },
+  {
     "id": "office-night",
     "repository_url": "https://github.com/EOEOY/office-night",
     "branch": "main",
