@@ -52,27 +52,22 @@
   },
   {
     "id": "qq-napcat",
-    "repository_url": "https://github.com/diceframe/diceframe",
+    "repository_url": "https://github.com/diceframe/qq-napcat",
     "branch": "main",
-    "plugin_path": "plugins/qq-napcat",
-    "distribution": "bundled",
-    "risk_level": "bundled",
-    "update_policy": "application",
-    "approved_permissions": [],
+    "approved_release_tag": "v1.1.0",
+    "approved_commit": "09d24a2680adc288dc478e7536807140da01a26f",
+    "risk_level": "unrestricted-process",
+    "update_policy": "notify",
+    "approved_permissions": [
+      "process.spawn",
+      "plugin.data",
+      "network.client",
+      "diceframe.http",
+      "plugin.config",
+      "plugin.secrets"
+    ],
     "trust_level": "official",
-    "manifest": {
-      "schema_version": 1,
-      "id": "qq-napcat",
-      "name": "QQ / NapCat",
-      "version": "1.1.0",
-      "description": "通过 NapCat WebSocket 服务器将 QQ 群聊连接到 DiceFrame。",
-      "plugin_type": "channel-adapter",
-      "capabilities": [
-        "channel.group",
-        "channel.private",
-        "game.action"
-      ],
-      "docs": "README_CN.md"
-    }
+    "approved_by": "EOEOY",
+    "approved_at": "2026-08-05T00:00:00.000Z"
   }
 ]
