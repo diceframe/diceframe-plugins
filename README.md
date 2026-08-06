@@ -6,19 +6,9 @@
 
 ## 投稿
 
-插件作者在 [Issues](https://github.com/diceframe/diceframe-plugins/issues/new/choose) 中选择“添加插件”，只需填写插件 ID 和公开仓库地址。
+插件作者在 [Issues](https://github.com/diceframe/diceframe-plugins/issues/new/choose) 中选择"添加插件"，只需填写插件 ID 和公开仓库地址。
 
-机器人会读取最新 GitHub Release，验证 `plugin.json`、版本、仓库结构、权限声明、README、LICENSE 和明显的秘密文件。验证通过后，维护者只需回复：
-
-```text
-/approve
-```
-
-拒绝时回复：
-
-```text
-/reject 原因
-```
+提交后，DiceFrame 维护者会审核你的插件（检查最新 Release、`plugin.json`、版本、仓库结构、权限声明、README、LICENSE 和明显的秘密文件），然后决定是否收录。无论收录与否，都会在 Issue 中通知你结果；如未通过，会说明原因，按提示调整后可以重新提交。
 
 完整要求见 [贡献指南](CONTRIBUTING.md)。
 
