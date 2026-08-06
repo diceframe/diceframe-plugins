@@ -29,7 +29,7 @@ See the [contribution guide](CONTRIBUTING_EN.md) for the complete requirements.
 - A permission increase, runtime change, repository transfer, or plugin ID change pauses updates and requires another review.
 - Bundled plugins such as QQ / NapCat ship with DiceFrame and are not installed again from the store.
 
-The daily registry sync is only a display cache. DiceFrame resolves the latest repository Release when installing or checking for updates, so scheduled workflow suspension does not stop updates.
+The registry syncs once per day (around 11:17 Beijing time / 03:17 UTC) for store display. DiceFrame resolves the latest repository Release when installing or checking for updates, so scheduled workflow suspension does not stop updates; even if the sync cache has not refreshed yet, you can still get the latest version an author publishes immediately.
 
 ## Security
 
