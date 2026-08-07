@@ -10,11 +10,11 @@ const PLUGIN_TYPES = new Set([
   "import-export", "provider", "tool",
 ]);
 const DECLARATIVE_TYPES = new Set(["content-pack", "theme", "map-pack"]);
-const INSTALLABLE_TYPES = new Set(["channel-adapter", "content-pack", "theme", "map-pack"]);
+const INSTALLABLE_TYPES = new Set(["channel-adapter", "content-pack", "theme", "map-pack", "tool"]);
 const ALLOWED_PERMISSIONS = new Set([
   "process.spawn", "network.client", "diceframe.http", "plugin.config",
   "plugin.secrets", "plugin.data", "content.read", "content.import",
-  "theme.tokens", "map.assets",
+  "theme.tokens", "map.assets", "tool.execute", "tunnel.publish",
 ]);
 
 function field(body, heading) {
@@ -126,6 +126,8 @@ function effectivePermissions(manifest, schema = {}) {
     inferred.add("theme.tokens");
   } else if (manifest.plugin_type === "map-pack") {
     inferred.add("map.assets");
+  } else if (manifest.plugin_type === "tool") {
+    inferred.add("tool.execute");
   }
   return [...inferred].sort();
 }
