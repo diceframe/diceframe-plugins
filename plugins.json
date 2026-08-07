@@ -3,8 +3,8 @@
     "id": "frieren-journey",
     "repository_url": "https://github.com/EOEOY/frieren-journey",
     "branch": "master",
-    "approved_release_tag": "v1.0.0",
-    "approved_commit": "22f9f0f8317e6a17847af1e927bbaf32393f6e0e",
+    "approved_release_tag": "v1.2.0",
+    "approved_commit": "31a04e52e77f20521cd020f793edf6aecbef746e",
     "risk_level": "declarative",
     "update_policy": "automatic",
     "approved_permissions": [
@@ -20,8 +20,8 @@
     "id": "hyouka",
     "repository_url": "https://github.com/EOEOY/hyouka",
     "branch": "main",
-    "approved_release_tag": "v1.0.0",
-    "approved_commit": "2e3edcdb4ffdd47c00330b0e93d4f1a4024ae941",
+    "approved_release_tag": "v1.2.0",
+    "approved_commit": "b95366b96ba88d2054833cc3c0192a6edb982b39",
     "risk_level": "declarative",
     "update_policy": "automatic",
     "approved_permissions": [
@@ -37,8 +37,8 @@
     "id": "office-night",
     "repository_url": "https://github.com/EOEOY/office-night",
     "branch": "main",
-    "approved_release_tag": "v1.0.0",
-    "approved_commit": "edb39c325045790db0073dcd8d55e808fbd03f79",
+    "approved_release_tag": "v1.1.0",
+    "approved_commit": "055dd436b9bcbbfaa8683a294b77d4923d60e0e2",
     "risk_level": "declarative",
     "update_policy": "automatic",
     "approved_permissions": [

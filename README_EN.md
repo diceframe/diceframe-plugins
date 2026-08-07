@@ -8,17 +8,21 @@ This repository is the public index for DiceFrame community plugins. Plugin sour
 
 Open [Issues](https://github.com/diceframe/diceframe-plugins/issues/new/choose), choose “Add plugin”, and provide only the plugin ID and public repository URL. No fork, JSON editing, SHA-256 calculation, or uploaded package is required.
 
-Automation checks the latest GitHub Release, `plugin.json`, version, repository structure, declared permissions, documentation, license, and obvious secret files. After validation, a maintainer approves by replying:
+Automation checks the latest GitHub Release, `plugin.json`, version, repository structure, declared permissions, documentation, license, and obvious secret files. After validation, a maintainer reviews and decides whether to include your plugin:
 
 ```text
 /approve
 ```
+
+Once approved, your plugin appears in the store index, and users can find and install it from the DiceFrame plugin store. When you publish new versions, the store syncs the update automatically (see Update policy below).
 
 To reject a submission:
 
 ```text
 /reject reason
 ```
+
+If your plugin is not accepted, the reason is given so you can adjust and resubmit.
 
 See the [contribution guide](CONTRIBUTING_EN.md) for the complete requirements.
 
@@ -29,7 +33,7 @@ See the [contribution guide](CONTRIBUTING_EN.md) for the complete requirements.
 - A permission increase, runtime change, repository transfer, or plugin ID change pauses updates and requires another review.
 - Bundled plugins such as QQ / NapCat ship with DiceFrame and are not installed again from the store.
 
-The daily registry sync is only a display cache. DiceFrame resolves the latest repository Release when installing or checking for updates, so scheduled workflow suspension does not stop updates.
+The registry syncs once per day (around 11:17 Beijing time / 03:17 UTC) for store display. DiceFrame resolves the latest repository Release when installing or checking for updates, so scheduled workflow suspension does not stop updates; even if the sync cache has not refreshed yet, you can still get the latest version an author publishes immediately.
 
 ## Security
 
