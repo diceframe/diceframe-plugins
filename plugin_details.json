@@ -29,7 +29,7 @@
       "tunnel.publish"
     ],
     "permission_changes": [],
-    "trust_level": "community",
+    "trust_level": "official",
     "installable": true,
     "verification_error": "",
     "manifest": {

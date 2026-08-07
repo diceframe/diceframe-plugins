@@ -15,7 +15,7 @@
       "tool.execute",
       "tunnel.publish"
     ],
-    "trust_level": "community",
+    "trust_level": "official",
     "approved_by": "EOEOY",
     "approved_at": "2026-08-07T18:25:35.455Z"
   },
