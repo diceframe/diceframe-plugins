@@ -139,7 +139,8 @@ async function approve() {
     risk_level: marker.risk_level,
     update_policy: marker.update_policy,
     approved_permissions: marker.permissions,
-    trust_level: "community",
+    // diceframe 组织维护的官方插件标 official，其余投稿默认 community。
+    trust_level: marker.owner === "diceframe" ? "official" : "community",
     approved_by: approvedBy,
     approved_at: new Date().toISOString(),
   });
