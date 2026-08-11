@@ -28,7 +28,7 @@ See the [contribution guide](CONTRIBUTING_EN.md) for the complete requirements.
 
 ## Update policy
 
-- Declarative `content-pack`, `theme`, and `map-pack` plugins may update automatically while their permissions and runtime model remain unchanged.
+- Declarative `content-pack`, `theme`, and `map-pack` plugins are checked for new versions and notified; updates are installed only after user confirmation, while their permissions and runtime model remain unchanged.
 - Plugins that launch Python, Node, executables, or another process only notify users about updates; they are never silently updated.
 - A permission increase, runtime change, repository transfer, or plugin ID change pauses updates and requires another review.
 - Bundled plugins such as QQ / NapCat ship with DiceFrame and are not installed again from the store.

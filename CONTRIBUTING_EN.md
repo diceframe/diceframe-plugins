@@ -33,7 +33,7 @@ For an ordinary update:
 2. Commit the code and create a Git tag.
 3. Publish a non-draft, non-prerelease GitHub Release.
 
-Declarative plugins may update automatically while permissions and runtime remain unchanged. Process plugins only notify users. Permission expansion, a change from declarative to process execution, repository transfer, or plugin ID change requires another review.
+Declarative plugins are checked and prompted when the user opens the plugin store, and updates are installed only after user confirmation, while permissions and runtime remain unchanged. Process plugins only notify users. Permission expansion, a change from declarative to process execution, repository transfer, or plugin ID change requires another review.
 
 ## Automated checks
 
@@ -51,7 +51,7 @@ Automation never executes the plugin entrypoint and cannot prove that executable
 
 ## Risk and update levels
 
-- `declarative`: a content, theme, or map plugin without a process entrypoint; eligible for automatic updates when permissions do not expand.
+- `declarative`: a content, theme, or map plugin without a process entrypoint; checked and prompted when the store is opened, with updates installed only after user confirmation, if permissions do not expand.
 - `unrestricted-process`: launches a process with the current user's operating-system privileges; updates are notification-only.
 - `bundled`: maintained by the DiceFrame organization and released with the application.
 - `approval-required`: a release expanded permissions or changed runtime behavior; installation and updates are paused.

@@ -1,0 +1,10 @@
+# 内部维护资料：不得提交/发布
+.claude/
+.codex/
+AGENTS.md
+CLAUDE.md
+
+# 常规忽略
+node_modules/
+*.log
+.DS_Store

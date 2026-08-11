@@ -61,7 +61,7 @@ function classifyManifest(manifest) {
     return {
       riskLevel: "declarative",
       updatePolicy: "automatic",
-      summary: "仅声明数据与资源；权限不扩大时允许自动更新",
+      summary: "仅声明数据与资源；权限不扩大时自动检查并提示，由用户确认后更新",
     };
   }
   return {
