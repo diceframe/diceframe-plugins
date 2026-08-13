@@ -6,15 +6,18 @@ const path = require("path");
 const PLUGIN_ID_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const SEMVER_RE = /^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/;
 const PLUGIN_TYPES = new Set([
-  "channel-adapter", "content-pack", "theme", "map-pack",
+  "channel-adapter", "bot-extension", "content-pack", "theme", "voice-pack",
   "import-export", "provider", "tool",
 ]);
-const DECLARATIVE_TYPES = new Set(["content-pack", "theme", "map-pack"]);
-const INSTALLABLE_TYPES = new Set(["channel-adapter", "content-pack", "theme", "map-pack", "tool"]);
+const DECLARATIVE_TYPES = new Set(["content-pack", "theme", "voice-pack"]);
+const INSTALLABLE_TYPES = new Set(["channel-adapter", "bot-extension", "content-pack", "theme", "voice-pack", "tool"]);
 const ALLOWED_PERMISSIONS = new Set([
   "process.spawn", "network.client", "diceframe.http", "plugin.config",
   "plugin.secrets", "plugin.data", "content.read", "content.import",
-  "theme.tokens", "map.assets", "tool.execute", "tunnel.publish",
+  "theme.tokens", "map.assets", "voice.assets", "tool.execute", "bot.extend", "tunnel.publish",
+]);
+const MAP_CONTRIBUTION_FIELDS = new Set([
+  "map_definitions", "map_locations", "map_icons", "map_backgrounds",
 ]);
 
 function field(body, heading) {
@@ -122,12 +125,18 @@ function effectivePermissions(manifest, schema = {}) {
   } else if (manifest.plugin_type === "content-pack") {
     inferred.add("content.read");
     inferred.add("content.import");
+    const contributes = manifest.contributes && typeof manifest.contributes === "object"
+      ? manifest.contributes
+      : {};
+    if (Object.keys(contributes).some(key => MAP_CONTRIBUTION_FIELDS.has(key))) inferred.add("map.assets");
   } else if (manifest.plugin_type === "theme") {
     inferred.add("theme.tokens");
-  } else if (manifest.plugin_type === "map-pack") {
-    inferred.add("map.assets");
+  } else if (manifest.plugin_type === "voice-pack") {
+    inferred.add("voice.assets");
   } else if (manifest.plugin_type === "tool") {
     inferred.add("tool.execute");
+  } else if (manifest.plugin_type === "bot-extension") {
+    inferred.add("bot.extend");
   }
   return [...inferred].sort();
 }

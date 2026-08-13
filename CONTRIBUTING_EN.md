@@ -51,7 +51,7 @@ Automation never executes the plugin entrypoint and cannot prove that executable
 
 ## Risk and update levels
 
-- `declarative`: a content, theme, or map plugin without a process entrypoint; checked and prompted when the store is opened, with updates installed only after user confirmation, if permissions do not expand.
+- `declarative`: a content pack, theme, or voice preset without a process entrypoint; checked and prompted when the store is opened, with updates installed only after user confirmation if permissions do not expand.
 - `unrestricted-process`: launches a process with the current user's operating-system privileges; updates are notification-only.
 - `bundled`: maintained by the DiceFrame organization and released with the application.
 - `approval-required`: a release expanded permissions or changed runtime behavior; installation and updates are paused.
