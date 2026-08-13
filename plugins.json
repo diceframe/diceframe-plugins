@@ -54,6 +54,22 @@
     "approved_at": "2026-08-04T12:44:37.112Z"
   },
   {
+    "id": "kokoro-zh-voice-presets",
+    "repository_url": "https://github.com/diceframe/kokoro-zh-voice-presets",
+    "branch": "main",
+    "approved_release_tag": "v1.0.0",
+    "approved_commit": "724c3b5714704f10f39c14dd269fa01169d9eca1",
+    "risk_level": "declarative",
+    "update_policy": "automatic",
+    "approved_permissions": [
+      "plugin.config",
+      "voice.assets"
+    ],
+    "trust_level": "community",
+    "approved_by": "EOEOY",
+    "approved_at": "2026-08-13T13:24:29.511Z"
+  },
+  {
     "id": "office-night",
     "repository_url": "https://github.com/EOEOY/office-night",
     "branch": "main",

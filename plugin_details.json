@@ -206,6 +206,61 @@
     }
   },
   {
+    "id": "kokoro-zh-voice-presets",
+    "repository_url": "https://github.com/diceframe/kokoro-zh-voice-presets",
+    "branch": "main",
+    "author": "diceframe",
+    "stars": 0,
+    "release_tag": "v1.0.0",
+    "release_url": "https://github.com/diceframe/kokoro-zh-voice-presets/releases/tag/v1.0.0",
+    "commit_sha": "724c3b5714704f10f39c14dd269fa01169d9eca1",
+    "latest": {
+      "version": "1.0.0",
+      "release_tag": "v1.0.0",
+      "release_url": "https://github.com/diceframe/kokoro-zh-voice-presets/releases/tag/v1.0.0",
+      "commit_sha": "724c3b5714704f10f39c14dd269fa01169d9eca1",
+      "published_at": "2026-08-13T12:54:32Z",
+      "requires_approval": false
+    },
+    "archive_url": "https://github.com/diceframe/kokoro-zh-voice-presets/archive/724c3b5714704f10f39c14dd269fa01169d9eca1.zip",
+    "distribution": "repository",
+    "risk_level": "declarative",
+    "update_policy": "automatic",
+    "approved_permissions": [
+      "plugin.config",
+      "voice.assets"
+    ],
+    "permission_changes": [],
+    "trust_level": "community",
+    "installable": true,
+    "verification_error": "",
+    "manifest": {
+      "schema_version": 1,
+      "id": "kokoro-zh-voice-presets",
+      "name": "Kokoro 中文音色预设",
+      "version": "1.0.0",
+      "description": "为本地 Kokoro-FastAPI 提供四个中文 Voice ID；不包含模型权重或音频。",
+      "plugin_type": "voice-pack",
+      "repository_url": "https://github.com/diceframe/kokoro-zh-voice-presets",
+      "config_schema": "config.schema.json",
+      "capabilities": [
+        "voice.preset"
+      ],
+      "permissions": [
+        "plugin.config",
+        "voice.assets"
+      ],
+      "contributes": {
+        "voices": [
+          "voices/*.json"
+        ]
+      },
+      "docs": "README.md",
+      "license": "Apache-2.0",
+      "author": "DiceFrame"
+    }
+  },
+  {
     "id": "office-night",
     "repository_url": "https://github.com/EOEOY/office-night",
     "branch": "main",
