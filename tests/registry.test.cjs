@@ -40,6 +40,22 @@ test("declarative plugins can auto-update", () => {
   assert.equal(classifyManifest(baseManifest).updatePolicy, "automatic");
 });
 
+test("voice presets are installable declarative plugins", () => {
+  const manifest = {
+    ...baseManifest,
+    id: "voice-presets",
+    plugin_type: "voice-pack",
+    permissions: undefined,
+  };
+  assert.doesNotThrow(() => validateManifest(
+    manifest,
+    "voice-presets",
+    "https://github.com/example/voice-presets",
+  ));
+  assert.equal(classifyManifest(manifest).riskLevel, "declarative");
+  assert.deepEqual(effectivePermissions(manifest), ["plugin.config", "voice.assets"]);
+});
+
 test("process plugins only notify about updates", () => {
   const policy = classifyManifest({ ...baseManifest, plugin_type: "channel-adapter", entrypoint: ["{python}", "main.py"] });
   assert.equal(policy.riskLevel, "unrestricted-process");
@@ -129,6 +145,14 @@ test("permissions are inferred exactly like the host when omitted", () => {
   assert.deepEqual(
     effectivePermissions({ ...baseManifest, permissions: undefined }),
     ["content.import", "content.read", "plugin.config"],
+  );
+  assert.deepEqual(
+    effectivePermissions({
+      ...baseManifest,
+      permissions: undefined,
+      contributes: { map_backgrounds: ["maps/*.webp"] },
+    }),
+    ["content.import", "content.read", "map.assets", "plugin.config"],
   );
 });
 
