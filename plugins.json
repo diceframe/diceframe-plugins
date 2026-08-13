@@ -20,6 +20,26 @@
     "approved_at": "2026-08-07T18:25:35.455Z"
   },
   {
+    "id": "cloudflare-tunnel-linux",
+    "repository_url": "https://github.com/diceframe/cloudflare-tunnel-linux",
+    "branch": "main",
+    "approved_release_tag": "v0.1.0",
+    "approved_commit": "ec8cb18101de927043c79326f74aa2385b00ba6d",
+    "risk_level": "unrestricted-process",
+    "update_policy": "notify",
+    "approved_permissions": [
+      "diceframe.http",
+      "network.client",
+      "plugin.data",
+      "process.spawn",
+      "tool.execute",
+      "tunnel.publish"
+    ],
+    "trust_level": "community",
+    "approved_by": "EOEOY",
+    "approved_at": "2026-08-13T19:28:18.798Z"
+  },
+  {
     "id": "frieren-journey",
     "repository_url": "https://github.com/EOEOY/frieren-journey",
     "branch": "master",
