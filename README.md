@@ -42,7 +42,9 @@
 ## 开发文档
 
 - [DiceFrame 主项目](https://github.com/diceframe/diceframe)
-- [插件开发指南](https://github.com/diceframe/diceframe/blob/main/docs/PLUGIN_DEVELOPMENT_CN.md)
-- [插件索引与审核规则](https://github.com/diceframe/diceframe/blob/main/docs/PLUGIN_REGISTRY_CN.md)
+- [插件开发指南](https://github.com/diceframe/diceframe-content/blob/main/docs/zh/plugin-development.md)
+- [插件索引与审核规则](https://github.com/diceframe/diceframe-content/blob/main/docs/zh/plugin-registry.md)
+- [Bot Bridge 核心](https://github.com/diceframe/diceframe-content/blob/main/docs/zh/bot-bridge-core.md)
+- [发布音色预设](https://github.com/diceframe/diceframe-content/blob/main/docs/zh/voice-pack-publishing.md)
 
 本索引仓库使用 MIT License。各插件使用其自身仓库声明的许可证。

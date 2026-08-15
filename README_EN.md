@@ -42,8 +42,10 @@ Passing automated validation means only that machine-verifiable format and polic
 ## Development documentation
 
 - [DiceFrame](https://github.com/diceframe/diceframe)
-- [Plugin development guide](https://github.com/diceframe/diceframe/blob/main/docs/PLUGIN_DEVELOPMENT_EN.md)
-- [Registry and review policy](https://github.com/diceframe/diceframe/blob/main/docs/PLUGIN_REGISTRY_EN.md)
+- [Plugin development guide](https://github.com/diceframe/diceframe-content/blob/main/docs/en/plugin-development.md)
+- [Registry and review policy](https://github.com/diceframe/diceframe-content/blob/main/docs/en/plugin-registry.md)
+- [Bot Bridge core](https://github.com/diceframe/diceframe-content/blob/main/docs/en/bot-bridge-core.md)
+- [Publishing voice presets](https://github.com/diceframe/diceframe-content/blob/main/docs/en/voice-pack-publishing.md)
 
 This registry is licensed under the MIT License. Each plugin uses the license declared in its own repository.
 
