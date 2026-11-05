@@ -5,6 +5,8 @@ const path = require("path");
 
 const PLUGIN_ID_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const SEMVER_RE = /^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/;
+// 与 DiceFrame 主仓库 scripts/validate_content_module.py 接受的文件名保持一致。
+const LICENSE_FILE_NAMES = ["LICENSE", "LICENSE.md", "LICENSE.txt"];
 const PLUGIN_TYPES = new Set([
   "channel-adapter", "bot-extension", "content-pack", "theme", "voice-pack",
   "import-export", "provider", "tool",
@@ -179,6 +181,13 @@ async function fileExists(owner, repo, filePath, ref, token) {
   return Boolean(await githubApi(`/repos/${owner}/${repo}/contents/${encodedPath}?ref=${encodeURIComponent(ref)}`, { token, allow404: true }));
 }
 
+async function findLicenseFile(owner, repo, ref, token) {
+  for (const name of LICENSE_FILE_NAMES) {
+    if (await fileExists(owner, repo, name, ref, token)) return name;
+  }
+  return "";
+}
+
 async function loadReleaseSnapshot(repositoryUrl, expectedId, token) {
   const parsed = normalizeRepositoryUrl(repositoryUrl);
   const repoInfo = await githubApi(`/repos/${parsed.owner}/${parsed.repo}`, { token });
@@ -217,9 +226,8 @@ async function loadReleaseSnapshot(repositoryUrl, expectedId, token) {
     : (await fileExists(parsed.owner, parsed.repo, "README_CN.md", commit.sha, token)) ||
       (await fileExists(parsed.owner, parsed.repo, "README.md", commit.sha, token));
   if (!hasDocs) throw new Error("仓库根目录需要 README_CN.md、README.md，或 plugin.json.docs 指向的说明文件");
-  const hasLicense = await fileExists(parsed.owner, parsed.repo, "LICENSE", commit.sha, token) ||
-    await fileExists(parsed.owner, parsed.repo, "LICENSE.md", commit.sha, token);
-  if (!hasLicense) throw new Error("仓库根目录需要 LICENSE 或 LICENSE.md");
+  const hasLicense = await findLicenseFile(parsed.owner, parsed.repo, commit.sha, token);
+  if (!hasLicense) throw new Error("仓库根目录需要 LICENSE、LICENSE.md 或 LICENSE.txt");
 
   return {
     id: expectedId,
@@ -245,7 +253,9 @@ function detailFromSnapshot(entry, snapshot) {
     id: entry.id,
     repository_url: entry.repository_url,
     branch: snapshot.branch,
-    author: snapshot.owner,
+    // DiceFrame 代为托管的包仓库属于 diceframe 组织，作者以投稿时的署名为准。
+    author: entry.author || snapshot.owner,
+    ...(entry.license ? { license: entry.license } : {}),
     stars: snapshot.stars,
     release_tag: snapshot.releaseTag,
     release_url: snapshot.releaseUrl,
@@ -322,6 +332,19 @@ function writeJson(filePath, value) {
   fs.writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`, "utf8");
 }
 
+function validateHostedEntry(entry, id) {
+  if (entry.hosted !== true) throw new Error(`${id}.hosted 只能是 true`);
+  const expected = `https://github.com/diceframe/module-${id}`;
+  if (normalizeRepositoryUrl(entry.repository_url).url !== expected) {
+    throw new Error(`${id} 是托管内容包，仓库地址必须是 ${expected}`);
+  }
+  for (const key of ["author", "submitted_by"]) {
+    if (typeof entry[key] !== "string" || !entry[key].trim()) throw new Error(`${id}.${key} 不能为空`);
+  }
+  if (entry.license !== undefined && typeof entry.license !== "string") throw new Error(`${id}.license 必须是字符串`);
+  if (entry.trust_level !== "community") throw new Error(`${id} 是托管内容包，trust_level 必须是 community`);
+}
+
 function validateRegistry(entries, details) {
   if (!Array.isArray(entries) || !Array.isArray(details)) throw new Error("plugins.json 和 plugin_details.json 必须是数组");
   const ids = new Set();
@@ -343,6 +366,7 @@ function validateRegistry(entries, details) {
     if (distribution === "repository" && !["automatic", "notify"].includes(entry.update_policy)) {
       throw new Error(`${id} 的社区更新策略必须是 automatic 或 notify`);
     }
+    if (entry.hosted !== undefined) validateHostedEntry(entry, id);
   }
   const detailIds = details.map(item => String(item && item.id || ""));
   if (new Set(detailIds).size !== detailIds.length) throw new Error("plugin_details.json 包含重复 ID");
@@ -354,11 +378,15 @@ function validateRegistry(entries, details) {
 
 module.exports = {
   ALLOWED_PERMISSIONS,
+  LICENSE_FILE_NAMES,
   PLUGIN_ID_RE,
+  SEMVER_RE,
   addedPermissions,
   classifyManifest,
   detailFromSnapshot,
   effectivePermissions,
+  field,
+  findLicenseFile,
   generateDetails,
   githubApi,
   loadReleaseSnapshot,
