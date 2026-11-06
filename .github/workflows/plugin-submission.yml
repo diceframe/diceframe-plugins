@@ -21,6 +21,7 @@ jobs:
     if: >-
       github.event_name == 'issues' &&
       !startsWith(github.event.issue.title, '[Plugin Submission]')
+      && !startsWith(github.event.issue.title, '[Content Pack]')
     runs-on: ubuntu-latest
     permissions:
       issues: write
@@ -43,8 +44,11 @@ jobs:
               marker,
               '这个 issue 的标题不是 `[Plugin Submission]` 开头，机器人不会自动校验它。',
               '',
-              '请用「添加插件」模板重新提交，只填插件 ID 和公开仓库地址：',
+              '插件（有自己的仓库）：用「添加插件」模板，只填插件 ID 和公开仓库地址',
               'https://github.com/diceframe/diceframe-plugins/issues/new?template=add-plugin.yml',
+              '',
+              '纯内容包（世界/资料册/冒险模组，没有仓库）：用「投稿内容包」模板上传 .zip',
+              'https://github.com/diceframe/diceframe-plugins/issues/new?template=add-content-pack.yml',
               '',
               '作者保留源码仓库和 Release，官方只登记索引，不代为托管。',
             ]
