@@ -8,7 +8,7 @@ This repository is the public index for DiceFrame community plugins. Plugin sour
 
 Open [Issues](https://github.com/diceframe/diceframe-plugins/issues/new/choose), choose “Add plugin”, and provide only the plugin ID and public repository URL. No fork, JSON editing, SHA-256 calculation, or uploaded package is required.
 
-A content pack (world, lorebook, adventure module) that has no repository yet can start from [`templates/content-pack/`](templates/content-pack): it already contains `plugin.json`, a README, a LICENSE, and a workflow that validates the pack and creates the Release.
+Content packs (worlds, lorebooks, adventure modules) have two paths: upload the exported `.zip` through the content-pack form and DiceFrame hosts it, or start from [`templates/content-pack/`](templates/content-pack) if you want to keep your own repository — it already contains `plugin.json`, a README, a LICENSE and a workflow that creates the Release.
 
 Automation checks the latest GitHub Release, `plugin.json`, version, repository structure, declared permissions, documentation, license, and obvious secret files. After validation, a maintainer reviews and decides whether to include your plugin:
 
