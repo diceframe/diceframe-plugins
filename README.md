@@ -8,6 +8,8 @@
 
 插件作者在 [Issues](https://github.com/diceframe/diceframe-plugins/issues/new/choose) 中选择"添加插件"，只需填写插件 ID 和公开仓库地址。
 
+内容包（世界、资料册、冒险模组）还没有自己的仓库时，可以直接用 [`templates/content-pack/`](templates/content-pack) 起一个：里面有 `plugin.json`、README、LICENSE，以及自动校验并创建 Release 的 workflow。
+
 机器人会读取最新 GitHub Release，验证 `plugin.json`、版本、仓库结构、权限声明、README、LICENSE 和明显的秘密文件。验证通过后，维护者审核并决定是否收录：
 
 ```text

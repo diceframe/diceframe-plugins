@@ -15,14 +15,54 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  guide:
+    # 标题不是 [Plugin Submission] 的投稿，validate 会直接跳过、什么都不回。
+    # 这里兜一层：只要正文看起来像投稿，就回一条怎么重新提交的提示。
+    if: >-
+      github.event_name == 'issues' &&
+      !startsWith(github.event.issue.title, '[Plugin Submission]')
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
+        with:
+          script: |
+            const issue = context.payload.issue
+            const body = issue.body || ''
+            const looksLikeSubmission = /plugin[_\s-]?id|repositor(y|ies)|https:\/\/github\.com\//i.test(body)
+            if (!looksLikeSubmission) return
+            const marker = '<!-- diceframe-submission-guide -->'
+            const comments = await github.paginate(github.rest.issues.listComments, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issue.number,
+            })
+            if (comments.some(comment => (comment.body || '').includes(marker))) return
+            const lines = [
+              marker,
+              '这个 issue 的标题不是 `[Plugin Submission]` 开头，机器人不会自动校验它。',
+              '',
+              '请用「添加插件」模板重新提交，只填插件 ID 和公开仓库地址：',
+              'https://github.com/diceframe/diceframe-plugins/issues/new?template=add-plugin.yml',
+              '',
+              '作者保留源码仓库和 Release，官方只登记索引，不代为托管。',
+            ]
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issue.number,
+              body: lines.join('\n'),
+            })
+
   validate:
     if: >-
       startsWith(github.event.issue.title, '[Plugin Submission]') &&
       (github.event_name == 'issues' || github.event.comment.body == '/recheck')
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: "20"
       - run: node scripts/submission.cjs validate
@@ -39,10 +79,10 @@ jobs:
       group: plugin-registry-write
       cancel-in-progress: false
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: "20"
       - id: approve
@@ -69,8 +109,8 @@ jobs:
       startsWith(github.event.comment.body, '/reject')
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: "20"
       - run: node scripts/submission.cjs reject

@@ -15,6 +15,12 @@ Publish at least one non-draft, non-prerelease GitHub Release. The `plugin.json.
 
 Authors do not upload a plugin ZIP or calculate SHA-256. DiceFrame downloads the repository source snapshot at the immutable Git commit referenced by the Release.
 
+Content packs (worlds, lorebooks, character templates, adventure modules) and themes or voice presets are ordinary plugins too — `plugin_type` is `content-pack`, `theme` or `voice-pack`. They go through exactly the same submission flow, so they also need their own repository and a Release.
+
+## Content packs without a repository yet
+
+Copy [`templates/content-pack/`](templates/content-pack) into a new public repository of your own: it already contains `plugin.json`, `config.schema.json`, a README, a LICENSE and a workflow that validates the pack and creates the `v<version>` Release for you.
+
 ## First submission
 
 1. Open the [plugin submission form](https://github.com/diceframe/diceframe-plugins/issues/new/choose).

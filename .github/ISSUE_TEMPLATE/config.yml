@@ -1,2 +1,8 @@
-blank_issues_enabled: true
-
+blank_issues_enabled: false
+contact_links:
+  - name: 投稿指南 / Submission guide
+    url: https://github.com/diceframe/diceframe-content/blob/main/docs/zh/plugin-registry.md
+    about: 先读一遍：作者维护源码仓库，官方只维护索引，不需要上传 ZIP
+  - name: 内容包模板 / Content pack template
+    url: https://github.com/diceframe/diceframe-plugins/tree/main/templates/content-pack
+    about: 世界、资料册、冒险模组的最小仓库骨架，带自动校验与发布
