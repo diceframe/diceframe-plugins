@@ -15,6 +15,12 @@
 
 作者不需要上传插件 ZIP，也不需要计算 SHA-256。DiceFrame 使用 Release 所指向的固定 Git commit 下载仓库源码快照。
 
+内容包（世界、资料册、角色模板、冒险模组）和主题、音色预设同样是普通插件——`plugin_type` 是 `content-pack`、`theme` 或 `voice-pack`。它们的投稿流程完全一样，因此也需要自己的仓库和一个正式 Release。
+
+## 还没有仓库的内容包
+
+把 [`templates/content-pack/`](templates/content-pack) 复制到你自己的公开仓库：里面已经放好 `plugin.json`、`config.schema.json`、README、LICENSE，以及一个会校验内容包并自动创建 `v<version>` Release 的 workflow。
+
 ## 第一次投稿
 
 1. 打开 [添加插件](https://github.com/diceframe/diceframe-plugins/issues/new/choose)。
