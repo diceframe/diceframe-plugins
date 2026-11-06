@@ -8,7 +8,7 @@
 
 插件作者在 [Issues](https://github.com/diceframe/diceframe-plugins/issues/new/choose) 中选择"添加插件"，只需填写插件 ID 和公开仓库地址。
 
-内容包（世界、资料册、冒险模组）有两条路：不想建仓库就直接用「投稿内容包」表单上传 `.zip`，由 DiceFrame 托管；想自己维护仓库的话，可以用 [`templates/content-pack/`](templates/content-pack) 起一个，里面已经带好 `plugin.json`、README、LICENSE 和自动建 Release 的 workflow。
+内容包（世界、资料册、冒险模组）与其他插件一样需要自己的公开仓库：可以用 [`templates/content-pack/`](templates/content-pack) 起一个，里面已经带好 `plugin.json`、README、LICENSE 和自动建 Release 的 workflow。
 
 机器人会读取最新 GitHub Release，验证 `plugin.json`、版本、仓库结构、权限声明、README、LICENSE 和明显的秘密文件。验证通过后，维护者审核并决定是否收录：
 
@@ -28,7 +28,6 @@
 
 完整要求见 [贡献指南](CONTRIBUTING.md)。
 
-**没有自己的仓库？** 冒险模组、世界、规则、角色卡这类纯内容包，可以用「投稿内容包」表单直接上传从 DiceFrame 导出的 `.zip`。审核通过后由 DiceFrame 在 diceframe 组织下代为托管，见[贡献指南](CONTRIBUTING.md#没有自己的仓库投稿内容包)。
 
 ## 更新策略
 
