@@ -23,6 +23,20 @@ content/               ← 你的世界 / 资料册 / 角色模板等数据
 3. 提交并推送 → 等 Action 变绿 → 它自动建 Release。之后去索引仓库提「添加插件」Issue，
    填 `plugin.json` 里的 `id` 和本仓库地址。
 
+## 声明适用规则（二选一，必须写）
+
+DiceFrame 的「在线内容包」按规则筛选，靠的就是 manifest 里这一项：
+
+```json
+"requires": { "rulesets": [{ "id": "core:dnd2024" }] }
+```
+
+- 依赖某套规则（D&D 2024 → `core:dnd2024`，克苏鲁的呼唤 → `core:coc7`）→ 用 `requires.rulesets`
+- 与规则无关的通用包（纯世界设定、地图、资料册）→ 写 `"system_agnostic": true`，并删掉 `requires`
+
+两个都不写，索引同步时会给出 warning，这个包在客户端的规则筛选里只能归入「规则未标注」——
+玩家选具体规则时仍能看到它，但没法被精确筛到。
+
 ## 内容规范
 
 同人内容、改编内容、图片素材的边界见
