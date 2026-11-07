@@ -245,6 +245,72 @@
     }
   },
   {
+    "id": "coc-dagon-shoal",
+    "repository_url": "https://github.com/FalconKu/coc-dagon-shoal",
+    "branch": "main",
+    "author": "FalconKu",
+    "stars": 0,
+    "release_tag": "v1.0.0",
+    "release_url": "https://github.com/FalconKu/coc-dagon-shoal/releases/tag/v1.0.0",
+    "commit_sha": "268e250bbfd9843d64537a5a297c7dc46afd6557",
+    "latest": {
+      "version": "1.0.0",
+      "release_tag": "v1.0.0",
+      "release_url": "https://github.com/FalconKu/coc-dagon-shoal/releases/tag/v1.0.0",
+      "commit_sha": "268e250bbfd9843d64537a5a297c7dc46afd6557",
+      "published_at": "2026-11-07T09:47:40Z",
+      "requires_approval": false
+    },
+    "archive_url": "https://github.com/FalconKu/coc-dagon-shoal/archive/268e250bbfd9843d64537a5a297c7dc46afd6557.zip",
+    "distribution": "repository",
+    "risk_level": "declarative",
+    "update_policy": "automatic",
+    "approved_permissions": [
+      "content.read"
+    ],
+    "permission_changes": [],
+    "trust_level": "community",
+    "installable": true,
+    "verification_error": "",
+    "manifest": {
+      "schema_version": 1,
+      "content_schema_version": 2,
+      "locale_schema_version": 1,
+      "default_locale": "zh-CN",
+      "supported_locales": [
+        "zh-CN"
+      ],
+      "id": "coc-dagon-shoal",
+      "name": "深潮档案：太平洋异滩",
+      "version": "1.0.0",
+      "description": "《克苏鲁的呼唤》7 版资源包：改编自 H. P. 洛夫克拉夫特 1919 年公版短篇《大衮》。含 1918 年旧金山调查舞台、太平洋漂流海域、从海底升起的黑色泥滩与独石柱，以及可复用的水族文字与深潮神话条目。",
+      "plugin_type": "content-pack",
+      "license": "CC-BY-SA-4.0",
+      "config_schema": "config.schema.json",
+      "capabilities": [
+        "content.world"
+      ],
+      "permissions": [
+        "content.read"
+      ],
+      "contributes": {
+        "world_templates": [
+          "content/worlds/*.json"
+        ],
+        "lorebooks": [
+          "content/lorebooks/*.json"
+        ],
+        "map_definitions": [
+          "maps/definitions/*.json"
+        ],
+        "map_locations": [
+          "maps/locations/*.json"
+        ]
+      },
+      "docs": "README.md"
+    }
+  },
+  {
     "id": "coc-seventh-letter",
     "repository_url": "https://github.com/FalconKu/coc-seventh-letter",
     "branch": "main",

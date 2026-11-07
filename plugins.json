@@ -70,6 +70,21 @@
     "approved_at": "2026-11-07T09:55:04.960Z"
   },
   {
+    "id": "coc-dagon-shoal",
+    "repository_url": "https://github.com/FalconKu/coc-dagon-shoal",
+    "branch": "main",
+    "approved_release_tag": "v1.0.0",
+    "approved_commit": "268e250bbfd9843d64537a5a297c7dc46afd6557",
+    "risk_level": "declarative",
+    "update_policy": "automatic",
+    "approved_permissions": [
+      "content.read"
+    ],
+    "trust_level": "community",
+    "approved_by": "EOEOY",
+    "approved_at": "2026-11-07T10:01:46.859Z"
+  },
+  {
     "id": "coc-seventh-letter",
     "repository_url": "https://github.com/FalconKu/coc-seventh-letter",
     "branch": "main",
