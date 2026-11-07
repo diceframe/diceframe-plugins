@@ -85,6 +85,21 @@
     "approved_at": "2026-11-07T10:01:46.859Z"
   },
   {
+    "id": "coc-last-bell",
+    "repository_url": "https://github.com/FalconKu/coc-last-bell",
+    "branch": "main",
+    "approved_release_tag": "v1.0.0",
+    "approved_commit": "b5801df6faaa178a6e2f3e1ab0197a6fc07d3a09",
+    "risk_level": "declarative",
+    "update_policy": "automatic",
+    "approved_permissions": [
+      "content.read"
+    ],
+    "trust_level": "community",
+    "approved_by": "EOEOY",
+    "approved_at": "2026-11-07T10:02:31.820Z"
+  },
+  {
     "id": "coc-seventh-letter",
     "repository_url": "https://github.com/FalconKu/coc-seventh-letter",
     "branch": "main",

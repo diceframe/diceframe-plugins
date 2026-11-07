@@ -311,6 +311,77 @@
     }
   },
   {
+    "id": "coc-last-bell",
+    "repository_url": "https://github.com/FalconKu/coc-last-bell",
+    "branch": "main",
+    "author": "FalconKu",
+    "stars": 0,
+    "release_tag": "v1.0.0",
+    "release_url": "https://github.com/FalconKu/coc-last-bell/releases/tag/v1.0.0",
+    "commit_sha": "b5801df6faaa178a6e2f3e1ab0197a6fc07d3a09",
+    "latest": {
+      "version": "1.0.0",
+      "release_tag": "v1.0.0",
+      "release_url": "https://github.com/FalconKu/coc-last-bell/releases/tag/v1.0.0",
+      "commit_sha": "b5801df6faaa178a6e2f3e1ab0197a6fc07d3a09",
+      "published_at": "2026-11-07T09:47:50Z",
+      "requires_approval": false
+    },
+    "archive_url": "https://github.com/FalconKu/coc-last-bell/archive/b5801df6faaa178a6e2f3e1ab0197a6fc07d3a09.zip",
+    "distribution": "repository",
+    "risk_level": "declarative",
+    "update_policy": "automatic",
+    "approved_permissions": [
+      "content.read"
+    ],
+    "permission_changes": [],
+    "trust_level": "community",
+    "installable": true,
+    "verification_error": "",
+    "manifest": {
+      "schema_version": 1,
+      "content_schema_version": 2,
+      "locale_schema_version": 1,
+      "default_locale": "zh-CN",
+      "supported_locales": [
+        "zh-CN"
+      ],
+      "id": "coc-last-bell",
+      "name": "最后一记钟声",
+      "version": "1.0.0",
+      "description": "《克苏鲁的呼唤》7 版原创短冒险：停摆十五年的钟楼昨夜敲了十三下，每敲一下，镇上就少一个人记得自己的孩子。约 2 小时，2 个结局。",
+      "plugin_type": "content-pack",
+      "content_profile": "adventure-module",
+      "content_delivery_mode": "catalog",
+      "license": "CC-BY-NC-4.0",
+      "config_schema": "config.schema.json",
+      "adventure_packages": [
+        "adventures/last-bell"
+      ],
+      "capabilities": [
+        "content.world"
+      ],
+      "permissions": [
+        "content.read"
+      ],
+      "contributes": {
+        "world_templates": [
+          "content/worlds/*.json"
+        ],
+        "lorebooks": [
+          "content/lorebooks/*.json"
+        ],
+        "map_definitions": [
+          "maps/definitions/*.json"
+        ],
+        "map_locations": [
+          "maps/locations/*.json"
+        ]
+      },
+      "docs": "README.md"
+    }
+  },
+  {
     "id": "coc-seventh-letter",
     "repository_url": "https://github.com/FalconKu/coc-seventh-letter",
     "branch": "main",
