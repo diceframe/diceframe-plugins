@@ -245,6 +245,77 @@
     }
   },
   {
+    "id": "coc-seventh-letter",
+    "repository_url": "https://github.com/FalconKu/coc-seventh-letter",
+    "branch": "main",
+    "author": "FalconKu",
+    "stars": 0,
+    "release_tag": "v1.0.0",
+    "release_url": "https://github.com/FalconKu/coc-seventh-letter/releases/tag/v1.0.0",
+    "commit_sha": "50a48023fe4e0389f601f188237e2392e8dd3c5e",
+    "latest": {
+      "version": "1.0.0",
+      "release_tag": "v1.0.0",
+      "release_url": "https://github.com/FalconKu/coc-seventh-letter/releases/tag/v1.0.0",
+      "commit_sha": "50a48023fe4e0389f601f188237e2392e8dd3c5e",
+      "published_at": "2026-11-07T09:48:02Z",
+      "requires_approval": false
+    },
+    "archive_url": "https://github.com/FalconKu/coc-seventh-letter/archive/50a48023fe4e0389f601f188237e2392e8dd3c5e.zip",
+    "distribution": "repository",
+    "risk_level": "declarative",
+    "update_policy": "automatic",
+    "approved_permissions": [
+      "content.read"
+    ],
+    "permission_changes": [],
+    "trust_level": "community",
+    "installable": true,
+    "verification_error": "",
+    "manifest": {
+      "schema_version": 1,
+      "content_schema_version": 2,
+      "locale_schema_version": 1,
+      "default_locale": "zh-CN",
+      "supported_locales": [
+        "zh-CN"
+      ],
+      "id": "coc-seventh-letter",
+      "name": "第七封信",
+      "version": "1.0.0",
+      "description": "《克苏鲁的呼唤》7 版原创短冒险：六封笔迹不同的信都劝收信人别拆第七封，而他已经死了。约 90 分钟，3 个结局。",
+      "plugin_type": "content-pack",
+      "content_profile": "adventure-module",
+      "content_delivery_mode": "catalog",
+      "license": "CC-BY-NC-4.0",
+      "config_schema": "config.schema.json",
+      "adventure_packages": [
+        "adventures/seventh-letter"
+      ],
+      "capabilities": [
+        "content.world"
+      ],
+      "permissions": [
+        "content.read"
+      ],
+      "contributes": {
+        "world_templates": [
+          "content/worlds/*.json"
+        ],
+        "lorebooks": [
+          "content/lorebooks/*.json"
+        ],
+        "map_definitions": [
+          "maps/definitions/*.json"
+        ],
+        "map_locations": [
+          "maps/locations/*.json"
+        ]
+      },
+      "docs": "README.md"
+    }
+  },
+  {
     "id": "frieren-journey",
     "repository_url": "https://github.com/EOEOY/frieren-journey",
     "branch": "master",

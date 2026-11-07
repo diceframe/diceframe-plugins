@@ -70,6 +70,21 @@
     "approved_at": "2026-11-07T09:55:04.960Z"
   },
   {
+    "id": "coc-seventh-letter",
+    "repository_url": "https://github.com/FalconKu/coc-seventh-letter",
+    "branch": "main",
+    "approved_release_tag": "v1.0.0",
+    "approved_commit": "50a48023fe4e0389f601f188237e2392e8dd3c5e",
+    "risk_level": "declarative",
+    "update_policy": "automatic",
+    "approved_permissions": [
+      "content.read"
+    ],
+    "trust_level": "community",
+    "approved_by": "EOEOY",
+    "approved_at": "2026-11-07T09:57:33.302Z"
+  },
+  {
     "id": "frieren-journey",
     "repository_url": "https://github.com/EOEOY/frieren-journey",
     "branch": "master",
