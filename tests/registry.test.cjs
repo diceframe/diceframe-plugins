@@ -260,3 +260,19 @@ test("accepts an explicit ruleset target or a system-agnostic pack", () => {
   warnUndeclaredRuleset({ id: "theme-pack", manifest: { plugin_type: "theme" } }, other);
   assert.deepEqual(other, []);
 });
+
+test("accepts marketplace ruleset labels without a runtime requirement", () => {
+  const declared = [];
+  warnUndeclaredRuleset({
+    id: "coc-pack",
+    manifest: { plugin_type: "content-pack", compatible_rulesets: ["coc7"] },
+  }, declared);
+  assert.deepEqual(declared, []);
+});
+
+test("the warning points at compatible_rulesets for systems without a runtime", () => {
+  const warnings = [];
+  warnUndeclaredRuleset({ id: "coc-pack", manifest: { plugin_type: "content-pack" } }, warnings);
+  assert.match(warnings[0], /compatible_rulesets/);
+  assert.match(warnings[0], /system_agnostic/);
+});
