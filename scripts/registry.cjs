@@ -253,11 +253,15 @@ function warnUndeclaredRuleset(detail, warnings) {
     ? manifest.requires.rulesets
     : null;
   if (Array.isArray(rulesets) && rulesets.length > 0) return;
-  // 客户端「在线内容包」靠 requires.rulesets 做规则筛选；缺了只能归入「规则未标注」。
-  // 先只发 warning：存量包需要作者逐个补声明，等补完再考虑升级成 error。
+  // 客户端「在线内容包」靠规则声明做筛选；缺了只能归入「规则未标注」。
+  // 注意 requires.rulesets 是**运行时硬要求**（该 runtime 未注册时包会装不上），
+  // 所以这里不能写成"缺了就补 requires"——对尚无运行时的系统（CoC 等）那样写会
+  // 直接让发布失败。见 diceframe#694。
   warnings.push(
-    `${detail.id}: content-pack 未声明适用规则（requires.rulesets 或 system_agnostic: true），` +
-    "在线内容包的规则筛选只能把它归入「规则未标注」",
+    `${detail.id}: content-pack 未声明适用规则，在线内容包的规则筛选只能归入「规则未标注」。` +
+    "声明方式：目标 runtime 已注册（如 core:dnd2024）时写 requires.rulesets；" +
+    "系统与规则无关时写 system_agnostic: true；" +
+    "目标系统尚无已注册 runtime 时先不要声明，等待 diceframe#694 的兼容标签字段",
   );
 }
 
