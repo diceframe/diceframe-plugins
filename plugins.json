@@ -40,6 +40,21 @@
     "approved_at": "2026-08-13T19:28:18.798Z"
   },
   {
+    "id": "coc-dagon",
+    "repository_url": "https://github.com/FalconKu/coc-dagon",
+    "branch": "main",
+    "approved_release_tag": "v1.0.0",
+    "approved_commit": "ccebd18594fc7df5827d5982f460cc1fe58e9fd9",
+    "risk_level": "declarative",
+    "update_policy": "automatic",
+    "approved_permissions": [
+      "content.read"
+    ],
+    "trust_level": "community",
+    "approved_by": "EOEOY",
+    "approved_at": "2026-11-07T09:55:04.960Z"
+  },
+  {
     "id": "frieren-journey",
     "repository_url": "https://github.com/EOEOY/frieren-journey",
     "branch": "master",
