@@ -40,6 +40,21 @@
     "approved_at": "2026-08-13T19:28:18.798Z"
   },
   {
+    "id": "coc-arkham-archive",
+    "repository_url": "https://github.com/FalconKu/coc-arkham-archive",
+    "branch": "main",
+    "approved_release_tag": "v1.0.0",
+    "approved_commit": "feea266c3d2d4d9b874905691b062c3470d58f2a",
+    "risk_level": "declarative",
+    "update_policy": "automatic",
+    "approved_permissions": [
+      "content.read"
+    ],
+    "trust_level": "community",
+    "approved_by": "EOEOY",
+    "approved_at": "2026-11-07T09:56:30.991Z"
+  },
+  {
     "id": "coc-dagon",
     "repository_url": "https://github.com/FalconKu/coc-dagon",
     "branch": "main",
