@@ -249,19 +249,20 @@ function warnUndeclaredRuleset(detail, warnings) {
   const manifest = detail.manifest && typeof detail.manifest === "object" ? detail.manifest : {};
   if (manifest.plugin_type !== "content-pack") return;
   if (manifest.system_agnostic === true) return;
-  const rulesets = manifest.requires && typeof manifest.requires === "object"
+  const requires = manifest.requires && typeof manifest.requires === "object"
     ? manifest.requires.rulesets
     : null;
-  if (Array.isArray(rulesets) && rulesets.length > 0) return;
-  // 客户端「在线内容包」靠规则声明做筛选；缺了只能归入「规则未标注」。
-  // 注意 requires.rulesets 是**运行时硬要求**（该 runtime 未注册时包会装不上），
-  // 所以这里不能写成"缺了就补 requires"——对尚无运行时的系统（CoC 等）那样写会
-  // 直接让发布失败。见 diceframe#694。
+  const labels = Array.isArray(manifest.compatible_rulesets) ? manifest.compatible_rulesets : [];
+  if ((Array.isArray(requires) && requires.length > 0) || labels.length > 0) return;
+  // 两个字段语义不同，别再笼统地让作者「补 requires」：
+  // - requires.rulesets 是运行时硬要求，runtime 未注册时会让发布/安装直接失败；
+  // - compatible_rulesets 只是市场归属标签，不要求 runtime 存在（见 diceframe#694）。
   warnings.push(
     `${detail.id}: content-pack 未声明适用规则，在线内容包的规则筛选只能归入「规则未标注」。` +
-    "声明方式：目标 runtime 已注册（如 core:dnd2024）时写 requires.rulesets；" +
-    "系统与规则无关时写 system_agnostic: true；" +
-    "目标系统尚无已注册 runtime 时先不要声明，等待 diceframe#694 的兼容标签字段",
+    "声明方式：" +
+    "目标 runtime 已注册（如 core:dnd2024）→ requires.rulesets；" +
+    "目标系统尚无 runtime（CoC 等）→ compatible_rulesets: [\"coc7\"]；" +
+    "与规则无关 → system_agnostic: true",
   );
 }
 
