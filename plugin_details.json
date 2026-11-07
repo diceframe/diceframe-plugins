@@ -595,6 +595,73 @@
     }
   },
   {
+    "id": "dnd-frontier-vault",
+    "repository_url": "https://github.com/FalconKu/dnd-frontier-vault",
+    "branch": "main",
+    "author": "FalconKu",
+    "stars": 0,
+    "release_tag": "v1.0.0",
+    "release_url": "https://github.com/FalconKu/dnd-frontier-vault/releases/tag/v1.0.0",
+    "commit_sha": "51f90202ef87b760de3c5eafbf1eafe30921efe1",
+    "latest": {
+      "version": "1.0.0",
+      "release_tag": "v1.0.0",
+      "release_url": "https://github.com/FalconKu/dnd-frontier-vault/releases/tag/v1.0.0",
+      "commit_sha": "51f90202ef87b760de3c5eafbf1eafe30921efe1",
+      "published_at": "2026-11-07T09:48:29Z",
+      "requires_approval": false
+    },
+    "archive_url": "https://github.com/FalconKu/dnd-frontier-vault/archive/51f90202ef87b760de3c5eafbf1eafe30921efe1.zip",
+    "distribution": "repository",
+    "risk_level": "declarative",
+    "update_policy": "automatic",
+    "approved_permissions": [
+      "content.read"
+    ],
+    "permission_changes": [],
+    "trust_level": "community",
+    "installable": true,
+    "verification_error": "",
+    "manifest": {
+      "schema_version": 1,
+      "content_schema_version": 2,
+      "locale_schema_version": 1,
+      "default_locale": "zh-CN",
+      "supported_locales": [
+        "zh-CN"
+      ],
+      "id": "dnd-frontier-vault",
+      "name": "霜脊边地：边镇资料集",
+      "version": "1.0.0",
+      "description": "D&D 2024 规则的中文资源包：一座可以随时开团的边地铁镇「灰砧」、20 条资料（人物、地点、怪物、物品与两条传说）和一张六地点关系地图。不含剧本。",
+      "plugin_type": "content-pack",
+      "license": "CC-BY-NC-4.0",
+      "config_schema": "config.schema.json",
+      "capabilities": [
+        "content.world",
+        "content.map"
+      ],
+      "permissions": [
+        "content.read"
+      ],
+      "contributes": {
+        "world_templates": [
+          "content/worlds/*.json"
+        ],
+        "lorebooks": [
+          "content/lorebooks/*.json"
+        ],
+        "map_definitions": [
+          "maps/definitions/*.json"
+        ],
+        "map_locations": [
+          "maps/locations/*.json"
+        ]
+      },
+      "docs": "README.md"
+    }
+  },
+  {
     "id": "dnd-frostwhisper",
     "repository_url": "https://github.com/FalconKu/dnd-frostwhisper",
     "branch": "main",

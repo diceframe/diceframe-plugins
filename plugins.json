@@ -145,6 +145,21 @@
     "approved_at": "2026-11-07T09:57:59.525Z"
   },
   {
+    "id": "dnd-frontier-vault",
+    "repository_url": "https://github.com/FalconKu/dnd-frontier-vault",
+    "branch": "main",
+    "approved_release_tag": "v1.0.0",
+    "approved_commit": "51f90202ef87b760de3c5eafbf1eafe30921efe1",
+    "risk_level": "declarative",
+    "update_policy": "automatic",
+    "approved_permissions": [
+      "content.read"
+    ],
+    "trust_level": "community",
+    "approved_by": "EOEOY",
+    "approved_at": "2026-11-07T10:03:24.680Z"
+  },
+  {
     "id": "dnd-frostwhisper",
     "repository_url": "https://github.com/FalconKu/dnd-frostwhisper",
     "branch": "main",
