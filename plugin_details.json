@@ -529,18 +529,18 @@
     "branch": "main",
     "author": "FalconKu",
     "stars": 0,
-    "release_tag": "v1.0.1",
-    "release_url": "https://github.com/FalconKu/dnd-embervault/releases/tag/v1.0.1",
-    "commit_sha": "68bb9cd0e592fdc48401844e3924142c665dd9c1",
+    "release_tag": "v1.0.2",
+    "release_url": "https://github.com/FalconKu/dnd-embervault/releases/tag/v1.0.2",
+    "commit_sha": "9f50c20a7564c6495990a2ade3e829a6012189f6",
     "latest": {
-      "version": "1.0.1",
-      "release_tag": "v1.0.1",
-      "release_url": "https://github.com/FalconKu/dnd-embervault/releases/tag/v1.0.1",
-      "commit_sha": "68bb9cd0e592fdc48401844e3924142c665dd9c1",
-      "published_at": "2026-11-07T10:08:26Z",
+      "version": "1.0.2",
+      "release_tag": "v1.0.2",
+      "release_url": "https://github.com/FalconKu/dnd-embervault/releases/tag/v1.0.2",
+      "commit_sha": "9f50c20a7564c6495990a2ade3e829a6012189f6",
+      "published_at": "2026-11-07T10:20:47Z",
       "requires_approval": false
     },
-    "archive_url": "https://github.com/FalconKu/dnd-embervault/archive/68bb9cd0e592fdc48401844e3924142c665dd9c1.zip",
+    "archive_url": "https://github.com/FalconKu/dnd-embervault/archive/9f50c20a7564c6495990a2ade3e829a6012189f6.zip",
     "distribution": "repository",
     "risk_level": "declarative",
     "update_policy": "automatic",
@@ -561,7 +561,7 @@
       ],
       "id": "dnd-embervault",
       "name": "余烬金库",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "description": "D&D 2024 中文原创短冒险：矿主封了矿，说是有瓦斯；封矿的工人一个都没回来。3 章 15 节点 4 结局，约 3 小时，3–5 人，含一场可自动结算的遭遇。",
       "plugin_type": "content-pack",
       "content_profile": "adventure-module",
@@ -591,6 +591,13 @@
           "maps/locations/*.json"
         ]
       },
+      "requires": {
+        "rulesets": [
+          {
+            "id": "core:dnd2024"
+          }
+        ]
+      },
       "docs": "README.md"
     }
   },
@@ -600,18 +607,18 @@
     "branch": "main",
     "author": "FalconKu",
     "stars": 0,
-    "release_tag": "v1.0.1",
-    "release_url": "https://github.com/FalconKu/dnd-frontier-vault/releases/tag/v1.0.1",
-    "commit_sha": "a94f03160b8360582d1612d274a3f3cf24a86e7c",
+    "release_tag": "v1.0.2",
+    "release_url": "https://github.com/FalconKu/dnd-frontier-vault/releases/tag/v1.0.2",
+    "commit_sha": "3fe907b5f2d312b8989765a1b1964222cab0b5b6",
     "latest": {
-      "version": "1.0.1",
-      "release_tag": "v1.0.1",
-      "release_url": "https://github.com/FalconKu/dnd-frontier-vault/releases/tag/v1.0.1",
-      "commit_sha": "a94f03160b8360582d1612d274a3f3cf24a86e7c",
-      "published_at": "2026-11-07T10:08:29Z",
+      "version": "1.0.2",
+      "release_tag": "v1.0.2",
+      "release_url": "https://github.com/FalconKu/dnd-frontier-vault/releases/tag/v1.0.2",
+      "commit_sha": "3fe907b5f2d312b8989765a1b1964222cab0b5b6",
+      "published_at": "2026-11-07T10:20:50Z",
       "requires_approval": false
     },
-    "archive_url": "https://github.com/FalconKu/dnd-frontier-vault/archive/a94f03160b8360582d1612d274a3f3cf24a86e7c.zip",
+    "archive_url": "https://github.com/FalconKu/dnd-frontier-vault/archive/3fe907b5f2d312b8989765a1b1964222cab0b5b6.zip",
     "distribution": "repository",
     "risk_level": "declarative",
     "update_policy": "automatic",
@@ -632,7 +639,7 @@
       ],
       "id": "dnd-frontier-vault",
       "name": "霜脊边地：边镇资料集",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "description": "D&D 2024 规则的中文资源包：一座可以随时开团的边地铁镇「灰砧」、27 条资料（人物、地点、怪物、物品与传说，12 条玩家可见）和一张九地点关系地图。不含剧本。",
       "plugin_type": "content-pack",
       "license": "CC-BY-NC-4.0",
@@ -658,6 +665,13 @@
           "maps/locations/*.json"
         ]
       },
+      "requires": {
+        "rulesets": [
+          {
+            "id": "core:dnd2024"
+          }
+        ]
+      },
       "docs": "README.md"
     }
   },
@@ -667,18 +681,18 @@
     "branch": "main",
     "author": "FalconKu",
     "stars": 0,
-    "release_tag": "v1.0.1",
-    "release_url": "https://github.com/FalconKu/dnd-frostwhisper/releases/tag/v1.0.1",
-    "commit_sha": "a22584edc05af2555d8ef0c555792e3245bd4cb8",
+    "release_tag": "v1.0.2",
+    "release_url": "https://github.com/FalconKu/dnd-frostwhisper/releases/tag/v1.0.2",
+    "commit_sha": "7fb4c7c586a037cda70bc318978f713ab76686b6",
     "latest": {
-      "version": "1.0.1",
-      "release_tag": "v1.0.1",
-      "release_url": "https://github.com/FalconKu/dnd-frostwhisper/releases/tag/v1.0.1",
-      "commit_sha": "a22584edc05af2555d8ef0c555792e3245bd4cb8",
-      "published_at": "2026-11-07T10:08:35Z",
+      "version": "1.0.2",
+      "release_tag": "v1.0.2",
+      "release_url": "https://github.com/FalconKu/dnd-frostwhisper/releases/tag/v1.0.2",
+      "commit_sha": "7fb4c7c586a037cda70bc318978f713ab76686b6",
+      "published_at": "2026-11-07T10:20:51Z",
       "requires_approval": false
     },
-    "archive_url": "https://github.com/FalconKu/dnd-frostwhisper/archive/a22584edc05af2555d8ef0c555792e3245bd4cb8.zip",
+    "archive_url": "https://github.com/FalconKu/dnd-frostwhisper/archive/7fb4c7c586a037cda70bc318978f713ab76686b6.zip",
     "distribution": "repository",
     "risk_level": "declarative",
     "update_policy": "automatic",
@@ -699,7 +713,7 @@
       ],
       "id": "dnd-frostwhisper",
       "name": "霜语渡口",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "description": "D&D 2024 中文原创短冒险：过河不要钱，只要一样你带得走、但不想给的东西。3 章 15 节点 4 结局，约 2.5 小时，3–5 人，含一场遭遇。",
       "plugin_type": "content-pack",
       "content_profile": "adventure-module",
@@ -727,6 +741,13 @@
         ],
         "map_locations": [
           "maps/locations/*.json"
+        ]
+      },
+      "requires": {
+        "rulesets": [
+          {
+            "id": "core:dnd2024"
+          }
         ]
       },
       "docs": "README.md"
