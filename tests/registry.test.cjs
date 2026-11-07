@@ -13,6 +13,7 @@ const {
   parseSubmission,
   validateRegistry,
   validateManifest,
+  warnUndeclaredRuleset,
 } = require("../scripts/registry.cjs");
 
 const baseManifest = {
@@ -229,4 +230,33 @@ test("COMPAT-1: a repository without any recognized LICENSE is rejected", async 
   } finally {
     globalThis.fetch = original;
   }
+});
+
+test("warns when a content pack declares no ruleset target", () => {
+  const warnings = [];
+  warnUndeclaredRuleset({ id: "demo-pack", manifest: { plugin_type: "content-pack" } }, warnings);
+  assert.equal(warnings.length, 1);
+  assert.match(warnings[0], /demo-pack/);
+  assert.match(warnings[0], /规则未标注/);
+});
+
+test("accepts an explicit ruleset target or a system-agnostic pack", () => {
+  const declared = [];
+  warnUndeclaredRuleset({
+    id: "dnd-pack",
+    manifest: { plugin_type: "content-pack", requires: { rulesets: [{ id: "core:dnd2024" }] } },
+  }, declared);
+  assert.deepEqual(declared, []);
+
+  const agnostic = [];
+  warnUndeclaredRuleset({
+    id: "lore-pack",
+    manifest: { plugin_type: "content-pack", system_agnostic: true },
+  }, agnostic);
+  assert.deepEqual(agnostic, []);
+
+  // 非内容包不参与该检查（主题、语音包等）
+  const other = [];
+  warnUndeclaredRuleset({ id: "theme-pack", manifest: { plugin_type: "theme" } }, other);
+  assert.deepEqual(other, []);
 });

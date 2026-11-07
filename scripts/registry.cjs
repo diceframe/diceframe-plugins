@@ -245,6 +245,22 @@ async function loadReleaseSnapshot(repositoryUrl, expectedId, token) {
   };
 }
 
+function warnUndeclaredRuleset(detail, warnings) {
+  const manifest = detail.manifest && typeof detail.manifest === "object" ? detail.manifest : {};
+  if (manifest.plugin_type !== "content-pack") return;
+  if (manifest.system_agnostic === true) return;
+  const rulesets = manifest.requires && typeof manifest.requires === "object"
+    ? manifest.requires.rulesets
+    : null;
+  if (Array.isArray(rulesets) && rulesets.length > 0) return;
+  // 客户端「在线内容包」靠 requires.rulesets 做规则筛选；缺了只能归入「规则未标注」。
+  // 先只发 warning：存量包需要作者逐个补声明，等补完再考虑升级成 error。
+  warnings.push(
+    `${detail.id}: content-pack 未声明适用规则（requires.rulesets 或 system_agnostic: true），` +
+    "在线内容包的规则筛选只能把它归入「规则未标注」",
+  );
+}
+
 function detailFromSnapshot(entry, snapshot) {
   const added = addedPermissions(entry.approved_permissions, snapshot.permissions);
   const riskChanged = entry.risk_level && entry.risk_level !== snapshot.riskLevel;
@@ -303,7 +319,9 @@ async function generateDetails(entries, token) {
     }
     try {
       const snapshot = await loadReleaseSnapshot(entry.repository_url, entry.id, token);
-      details.push(detailFromSnapshot(entry, snapshot));
+      const detail = detailFromSnapshot(entry, snapshot);
+      details.push(detail);
+      warnUndeclaredRuleset(detail, warnings);
     } catch (error) {
       warnings.push(`${entry.id}: ${error.message}`);
       details.push({
@@ -381,5 +399,6 @@ module.exports = {
   readJson,
   validateManifest,
   validateRegistry,
+  warnUndeclaredRuleset,
   writeJson,
 };
