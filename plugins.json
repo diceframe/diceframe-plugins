@@ -85,6 +85,21 @@
     "approved_at": "2026-11-07T09:57:33.302Z"
   },
   {
+    "id": "coc-tidebound-choir",
+    "repository_url": "https://github.com/FalconKu/coc-tidebound-choir",
+    "branch": "main",
+    "approved_release_tag": "v1.0.0",
+    "approved_commit": "0f8e526071ad7c9090f6179c3c3aa81ce70b7143",
+    "risk_level": "declarative",
+    "update_policy": "automatic",
+    "approved_permissions": [
+      "content.read"
+    ],
+    "trust_level": "community",
+    "approved_by": "EOEOY",
+    "approved_at": "2026-11-07T10:01:08.045Z"
+  },
+  {
     "id": "dnd-embervault",
     "repository_url": "https://github.com/FalconKu/dnd-embervault",
     "branch": "main",

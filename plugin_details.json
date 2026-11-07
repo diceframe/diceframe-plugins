@@ -316,6 +316,77 @@
     }
   },
   {
+    "id": "coc-tidebound-choir",
+    "repository_url": "https://github.com/FalconKu/coc-tidebound-choir",
+    "branch": "main",
+    "author": "FalconKu",
+    "stars": 0,
+    "release_tag": "v1.0.0",
+    "release_url": "https://github.com/FalconKu/coc-tidebound-choir/releases/tag/v1.0.0",
+    "commit_sha": "0f8e526071ad7c9090f6179c3c3aa81ce70b7143",
+    "latest": {
+      "version": "1.0.0",
+      "release_tag": "v1.0.0",
+      "release_url": "https://github.com/FalconKu/coc-tidebound-choir/releases/tag/v1.0.0",
+      "commit_sha": "0f8e526071ad7c9090f6179c3c3aa81ce70b7143",
+      "published_at": "2026-11-07T09:48:12Z",
+      "requires_approval": false
+    },
+    "archive_url": "https://github.com/FalconKu/coc-tidebound-choir/archive/0f8e526071ad7c9090f6179c3c3aa81ce70b7143.zip",
+    "distribution": "repository",
+    "risk_level": "declarative",
+    "update_policy": "automatic",
+    "approved_permissions": [
+      "content.read"
+    ],
+    "permission_changes": [],
+    "trust_level": "community",
+    "installable": true,
+    "verification_error": "",
+    "manifest": {
+      "schema_version": 1,
+      "content_schema_version": 2,
+      "locale_schema_version": 1,
+      "default_locale": "zh-CN",
+      "supported_locales": [
+        "zh-CN"
+      ],
+      "id": "coc-tidebound-choir",
+      "name": "潮汐合唱",
+      "version": "1.0.0",
+      "description": "《克苏鲁的呼唤》7 版原创短冒险：盐喉村每年交出一个名字，换取一年的渔获。这次被念到名字的是你受雇寻找的人。约 2 小时，3 个结局。",
+      "plugin_type": "content-pack",
+      "content_profile": "adventure-module",
+      "content_delivery_mode": "catalog",
+      "license": "CC-BY-NC-4.0",
+      "config_schema": "config.schema.json",
+      "adventure_packages": [
+        "adventures/tidebound-choir"
+      ],
+      "capabilities": [
+        "content.world"
+      ],
+      "permissions": [
+        "content.read"
+      ],
+      "contributes": {
+        "world_templates": [
+          "content/worlds/*.json"
+        ],
+        "lorebooks": [
+          "content/lorebooks/*.json"
+        ],
+        "map_definitions": [
+          "maps/definitions/*.json"
+        ],
+        "map_locations": [
+          "maps/locations/*.json"
+        ]
+      },
+      "docs": "README.md"
+    }
+  },
+  {
     "id": "dnd-embervault",
     "repository_url": "https://github.com/FalconKu/dnd-embervault",
     "branch": "main",
