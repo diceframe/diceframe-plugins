@@ -85,6 +85,21 @@
     "approved_at": "2026-11-07T09:57:33.302Z"
   },
   {
+    "id": "dnd-embervault",
+    "repository_url": "https://github.com/FalconKu/dnd-embervault",
+    "branch": "main",
+    "approved_release_tag": "v1.0.0",
+    "approved_commit": "217e6c5b0af329861429ff7ea41779145e6d8f0a",
+    "risk_level": "declarative",
+    "update_policy": "automatic",
+    "approved_permissions": [
+      "content.read"
+    ],
+    "trust_level": "community",
+    "approved_by": "EOEOY",
+    "approved_at": "2026-11-07T09:57:59.525Z"
+  },
+  {
     "id": "frieren-journey",
     "repository_url": "https://github.com/EOEOY/frieren-journey",
     "branch": "master",
