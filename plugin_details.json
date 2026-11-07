@@ -387,6 +387,77 @@
     }
   },
   {
+    "id": "dnd-frostwhisper",
+    "repository_url": "https://github.com/FalconKu/dnd-frostwhisper",
+    "branch": "main",
+    "author": "FalconKu",
+    "stars": 0,
+    "release_tag": "v1.0.0",
+    "release_url": "https://github.com/FalconKu/dnd-frostwhisper/releases/tag/v1.0.0",
+    "commit_sha": "4708aa93542ba55f371c0028f9d938b779d413e9",
+    "latest": {
+      "version": "1.0.0",
+      "release_tag": "v1.0.0",
+      "release_url": "https://github.com/FalconKu/dnd-frostwhisper/releases/tag/v1.0.0",
+      "commit_sha": "4708aa93542ba55f371c0028f9d938b779d413e9",
+      "published_at": "2026-11-07T09:48:41Z",
+      "requires_approval": false
+    },
+    "archive_url": "https://github.com/FalconKu/dnd-frostwhisper/archive/4708aa93542ba55f371c0028f9d938b779d413e9.zip",
+    "distribution": "repository",
+    "risk_level": "declarative",
+    "update_policy": "automatic",
+    "approved_permissions": [
+      "content.read"
+    ],
+    "permission_changes": [],
+    "trust_level": "community",
+    "installable": true,
+    "verification_error": "",
+    "manifest": {
+      "schema_version": 1,
+      "content_schema_version": 2,
+      "locale_schema_version": 1,
+      "default_locale": "zh-CN",
+      "supported_locales": [
+        "zh-CN"
+      ],
+      "id": "dnd-frostwhisper",
+      "name": "霜语渡口",
+      "version": "1.0.0",
+      "description": "D&D 2024 中文原创短冒险：过河不要钱，只要一样你带得走、但不想给的东西。约 2.5 小时，3–5 人，3 个结局，含一场遭遇。",
+      "plugin_type": "content-pack",
+      "content_profile": "adventure-module",
+      "content_delivery_mode": "catalog",
+      "license": "CC-BY-NC-4.0",
+      "config_schema": "config.schema.json",
+      "adventure_packages": [
+        "adventures/frostwhisper"
+      ],
+      "capabilities": [
+        "content.world"
+      ],
+      "permissions": [
+        "content.read"
+      ],
+      "contributes": {
+        "world_templates": [
+          "content/worlds/*.json"
+        ],
+        "lorebooks": [
+          "content/lorebooks/*.json"
+        ],
+        "map_definitions": [
+          "maps/definitions/*.json"
+        ],
+        "map_locations": [
+          "maps/locations/*.json"
+        ]
+      },
+      "docs": "README.md"
+    }
+  },
+  {
     "id": "frieren-journey",
     "repository_url": "https://github.com/EOEOY/frieren-journey",
     "branch": "master",
