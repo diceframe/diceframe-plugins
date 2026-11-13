@@ -7,6 +7,10 @@
     "required": ["id", "repository_url", "distribution", "risk_level", "update_policy", "installable", "manifest"],
     "properties": {
       "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+      "name": {"type": "string"},
+      "version": {"type": "string"},
+      "description": {"type": "string"},
+      "plugin_type": {"type": "string"},
       "repository_url": {"type": "string", "format": "uri"},
       "branch": {"type": "string"},
       "author": {"type": "string", "description": "GitHub 仓库所有者，作为插件作者展示"},
@@ -37,6 +41,15 @@
       "installable": {"type": "boolean"},
       "verification_error": {"type": "string"},
       "approved_permissions": {"type": "array", "items": {"type": "string"}},
+      "permissions": {"type": "array", "items": {"type": "string"}},
+      "capabilities": {"type": "array", "items": {"type": "string"}},
+      "approved_release_tag": {"type": "string"},
+      "approved_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+      "approved_archive_url": {"type": "string", "format": "uri"},
+      "approved_artifact_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+      "listing_status": {"enum": ["approved", "paused", "withdrawn"]},
+      "listing_status_reason": {"type": "string"},
+      "listing_status_at": {"type": "string", "format": "date-time"},
       "permission_changes": {"type": "array", "items": {"type": "string"}},
       "manifest": {
         "type": "object",
@@ -48,7 +61,24 @@
           "description": {"type": "string"},
           "plugin_type": {"type": "string"},
           "capabilities": {"type": "array", "items": {"type": "string"}},
-          "permissions": {"type": "array", "items": {"type": "string"}}
+          "permissions": {"type": "array", "items": {"type": "string"}},
+          "content_profile": {"enum": ["content-pack", "adventure-module"]},
+          "content_delivery_mode": {"enum": ["legacy_autoimport", "catalog"]},
+          "compatible_rulesets": {"type": "array", "maxItems": 6, "items": {"type": "string"}},
+          "system_agnostic": {"type": "boolean"},
+          "adventure_packages": {"type": "array", "items": {"type": "string"}},
+          "ruleset_catalogs": {"type": "array", "items": {"type": "string"}},
+          "ruleset_runtime": {
+            "type": "object",
+            "required": ["runtime_id"],
+            "properties": {
+              "runtime_id": {"type": "string", "minLength": 1, "maxLength": 160},
+              "runtime_version": {"type": "integer", "minimum": 1},
+              "timeout_seconds": {"type": "number", "exclusiveMinimum": 0, "maximum": 30},
+              "capabilities": {"type": "object"}
+            },
+            "additionalProperties": false
+          }
         },
         "additionalProperties": true
       }

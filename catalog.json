@@ -1,0 +1,1024 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "id": "cloudflare-tunnel",
+      "name": "Cloudflare 快速隧道",
+      "version": "0.2.2",
+      "summary": "一键生成公网 HTTPS 访问地址（trycloudflare.com，免账号免域名）。需 DiceFrame 1.9.12 及以上。",
+      "plugin_type": "tool",
+      "installable": true,
+      "status": "approved",
+      "risk_level": "unrestricted-process",
+      "update_policy": "notify",
+      "repository_url": "https://github.com/diceframe/cloudflare-tunnel",
+      "archive_url": "https://github.com/diceframe/cloudflare-tunnel/archive/c598563389003ad3b3614d0c1cce4b292e63c32d.zip",
+      "release_tag": "v0.2.2",
+      "release_url": "https://github.com/diceframe/cloudflare-tunnel/releases/tag/v0.2.2",
+      "branch": "main",
+      "author": "diceframe",
+      "stars": 0,
+      "trust_level": "official",
+      "tags": [],
+      "permissions": [
+        "tool.execute",
+        "process.spawn",
+        "network.client",
+        "plugin.data",
+        "diceframe.http",
+        "tunnel.publish"
+      ],
+      "approved_permissions": [
+        "diceframe.http",
+        "network.client",
+        "plugin.data",
+        "process.spawn",
+        "tool.execute",
+        "tunnel.publish"
+      ],
+      "capabilities": [],
+      "latest": {
+        "version": "0.2.2",
+        "release_tag": "v0.2.2",
+        "release_url": "https://github.com/diceframe/cloudflare-tunnel/releases/tag/v0.2.2",
+        "commit_sha": "c598563389003ad3b3614d0c1cce4b292e63c32d",
+        "published_at": "2026-08-13T19:42:20Z",
+        "requires_approval": false
+      },
+      "commit_sha": "c598563389003ad3b3614d0c1cce4b292e63c32d",
+      "approved_release_tag": "v0.1.0",
+      "approved_commit": "783800a1b62fa8eafe58bbac36ea1b5be7fdb2f9",
+      "approved_archive_url": "https://github.com/diceframe/cloudflare-tunnel/archive/783800a1b62fa8eafe58bbac36ea1b5be7fdb2f9.zip",
+      "approved_artifact_sha256": "aff1f5dff87e1d15913eb2f058b32462263926dc70bc2faaeaa7aa246b5ef25d",
+      "docs": "README_CN.md",
+      "homepage": "https://github.com/diceframe/cloudflare-tunnel",
+      "content_profile": "content-pack",
+      "content_delivery_mode": "legacy_autoimport",
+      "ruleset_targets": [],
+      "ruleset_declared": false,
+      "system_agnostic": false,
+      "adventure_count": 0,
+      "automation_level": "",
+      "languages": [],
+      "min_app_version": "1.9.12",
+      "artifact": {
+        "distribution": "approved-archive",
+        "url": "https://github.com/diceframe/cloudflare-tunnel/archive/783800a1b62fa8eafe58bbac36ea1b5be7fdb2f9.zip",
+        "sha256": "aff1f5dff87e1d15913eb2f058b32462263926dc70bc2faaeaa7aa246b5ef25d"
+      }
+    },
+    {
+      "id": "cloudflare-tunnel-linux",
+      "name": "Cloudflare 快速隧道 Linux 版",
+      "version": "0.1.1",
+      "summary": "一键生成公网 HTTPS 访问地址（trycloudflare.com，免账号免域名）。Linux 专用，内置 cloudflared 二进制。需 DiceFrame 1.9.12 及以上。",
+      "plugin_type": "tool",
+      "installable": true,
+      "status": "approved",
+      "risk_level": "unrestricted-process",
+      "update_policy": "notify",
+      "repository_url": "https://github.com/diceframe/cloudflare-tunnel-linux",
+      "archive_url": "https://github.com/diceframe/cloudflare-tunnel-linux/archive/e8b02ef6f1808115b647f5d7f05a4eaedec971ff.zip",
+      "release_tag": "v0.1.1",
+      "release_url": "https://github.com/diceframe/cloudflare-tunnel-linux/releases/tag/v0.1.1",
+      "branch": "main",
+      "author": "diceframe",
+      "stars": 0,
+      "trust_level": "community",
+      "tags": [],
+      "permissions": [
+        "tool.execute",
+        "process.spawn",
+        "network.client",
+        "plugin.data",
+        "diceframe.http",
+        "tunnel.publish"
+      ],
+      "approved_permissions": [
+        "diceframe.http",
+        "network.client",
+        "plugin.data",
+        "process.spawn",
+        "tool.execute",
+        "tunnel.publish"
+      ],
+      "capabilities": [],
+      "latest": {
+        "version": "0.1.1",
+        "release_tag": "v0.1.1",
+        "release_url": "https://github.com/diceframe/cloudflare-tunnel-linux/releases/tag/v0.1.1",
+        "commit_sha": "e8b02ef6f1808115b647f5d7f05a4eaedec971ff",
+        "published_at": "2026-08-13T19:42:12Z",
+        "requires_approval": false
+      },
+      "commit_sha": "e8b02ef6f1808115b647f5d7f05a4eaedec971ff",
+      "approved_release_tag": "v0.1.0",
+      "approved_commit": "ec8cb18101de927043c79326f74aa2385b00ba6d",
+      "approved_archive_url": "https://github.com/diceframe/cloudflare-tunnel-linux/archive/ec8cb18101de927043c79326f74aa2385b00ba6d.zip",
+      "approved_artifact_sha256": "831f5aa2a61465c7cface325f705c95f759ec38eb8b5e52de18824df6d9f72b8",
+      "docs": "README_CN.md",
+      "homepage": "https://github.com/diceframe/cloudflare-tunnel-linux",
+      "content_profile": "content-pack",
+      "content_delivery_mode": "legacy_autoimport",
+      "ruleset_targets": [],
+      "ruleset_declared": false,
+      "system_agnostic": false,
+      "adventure_count": 0,
+      "automation_level": "",
+      "languages": [],
+      "min_app_version": "1.9.12",
+      "artifact": {
+        "distribution": "approved-archive",
+        "url": "https://github.com/diceframe/cloudflare-tunnel-linux/archive/ec8cb18101de927043c79326f74aa2385b00ba6d.zip",
+        "sha256": "831f5aa2a61465c7cface325f705c95f759ec38eb8b5e52de18824df6d9f72b8"
+      }
+    },
+    {
+      "id": "coc-arkham-archive",
+      "name": "阿卡姆档案：1926 调查员资料集",
+      "version": "1.0.3",
+      "summary": "为《克苏鲁的呼唤》7 版准备的 1926 年阿卡姆资料包：一座可直接开局的调查员城市、28 条资料册条目（人物、地点、组织、典籍与神话生物，12 条玩家可自行查阅）以及一张十一地点的关系地图。不含冒险剧本，供守秘人自组剧情。",
+      "plugin_type": "content-pack",
+      "installable": true,
+      "status": "approved",
+      "risk_level": "declarative",
+      "update_policy": "automatic",
+      "repository_url": "https://github.com/FalconKu/coc-arkham-archive",
+      "archive_url": "https://github.com/FalconKu/coc-arkham-archive/archive/a26b903b6de7a7be09c6748bfa5d9a6549da16a5.zip",
+      "release_tag": "v1.0.3",
+      "release_url": "https://github.com/FalconKu/coc-arkham-archive/releases/tag/v1.0.3",
+      "branch": "main",
+      "author": "FalconKu",
+      "stars": 0,
+      "trust_level": "community",
+      "tags": [],
+      "permissions": [
+        "content.read"
+      ],
+      "approved_permissions": [
+        "content.read"
+      ],
+      "capabilities": [
+        "content.world",
+        "content.map"
+      ],
+      "latest": {
+        "version": "1.0.3",
+        "release_tag": "v1.0.3",
+        "release_url": "https://github.com/FalconKu/coc-arkham-archive/releases/tag/v1.0.3",
+        "commit_sha": "a26b903b6de7a7be09c6748bfa5d9a6549da16a5",
+        "published_at": "2026-11-07T18:38:31Z",
+        "requires_approval": false
+      },
+      "commit_sha": "a26b903b6de7a7be09c6748bfa5d9a6549da16a5",
+      "approved_release_tag": "v1.0.0",
+      "approved_commit": "feea266c3d2d4d9b874905691b062c3470d58f2a",
+      "approved_archive_url": "https://github.com/FalconKu/coc-arkham-archive/archive/feea266c3d2d4d9b874905691b062c3470d58f2a.zip",
+      "approved_artifact_sha256": "7ea559de393c095beb573c7a5c54b7f0de7c2e9492233bd88383190254281791",
+      "docs": "README.md",
+      "homepage": "https://github.com/FalconKu/coc-arkham-archive",
+      "content_profile": "content-pack",
+      "content_delivery_mode": "legacy_autoimport",
+      "ruleset_targets": [
+        "coc7"
+      ],
+      "ruleset_declared": true,
+      "system_agnostic": false,
+      "adventure_count": 0,
+      "automation_level": "",
+      "languages": [
+        "zh-CN"
+      ],
+      "min_app_version": "",
+      "artifact": {
+        "distribution": "approved-archive",
+        "url": "https://github.com/FalconKu/coc-arkham-archive/archive/feea266c3d2d4d9b874905691b062c3470d58f2a.zip",
+        "sha256": "7ea559de393c095beb573c7a5c54b7f0de7c2e9492233bd88383190254281791"
+      }
+    },
+    {
+      "id": "coc-dagon",
+      "name": "大衮：深潮之下",
+      "version": "1.0.3",
+      "summary": "《克苏鲁的呼唤》7 版短冒险：改编自 H. P. 洛夫克拉夫特 1919 年公版短篇《大衮》。5 章 32 节点 4 结局，约 3 小时。1918 年旧金山调查 → 十九天航行 → 从海底露出的黑色泥滩。",
+      "plugin_type": "content-pack",
+      "installable": true,
+      "status": "approved",
+      "risk_level": "declarative",
+      "update_policy": "automatic",
+      "repository_url": "https://github.com/FalconKu/coc-dagon",
+      "archive_url": "https://github.com/FalconKu/coc-dagon/archive/82d49f6bb079d37dd769583cb68bbdd5fc6e5024.zip",
+      "release_tag": "v1.0.3",
+      "release_url": "https://github.com/FalconKu/coc-dagon/releases/tag/v1.0.3",
+      "branch": "main",
+      "author": "FalconKu",
+      "stars": 0,
+      "trust_level": "community",
+      "tags": [],
+      "permissions": [
+        "content.read"
+      ],
+      "approved_permissions": [
+        "content.read"
+      ],
+      "capabilities": [
+        "content.world"
+      ],
+      "latest": {
+        "version": "1.0.3",
+        "release_tag": "v1.0.3",
+        "release_url": "https://github.com/FalconKu/coc-dagon/releases/tag/v1.0.3",
+        "commit_sha": "82d49f6bb079d37dd769583cb68bbdd5fc6e5024",
+        "published_at": "2026-11-07T18:38:35Z",
+        "requires_approval": false
+      },
+      "commit_sha": "82d49f6bb079d37dd769583cb68bbdd5fc6e5024",
+      "approved_release_tag": "v1.0.0",
+      "approved_commit": "ccebd18594fc7df5827d5982f460cc1fe58e9fd9",
+      "approved_archive_url": "https://github.com/FalconKu/coc-dagon/archive/ccebd18594fc7df5827d5982f460cc1fe58e9fd9.zip",
+      "approved_artifact_sha256": "6c96c6150f75de9307ce71acb58c00ba3929b55272cd9ee3f3a477e2e553fed6",
+      "docs": "README.md",
+      "homepage": "https://github.com/FalconKu/coc-dagon",
+      "content_profile": "adventure-module",
+      "content_delivery_mode": "catalog",
+      "ruleset_targets": [
+        "coc7"
+      ],
+      "ruleset_declared": true,
+      "system_agnostic": false,
+      "adventure_count": 1,
+      "automation_level": "",
+      "languages": [
+        "zh-CN"
+      ],
+      "min_app_version": "",
+      "artifact": {
+        "distribution": "approved-archive",
+        "url": "https://github.com/FalconKu/coc-dagon/archive/ccebd18594fc7df5827d5982f460cc1fe58e9fd9.zip",
+        "sha256": "6c96c6150f75de9307ce71acb58c00ba3929b55272cd9ee3f3a477e2e553fed6"
+      }
+    },
+    {
+      "id": "coc-dagon-shoal",
+      "name": "深潮档案：太平洋异滩",
+      "version": "1.0.2",
+      "summary": "《克苏鲁的呼唤》7 版资源包：改编自 H. P. 洛夫克拉夫特 1919 年公版短篇《大衮》。含 1918 年旧金山调查舞台、太平洋漂流海域、从海底升起的黑色泥滩与独石柱，以及可复用的水族文字与深潮神话条目。",
+      "plugin_type": "content-pack",
+      "installable": true,
+      "status": "approved",
+      "risk_level": "declarative",
+      "update_policy": "automatic",
+      "repository_url": "https://github.com/FalconKu/coc-dagon-shoal",
+      "archive_url": "https://github.com/FalconKu/coc-dagon-shoal/archive/0d47ce80da972f0ecebab389ff7f182dd6d1b9b9.zip",
+      "release_tag": "v1.0.2",
+      "release_url": "https://github.com/FalconKu/coc-dagon-shoal/releases/tag/v1.0.2",
+      "branch": "main",
+      "author": "FalconKu",
+      "stars": 0,
+      "trust_level": "community",
+      "tags": [],
+      "permissions": [
+        "content.read"
+      ],
+      "approved_permissions": [
+        "content.read"
+      ],
+      "capabilities": [
+        "content.world"
+      ],
+      "latest": {
+        "version": "1.0.2",
+        "release_tag": "v1.0.2",
+        "release_url": "https://github.com/FalconKu/coc-dagon-shoal/releases/tag/v1.0.2",
+        "commit_sha": "0d47ce80da972f0ecebab389ff7f182dd6d1b9b9",
+        "published_at": "2026-11-07T18:38:39Z",
+        "requires_approval": false
+      },
+      "commit_sha": "0d47ce80da972f0ecebab389ff7f182dd6d1b9b9",
+      "approved_release_tag": "v1.0.0",
+      "approved_commit": "268e250bbfd9843d64537a5a297c7dc46afd6557",
+      "approved_archive_url": "https://github.com/FalconKu/coc-dagon-shoal/archive/268e250bbfd9843d64537a5a297c7dc46afd6557.zip",
+      "approved_artifact_sha256": "a8b7f21c3d68e626886d23f08fdd439a61a59f94010df9e5049ff8544f745c20",
+      "docs": "README.md",
+      "homepage": "https://github.com/FalconKu/coc-dagon-shoal",
+      "content_profile": "content-pack",
+      "content_delivery_mode": "legacy_autoimport",
+      "ruleset_targets": [
+        "coc7"
+      ],
+      "ruleset_declared": true,
+      "system_agnostic": false,
+      "adventure_count": 0,
+      "automation_level": "",
+      "languages": [
+        "zh-CN"
+      ],
+      "min_app_version": "",
+      "artifact": {
+        "distribution": "approved-archive",
+        "url": "https://github.com/FalconKu/coc-dagon-shoal/archive/268e250bbfd9843d64537a5a297c7dc46afd6557.zip",
+        "sha256": "a8b7f21c3d68e626886d23f08fdd439a61a59f94010df9e5049ff8544f745c20"
+      }
+    },
+    {
+      "id": "coc-last-bell",
+      "name": "最后一记钟声",
+      "version": "1.0.3",
+      "summary": "《克苏鲁的呼唤》7 版原创短冒险：停摆十五年的钟楼昨夜敲了十三下，每敲一下，镇上就少一个人记得自己的孩子。3 章 15 节点 4 结局，约 2 小时。",
+      "plugin_type": "content-pack",
+      "installable": true,
+      "status": "approved",
+      "risk_level": "declarative",
+      "update_policy": "automatic",
+      "repository_url": "https://github.com/FalconKu/coc-last-bell",
+      "archive_url": "https://github.com/FalconKu/coc-last-bell/archive/41c894f3ba8a0f05ca76bb728433e6f9d6d58e82.zip",
+      "release_tag": "v1.0.3",
+      "release_url": "https://github.com/FalconKu/coc-last-bell/releases/tag/v1.0.3",
+      "branch": "main",
+      "author": "FalconKu",
+      "stars": 0,
+      "trust_level": "community",
+      "tags": [],
+      "permissions": [
+        "content.read"
+      ],
+      "approved_permissions": [
+        "content.read"
+      ],
+      "capabilities": [
+        "content.world"
+      ],
+      "latest": {
+        "version": "1.0.3",
+        "release_tag": "v1.0.3",
+        "release_url": "https://github.com/FalconKu/coc-last-bell/releases/tag/v1.0.3",
+        "commit_sha": "41c894f3ba8a0f05ca76bb728433e6f9d6d58e82",
+        "published_at": "2026-11-07T18:38:45Z",
+        "requires_approval": false
+      },
+      "commit_sha": "41c894f3ba8a0f05ca76bb728433e6f9d6d58e82",
+      "approved_release_tag": "v1.0.0",
+      "approved_commit": "b5801df6faaa178a6e2f3e1ab0197a6fc07d3a09",
+      "approved_archive_url": "https://github.com/FalconKu/coc-last-bell/archive/b5801df6faaa178a6e2f3e1ab0197a6fc07d3a09.zip",
+      "approved_artifact_sha256": "c0ca8ee367cacd3e9dfe597e65c39576992446a0df092c1e1e7c6df40e36d849",
+      "docs": "README.md",
+      "homepage": "https://github.com/FalconKu/coc-last-bell",
+      "content_profile": "adventure-module",
+      "content_delivery_mode": "catalog",
+      "ruleset_targets": [
+        "coc7"
+      ],
+      "ruleset_declared": true,
+      "system_agnostic": false,
+      "adventure_count": 1,
+      "automation_level": "",
+      "languages": [
+        "zh-CN"
+      ],
+      "min_app_version": "",
+      "artifact": {
+        "distribution": "approved-archive",
+        "url": "https://github.com/FalconKu/coc-last-bell/archive/b5801df6faaa178a6e2f3e1ab0197a6fc07d3a09.zip",
+        "sha256": "c0ca8ee367cacd3e9dfe597e65c39576992446a0df092c1e1e7c6df40e36d849"
+      }
+    },
+    {
+      "id": "coc-seventh-letter",
+      "name": "第七封信",
+      "version": "1.0.3",
+      "summary": "《克苏鲁的呼唤》7 版原创短冒险：六封笔迹不同的信都劝收信人别拆第七封，而他已经死了。3 章 16 节点 5 结局，约 90 分钟。",
+      "plugin_type": "content-pack",
+      "installable": true,
+      "status": "approved",
+      "risk_level": "declarative",
+      "update_policy": "automatic",
+      "repository_url": "https://github.com/FalconKu/coc-seventh-letter",
+      "archive_url": "https://github.com/FalconKu/coc-seventh-letter/archive/57f5a66d2a132c7ce47948285d33b3d955c5ddb4.zip",
+      "release_tag": "v1.0.3",
+      "release_url": "https://github.com/FalconKu/coc-seventh-letter/releases/tag/v1.0.3",
+      "branch": "main",
+      "author": "FalconKu",
+      "stars": 0,
+      "trust_level": "community",
+      "tags": [],
+      "permissions": [
+        "content.read"
+      ],
+      "approved_permissions": [
+        "content.read"
+      ],
+      "capabilities": [
+        "content.world"
+      ],
+      "latest": {
+        "version": "1.0.3",
+        "release_tag": "v1.0.3",
+        "release_url": "https://github.com/FalconKu/coc-seventh-letter/releases/tag/v1.0.3",
+        "commit_sha": "57f5a66d2a132c7ce47948285d33b3d955c5ddb4",
+        "published_at": "2026-11-07T18:38:49Z",
+        "requires_approval": false
+      },
+      "commit_sha": "57f5a66d2a132c7ce47948285d33b3d955c5ddb4",
+      "approved_release_tag": "v1.0.0",
+      "approved_commit": "50a48023fe4e0389f601f188237e2392e8dd3c5e",
+      "approved_archive_url": "https://github.com/FalconKu/coc-seventh-letter/archive/50a48023fe4e0389f601f188237e2392e8dd3c5e.zip",
+      "approved_artifact_sha256": "c3ec9dbc9ea688e0dd8203015e1709fb4fa9eaa40d24c075fe4976d710e0611a",
+      "docs": "README.md",
+      "homepage": "https://github.com/FalconKu/coc-seventh-letter",
+      "content_profile": "adventure-module",
+      "content_delivery_mode": "catalog",
+      "ruleset_targets": [
+        "coc7"
+      ],
+      "ruleset_declared": true,
+      "system_agnostic": false,
+      "adventure_count": 1,
+      "automation_level": "",
+      "languages": [
+        "zh-CN"
+      ],
+      "min_app_version": "",
+      "artifact": {
+        "distribution": "approved-archive",
+        "url": "https://github.com/FalconKu/coc-seventh-letter/archive/50a48023fe4e0389f601f188237e2392e8dd3c5e.zip",
+        "sha256": "c3ec9dbc9ea688e0dd8203015e1709fb4fa9eaa40d24c075fe4976d710e0611a"
+      }
+    },
+    {
+      "id": "coc-tidebound-choir",
+      "name": "潮汐合唱",
+      "version": "1.0.3",
+      "summary": "《克苏鲁的呼唤》7 版原创短冒险：盐喉村每年交出一个名字，换取一年的渔获。这次被念到名字的是你受雇寻找的人。3 章 15 节点 4 结局，约 2 小时。",
+      "plugin_type": "content-pack",
+      "installable": true,
+      "status": "approved",
+      "risk_level": "declarative",
+      "update_policy": "automatic",
+      "repository_url": "https://github.com/FalconKu/coc-tidebound-choir",
+      "archive_url": "https://github.com/FalconKu/coc-tidebound-choir/archive/57565582c24bdf7210d75d0ef8a19e9262e7d568.zip",
+      "release_tag": "v1.0.3",
+      "release_url": "https://github.com/FalconKu/coc-tidebound-choir/releases/tag/v1.0.3",
+      "branch": "main",
+      "author": "FalconKu",
+      "stars": 0,
+      "trust_level": "community",
+      "tags": [],
+      "permissions": [
+        "content.read"
+      ],
+      "approved_permissions": [
+        "content.read"
+      ],
+      "capabilities": [
+        "content.world"
+      ],
+      "latest": {
+        "version": "1.0.3",
+        "release_tag": "v1.0.3",
+        "release_url": "https://github.com/FalconKu/coc-tidebound-choir/releases/tag/v1.0.3",
+        "commit_sha": "57565582c24bdf7210d75d0ef8a19e9262e7d568",
+        "published_at": "2026-11-07T18:38:46Z",
+        "requires_approval": false
+      },
+      "commit_sha": "57565582c24bdf7210d75d0ef8a19e9262e7d568",
+      "approved_release_tag": "v1.0.0",
+      "approved_commit": "0f8e526071ad7c9090f6179c3c3aa81ce70b7143",
+      "approved_archive_url": "https://github.com/FalconKu/coc-tidebound-choir/archive/0f8e526071ad7c9090f6179c3c3aa81ce70b7143.zip",
+      "approved_artifact_sha256": "d5716d896190127483c8b80ed6a645d833caa6dd102db0016c04d002b278f3d8",
+      "docs": "README.md",
+      "homepage": "https://github.com/FalconKu/coc-tidebound-choir",
+      "content_profile": "adventure-module",
+      "content_delivery_mode": "catalog",
+      "ruleset_targets": [
+        "coc7"
+      ],
+      "ruleset_declared": true,
+      "system_agnostic": false,
+      "adventure_count": 1,
+      "automation_level": "",
+      "languages": [
+        "zh-CN"
+      ],
+      "min_app_version": "",
+      "artifact": {
+        "distribution": "approved-archive",
+        "url": "https://github.com/FalconKu/coc-tidebound-choir/archive/0f8e526071ad7c9090f6179c3c3aa81ce70b7143.zip",
+        "sha256": "d5716d896190127483c8b80ed6a645d833caa6dd102db0016c04d002b278f3d8"
+      }
+    },
+    {
+      "id": "dnd-embervault",
+      "name": "余烬金库",
+      "version": "1.0.3",
+      "summary": "D&D 2024 中文原创短冒险：矿主封了矿，说是有瓦斯；封矿的工人一个都没回来。3 章 15 节点 4 结局，约 3 小时，3–5 人，含一场可自动结算的遭遇。",
+      "plugin_type": "content-pack",
+      "installable": true,
+      "status": "approved",
+      "risk_level": "declarative",
+      "update_policy": "automatic",
+      "repository_url": "https://github.com/FalconKu/dnd-embervault",
+      "archive_url": "https://github.com/FalconKu/dnd-embervault/archive/53041e5e0cffbe38aef2d8d166088c74f8897bc2.zip",
+      "release_tag": "v1.0.3",
+      "release_url": "https://github.com/FalconKu/dnd-embervault/releases/tag/v1.0.3",
+      "branch": "main",
+      "author": "FalconKu",
+      "stars": 0,
+      "trust_level": "community",
+      "tags": [],
+      "permissions": [
+        "content.read"
+      ],
+      "approved_permissions": [
+        "content.read"
+      ],
+      "capabilities": [
+        "content.world"
+      ],
+      "latest": {
+        "version": "1.0.3",
+        "release_tag": "v1.0.3",
+        "release_url": "https://github.com/FalconKu/dnd-embervault/releases/tag/v1.0.3",
+        "commit_sha": "53041e5e0cffbe38aef2d8d166088c74f8897bc2",
+        "published_at": "2026-11-07T18:38:49Z",
+        "requires_approval": false
+      },
+      "commit_sha": "53041e5e0cffbe38aef2d8d166088c74f8897bc2",
+      "approved_release_tag": "v1.0.0",
+      "approved_commit": "217e6c5b0af329861429ff7ea41779145e6d8f0a",
+      "approved_archive_url": "https://github.com/FalconKu/dnd-embervault/archive/217e6c5b0af329861429ff7ea41779145e6d8f0a.zip",
+      "approved_artifact_sha256": "b229db4ce8d97596b057e52bc6d0fa2cbc03f0968c3a0721e0e791dd73096b60",
+      "docs": "README.md",
+      "homepage": "https://github.com/FalconKu/dnd-embervault",
+      "content_profile": "adventure-module",
+      "content_delivery_mode": "catalog",
+      "ruleset_targets": [
+        "dnd2024"
+      ],
+      "ruleset_declared": true,
+      "system_agnostic": false,
+      "adventure_count": 1,
+      "automation_level": "",
+      "languages": [
+        "zh-CN"
+      ],
+      "min_app_version": "",
+      "artifact": {
+        "distribution": "approved-archive",
+        "url": "https://github.com/FalconKu/dnd-embervault/archive/217e6c5b0af329861429ff7ea41779145e6d8f0a.zip",
+        "sha256": "b229db4ce8d97596b057e52bc6d0fa2cbc03f0968c3a0721e0e791dd73096b60"
+      }
+    },
+    {
+      "id": "dnd-frontier-vault",
+      "name": "霜脊边地：边镇资料集",
+      "version": "1.0.3",
+      "summary": "D&D 2024 规则的中文资源包：一座可以随时开团的边地铁镇「灰砧」、27 条资料（人物、地点、怪物、物品与传说，12 条玩家可见）和一张九地点关系地图。不含剧本。",
+      "plugin_type": "content-pack",
+      "installable": true,
+      "status": "approved",
+      "risk_level": "declarative",
+      "update_policy": "automatic",
+      "repository_url": "https://github.com/FalconKu/dnd-frontier-vault",
+      "archive_url": "https://github.com/FalconKu/dnd-frontier-vault/archive/42ab0f572efa2513c905979152bf85fc1fdcbac6.zip",
+      "release_tag": "v1.0.3",
+      "release_url": "https://github.com/FalconKu/dnd-frontier-vault/releases/tag/v1.0.3",
+      "branch": "main",
+      "author": "FalconKu",
+      "stars": 0,
+      "trust_level": "community",
+      "tags": [],
+      "permissions": [
+        "content.read"
+      ],
+      "approved_permissions": [
+        "content.read"
+      ],
+      "capabilities": [
+        "content.world",
+        "content.map"
+      ],
+      "latest": {
+        "version": "1.0.3",
+        "release_tag": "v1.0.3",
+        "release_url": "https://github.com/FalconKu/dnd-frontier-vault/releases/tag/v1.0.3",
+        "commit_sha": "42ab0f572efa2513c905979152bf85fc1fdcbac6",
+        "published_at": "2026-11-07T18:38:56Z",
+        "requires_approval": false
+      },
+      "commit_sha": "42ab0f572efa2513c905979152bf85fc1fdcbac6",
+      "approved_release_tag": "v1.0.0",
+      "approved_commit": "51f90202ef87b760de3c5eafbf1eafe30921efe1",
+      "approved_archive_url": "https://github.com/FalconKu/dnd-frontier-vault/archive/51f90202ef87b760de3c5eafbf1eafe30921efe1.zip",
+      "approved_artifact_sha256": "f9e52b028e87781c45bcb1914c10266daa79e42d58005c86abd77d34c4fa4d8a",
+      "docs": "README.md",
+      "homepage": "https://github.com/FalconKu/dnd-frontier-vault",
+      "content_profile": "content-pack",
+      "content_delivery_mode": "legacy_autoimport",
+      "ruleset_targets": [
+        "dnd2024"
+      ],
+      "ruleset_declared": true,
+      "system_agnostic": false,
+      "adventure_count": 0,
+      "automation_level": "",
+      "languages": [
+        "zh-CN"
+      ],
+      "min_app_version": "",
+      "artifact": {
+        "distribution": "approved-archive",
+        "url": "https://github.com/FalconKu/dnd-frontier-vault/archive/51f90202ef87b760de3c5eafbf1eafe30921efe1.zip",
+        "sha256": "f9e52b028e87781c45bcb1914c10266daa79e42d58005c86abd77d34c4fa4d8a"
+      }
+    },
+    {
+      "id": "dnd-frostwhisper",
+      "name": "霜语渡口",
+      "version": "1.0.3",
+      "summary": "D&D 2024 中文原创短冒险：过河不要钱，只要一样你带得走、但不想给的东西。3 章 15 节点 4 结局，约 2.5 小时，3–5 人，含一场遭遇。",
+      "plugin_type": "content-pack",
+      "installable": true,
+      "status": "approved",
+      "risk_level": "declarative",
+      "update_policy": "automatic",
+      "repository_url": "https://github.com/FalconKu/dnd-frostwhisper",
+      "archive_url": "https://github.com/FalconKu/dnd-frostwhisper/archive/4db81c938464c58cfe1f868f5a04d3e8b0eb63da.zip",
+      "release_tag": "v1.0.3",
+      "release_url": "https://github.com/FalconKu/dnd-frostwhisper/releases/tag/v1.0.3",
+      "branch": "main",
+      "author": "FalconKu",
+      "stars": 0,
+      "trust_level": "community",
+      "tags": [],
+      "permissions": [
+        "content.read"
+      ],
+      "approved_permissions": [
+        "content.read"
+      ],
+      "capabilities": [
+        "content.world"
+      ],
+      "latest": {
+        "version": "1.0.3",
+        "release_tag": "v1.0.3",
+        "release_url": "https://github.com/FalconKu/dnd-frostwhisper/releases/tag/v1.0.3",
+        "commit_sha": "4db81c938464c58cfe1f868f5a04d3e8b0eb63da",
+        "published_at": "2026-11-07T18:38:57Z",
+        "requires_approval": false
+      },
+      "commit_sha": "4db81c938464c58cfe1f868f5a04d3e8b0eb63da",
+      "approved_release_tag": "v1.0.0",
+      "approved_commit": "4708aa93542ba55f371c0028f9d938b779d413e9",
+      "approved_archive_url": "https://github.com/FalconKu/dnd-frostwhisper/archive/4708aa93542ba55f371c0028f9d938b779d413e9.zip",
+      "approved_artifact_sha256": "d674a19400d1064bfa81d6a60aac31f1c616470785908c2fd3b44be8932cc1d8",
+      "docs": "README.md",
+      "homepage": "https://github.com/FalconKu/dnd-frostwhisper",
+      "content_profile": "adventure-module",
+      "content_delivery_mode": "catalog",
+      "ruleset_targets": [
+        "dnd2024"
+      ],
+      "ruleset_declared": true,
+      "system_agnostic": false,
+      "adventure_count": 1,
+      "automation_level": "",
+      "languages": [
+        "zh-CN"
+      ],
+      "min_app_version": "",
+      "artifact": {
+        "distribution": "approved-archive",
+        "url": "https://github.com/FalconKu/dnd-frostwhisper/archive/4708aa93542ba55f371c0028f9d938b779d413e9.zip",
+        "sha256": "d674a19400d1064bfa81d6a60aac31f1c616470785908c2fd3b44be8932cc1d8"
+      }
+    },
+    {
+      "id": "frieren-journey",
+      "name": "葬送的芙莉莲·旅途",
+      "version": "1.3.0",
+      "summary": "以《葬送的芙莉莲》为蓝本的完整奇幻冒险规则包：魔王战后的百年旅程、魔法使等级、人类魔法、魔力制限与魔族。启用后创建游戏即可选择本世界与规则。非官方同人，版权归原作所有。",
+      "plugin_type": "content-pack",
+      "installable": true,
+      "status": "approved",
+      "risk_level": "declarative",
+      "update_policy": "automatic",
+      "repository_url": "https://github.com/EOEOY/frieren-journey",
+      "archive_url": "https://github.com/EOEOY/frieren-journey/archive/0d7da03d042ab5a69b13c359d1a84bace3b32bb3.zip",
+      "release_tag": "v1.3.0",
+      "release_url": "https://github.com/EOEOY/frieren-journey/releases/tag/v1.3.0",
+      "branch": "master",
+      "author": "EOEOY",
+      "stars": 0,
+      "trust_level": "community",
+      "tags": [],
+      "permissions": [
+        "plugin.config",
+        "content.read",
+        "content.import"
+      ],
+      "approved_permissions": [
+        "content.import",
+        "content.read",
+        "plugin.config"
+      ],
+      "capabilities": [
+        "content.rule",
+        "content.world",
+        "content.character-template"
+      ],
+      "latest": {
+        "version": "1.3.0",
+        "release_tag": "v1.3.0",
+        "release_url": "https://github.com/EOEOY/frieren-journey/releases/tag/v1.3.0",
+        "commit_sha": "0d7da03d042ab5a69b13c359d1a84bace3b32bb3",
+        "published_at": "2026-11-07T14:46:27Z",
+        "requires_approval": false
+      },
+      "commit_sha": "0d7da03d042ab5a69b13c359d1a84bace3b32bb3",
+      "approved_release_tag": "v1.2.0",
+      "approved_commit": "31a04e52e77f20521cd020f793edf6aecbef746e",
+      "approved_archive_url": "https://github.com/EOEOY/frieren-journey/archive/31a04e52e77f20521cd020f793edf6aecbef746e.zip",
+      "approved_artifact_sha256": "1b680f9815d486a714a5b78dce9f0a5ffb47862fcc6d05ae50dd049a01adf436",
+      "docs": "README_CN.md",
+      "homepage": "https://github.com/EOEOY/frieren-journey",
+      "content_profile": "content-pack",
+      "content_delivery_mode": "legacy_autoimport",
+      "ruleset_targets": [
+        "frieren_magic_rule"
+      ],
+      "ruleset_declared": true,
+      "system_agnostic": false,
+      "adventure_count": 0,
+      "automation_level": "",
+      "languages": [
+        "zh-CN"
+      ],
+      "min_app_version": "2.5.0",
+      "artifact": {
+        "distribution": "approved-archive",
+        "url": "https://github.com/EOEOY/frieren-journey/archive/31a04e52e77f20521cd020f793edf6aecbef746e.zip",
+        "sha256": "1b680f9815d486a714a5b78dce9f0a5ffb47862fcc6d05ae50dd049a01adf436"
+      }
+    },
+    {
+      "id": "hyouka",
+      "name": "冰菓·古典部推理",
+      "version": "1.3.0",
+      "summary": "以《冰菓》（古典部系列）为蓝本的日常推理内容包：校园谜题、观察与询问、限时推理。推理靠脑力、骰子只决定信息获取。非官方同人，版权归原作所有。",
+      "plugin_type": "content-pack",
+      "installable": true,
+      "status": "approved",
+      "risk_level": "declarative",
+      "update_policy": "automatic",
+      "repository_url": "https://github.com/EOEOY/hyouka",
+      "archive_url": "https://github.com/EOEOY/hyouka/archive/dac1ceb25c27c809df1bdbfcf7674ef9f4e58bb9.zip",
+      "release_tag": "v1.3.0",
+      "release_url": "https://github.com/EOEOY/hyouka/releases/tag/v1.3.0",
+      "branch": "main",
+      "author": "EOEOY",
+      "stars": 0,
+      "trust_level": "community",
+      "tags": [],
+      "permissions": [
+        "plugin.config",
+        "content.read",
+        "content.import"
+      ],
+      "approved_permissions": [
+        "content.import",
+        "content.read",
+        "plugin.config"
+      ],
+      "capabilities": [
+        "content.rule",
+        "content.world",
+        "content.character-template"
+      ],
+      "latest": {
+        "version": "1.3.0",
+        "release_tag": "v1.3.0",
+        "release_url": "https://github.com/EOEOY/hyouka/releases/tag/v1.3.0",
+        "commit_sha": "dac1ceb25c27c809df1bdbfcf7674ef9f4e58bb9",
+        "published_at": "2026-11-07T14:46:28Z",
+        "requires_approval": false
+      },
+      "commit_sha": "dac1ceb25c27c809df1bdbfcf7674ef9f4e58bb9",
+      "approved_release_tag": "v1.2.0",
+      "approved_commit": "b95366b96ba88d2054833cc3c0192a6edb982b39",
+      "approved_archive_url": "https://github.com/EOEOY/hyouka/archive/b95366b96ba88d2054833cc3c0192a6edb982b39.zip",
+      "approved_artifact_sha256": "2cb636ad7f8ada3ce25b032281ed94c8be05838662ab39070daad911c41e9ad5",
+      "docs": "README_CN.md",
+      "homepage": "https://github.com/EOEOY/hyouka",
+      "content_profile": "content-pack",
+      "content_delivery_mode": "legacy_autoimport",
+      "ruleset_targets": [
+        "hyouka_rule"
+      ],
+      "ruleset_declared": true,
+      "system_agnostic": false,
+      "adventure_count": 0,
+      "automation_level": "",
+      "languages": [
+        "zh-CN"
+      ],
+      "min_app_version": "2.5.0",
+      "artifact": {
+        "distribution": "approved-archive",
+        "url": "https://github.com/EOEOY/hyouka/archive/b95366b96ba88d2054833cc3c0192a6edb982b39.zip",
+        "sha256": "2cb636ad7f8ada3ce25b032281ed94c8be05838662ab39070daad911c41e9ad5"
+      }
+    },
+    {
+      "id": "kokoro-zh-voice-presets",
+      "name": "Kokoro 中文音色预设",
+      "version": "1.0.0",
+      "summary": "为本地 Kokoro-FastAPI 提供四个中文 Voice ID；不包含模型权重或音频。",
+      "plugin_type": "voice-pack",
+      "installable": true,
+      "status": "approved",
+      "risk_level": "declarative",
+      "update_policy": "automatic",
+      "repository_url": "https://github.com/diceframe/kokoro-zh-voice-presets",
+      "archive_url": "https://github.com/diceframe/kokoro-zh-voice-presets/archive/724c3b5714704f10f39c14dd269fa01169d9eca1.zip",
+      "release_tag": "v1.0.0",
+      "release_url": "https://github.com/diceframe/kokoro-zh-voice-presets/releases/tag/v1.0.0",
+      "branch": "main",
+      "author": "diceframe",
+      "stars": 0,
+      "trust_level": "community",
+      "tags": [],
+      "permissions": [
+        "plugin.config",
+        "voice.assets"
+      ],
+      "approved_permissions": [
+        "plugin.config",
+        "voice.assets"
+      ],
+      "capabilities": [
+        "voice.preset"
+      ],
+      "latest": {
+        "version": "1.0.0",
+        "release_tag": "v1.0.0",
+        "release_url": "https://github.com/diceframe/kokoro-zh-voice-presets/releases/tag/v1.0.0",
+        "commit_sha": "724c3b5714704f10f39c14dd269fa01169d9eca1",
+        "published_at": "2026-08-13T12:54:32Z",
+        "requires_approval": false
+      },
+      "commit_sha": "724c3b5714704f10f39c14dd269fa01169d9eca1",
+      "approved_release_tag": "v1.0.0",
+      "approved_commit": "724c3b5714704f10f39c14dd269fa01169d9eca1",
+      "approved_archive_url": "https://github.com/diceframe/kokoro-zh-voice-presets/archive/724c3b5714704f10f39c14dd269fa01169d9eca1.zip",
+      "approved_artifact_sha256": "3d025202edbe3d604f05d85b51b973df36c96526ae148efac7b69f28e4692808",
+      "docs": "README.md",
+      "homepage": "https://github.com/diceframe/kokoro-zh-voice-presets",
+      "content_profile": "content-pack",
+      "content_delivery_mode": "legacy_autoimport",
+      "ruleset_targets": [],
+      "ruleset_declared": false,
+      "system_agnostic": false,
+      "adventure_count": 0,
+      "automation_level": "",
+      "languages": [],
+      "min_app_version": "",
+      "artifact": {
+        "distribution": "approved-archive",
+        "url": "https://github.com/diceframe/kokoro-zh-voice-presets/archive/724c3b5714704f10f39c14dd269fa01169d9eca1.zip",
+        "sha256": "3d025202edbe3d604f05d85b51b973df36c96526ae148efac7b69f28e4692808"
+      }
+    },
+    {
+      "id": "office-night",
+      "name": "深夜办公室·打工人怪谈",
+      "version": "1.2.0",
+      "summary": "喜剧向职场怪谈内容包：加班到 23:00 的写字楼开始闹鬼，电梯停在第 13 层，茶水间的咖啡会说话。规则用发际线、摸鱼力、KPI 与老板信任撑起一套加班生存战。启用后创建游戏即可选择本世界与规则。",
+      "plugin_type": "content-pack",
+      "installable": true,
+      "status": "approved",
+      "risk_level": "declarative",
+      "update_policy": "automatic",
+      "repository_url": "https://github.com/EOEOY/office-night",
+      "archive_url": "https://github.com/EOEOY/office-night/archive/090ef2c65d6049d8cd2f92bdc2cbb3cfc380d381.zip",
+      "release_tag": "v1.2.0",
+      "release_url": "https://github.com/EOEOY/office-night/releases/tag/v1.2.0",
+      "branch": "main",
+      "author": "EOEOY",
+      "stars": 0,
+      "trust_level": "community",
+      "tags": [],
+      "permissions": [
+        "plugin.config",
+        "content.read",
+        "content.import"
+      ],
+      "approved_permissions": [
+        "content.import",
+        "content.read",
+        "plugin.config"
+      ],
+      "capabilities": [
+        "content.rule",
+        "content.world",
+        "content.character-template"
+      ],
+      "latest": {
+        "version": "1.2.0",
+        "release_tag": "v1.2.0",
+        "release_url": "https://github.com/EOEOY/office-night/releases/tag/v1.2.0",
+        "commit_sha": "090ef2c65d6049d8cd2f92bdc2cbb3cfc380d381",
+        "published_at": "2026-11-07T14:46:40Z",
+        "requires_approval": false
+      },
+      "commit_sha": "090ef2c65d6049d8cd2f92bdc2cbb3cfc380d381",
+      "approved_release_tag": "v1.1.0",
+      "approved_commit": "055dd436b9bcbbfaa8683a294b77d4923d60e0e2",
+      "approved_archive_url": "https://github.com/EOEOY/office-night/archive/055dd436b9bcbbfaa8683a294b77d4923d60e0e2.zip",
+      "approved_artifact_sha256": "de972192d7a0c09575df92c42e2958354eaa4456aa0313cdaf2ff9127c0f88b4",
+      "docs": "README_CN.md",
+      "homepage": "https://github.com/EOEOY/office-night",
+      "content_profile": "content-pack",
+      "content_delivery_mode": "legacy_autoimport",
+      "ruleset_targets": [
+        "office_rule"
+      ],
+      "ruleset_declared": true,
+      "system_agnostic": false,
+      "adventure_count": 0,
+      "automation_level": "",
+      "languages": [
+        "zh-CN"
+      ],
+      "min_app_version": "2.5.0",
+      "artifact": {
+        "distribution": "approved-archive",
+        "url": "https://github.com/EOEOY/office-night/archive/055dd436b9bcbbfaa8683a294b77d4923d60e0e2.zip",
+        "sha256": "de972192d7a0c09575df92c42e2958354eaa4456aa0313cdaf2ff9127c0f88b4"
+      }
+    },
+    {
+      "id": "qq-napcat",
+      "name": "QQ / NapCat",
+      "version": "1.4.1",
+      "summary": "通过 NapCat WebSocket 服务器将群聊连接到 DiceFrame。",
+      "plugin_type": "channel-adapter",
+      "installable": true,
+      "status": "approved",
+      "risk_level": "unrestricted-process",
+      "update_policy": "notify",
+      "repository_url": "https://github.com/diceframe/qq-napcat",
+      "archive_url": "https://github.com/diceframe/qq-napcat/archive/2dece7558fd0f16e8ae79ce57bb6db671b5b8303.zip",
+      "release_tag": "v1.4.1",
+      "release_url": "https://github.com/diceframe/qq-napcat/releases/tag/v1.4.1",
+      "branch": "main",
+      "author": "diceframe",
+      "stars": 0,
+      "trust_level": "official",
+      "tags": [],
+      "permissions": [],
+      "approved_permissions": [
+        "process.spawn",
+        "plugin.data",
+        "network.client",
+        "diceframe.http",
+        "plugin.config",
+        "plugin.secrets"
+      ],
+      "capabilities": [
+        "channel.group",
+        "channel.private",
+        "game.action"
+      ],
+      "latest": {
+        "version": "1.4.1",
+        "release_tag": "v1.4.1",
+        "release_url": "https://github.com/diceframe/qq-napcat/releases/tag/v1.4.1",
+        "commit_sha": "2dece7558fd0f16e8ae79ce57bb6db671b5b8303",
+        "published_at": "2026-09-02T02:55:25Z",
+        "requires_approval": false
+      },
+      "commit_sha": "2dece7558fd0f16e8ae79ce57bb6db671b5b8303",
+      "approved_release_tag": "v1.1.0",
+      "approved_commit": "09d24a2680adc288dc478e7536807140da01a26f",
+      "approved_archive_url": "https://github.com/diceframe/qq-napcat/archive/09d24a2680adc288dc478e7536807140da01a26f.zip",
+      "approved_artifact_sha256": "24da149a0ceb771a9c5c2ebd556c77efe474c9c347c6722e469b1a6ee50990d5",
+      "docs": "README_CN.md",
+      "homepage": "https://github.com/diceframe/qq-napcat",
+      "content_profile": "content-pack",
+      "content_delivery_mode": "legacy_autoimport",
+      "ruleset_targets": [],
+      "ruleset_declared": false,
+      "system_agnostic": false,
+      "adventure_count": 0,
+      "automation_level": "",
+      "languages": [],
+      "min_app_version": "2.0.0",
+      "artifact": {
+        "distribution": "approved-archive",
+        "url": "https://github.com/diceframe/qq-napcat/archive/09d24a2680adc288dc478e7536807140da01a26f.zip",
+        "sha256": "24da149a0ceb771a9c5c2ebd556c77efe474c9c347c6722e469b1a6ee50990d5"
+      }
+    }
+  ]
+}
