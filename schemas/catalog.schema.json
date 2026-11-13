@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DiceFrame public plugin catalog",
+  "type": "object",
+  "required": ["schema_version", "entries"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "version", "plugin_type", "installable", "status", "risk_level", "update_policy", "repository_url", "permissions", "approved_permissions", "latest"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+          "name": {"type": "string"},
+          "version": {"type": "string"},
+          "summary": {"type": "string"},
+          "plugin_type": {"type": "string"},
+          "installable": {"type": "boolean"},
+          "status": {"type": "string"},
+          "risk_level": {"type": "string"},
+          "update_policy": {"type": "string"},
+          "repository_url": {"type": "string", "format": "uri"},
+          "permissions": {"type": "array", "items": {"type": "string"}},
+          "approved_permissions": {"type": "array", "items": {"type": "string"}},
+          "capabilities": {"type": "array", "items": {"type": "string"}},
+          "ruleset_targets": {"type": "array", "items": {"type": "string"}},
+          "languages": {"type": "array", "items": {"type": "string"}},
+          "latest": {
+            "type": "object",
+            "required": ["version", "release_tag", "release_url", "commit_sha", "published_at", "requires_approval"],
+            "properties": {
+              "version": {"type": "string"},
+              "release_tag": {"type": "string"},
+              "release_url": {"type": "string"},
+              "commit_sha": {"type": "string"},
+              "published_at": {"type": "string"},
+              "requires_approval": {"type": "boolean"}
+            },
+            "additionalProperties": false
+          },
+          "artifact": {
+            "type": "object",
+            "required": ["distribution", "url", "sha256"],
+            "properties": {
+              "distribution": {"const": "approved-archive"},
+              "url": {"type": "string", "format": "uri"},
+              "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": false
+}

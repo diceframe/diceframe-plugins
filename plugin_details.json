@@ -55,7 +55,12 @@
       "min_app_version": "1.9.12",
       "tool_ui": "tunnel-card",
       "docs": "README_CN.md"
-    }
+    },
+    "approved_release_tag": "v0.1.0",
+    "approved_commit": "783800a1b62fa8eafe58bbac36ea1b5be7fdb2f9",
+    "approved_archive_url": "https://github.com/diceframe/cloudflare-tunnel/archive/783800a1b62fa8eafe58bbac36ea1b5be7fdb2f9.zip",
+    "approved_artifact_sha256": "aff1f5dff87e1d15913eb2f058b32462263926dc70bc2faaeaa7aa246b5ef25d",
+    "listing_status": "approved"
   },
   {
     "id": "cloudflare-tunnel-linux",
@@ -113,7 +118,12 @@
       "min_app_version": "1.9.12",
       "tool_ui": "tunnel-card",
       "docs": "README_CN.md"
-    }
+    },
+    "approved_release_tag": "v0.1.0",
+    "approved_commit": "ec8cb18101de927043c79326f74aa2385b00ba6d",
+    "approved_archive_url": "https://github.com/diceframe/cloudflare-tunnel-linux/archive/ec8cb18101de927043c79326f74aa2385b00ba6d.zip",
+    "approved_artifact_sha256": "831f5aa2a61465c7cface325f705c95f759ec38eb8b5e52de18824df6d9f72b8",
+    "listing_status": "approved"
   },
   {
     "id": "coc-arkham-archive",
@@ -183,7 +193,12 @@
         ]
       },
       "docs": "README.md"
-    }
+    },
+    "approved_release_tag": "v1.0.0",
+    "approved_commit": "feea266c3d2d4d9b874905691b062c3470d58f2a",
+    "approved_archive_url": "https://github.com/FalconKu/coc-arkham-archive/archive/feea266c3d2d4d9b874905691b062c3470d58f2a.zip",
+    "approved_artifact_sha256": "7ea559de393c095beb573c7a5c54b7f0de7c2e9492233bd88383190254281791",
+    "listing_status": "approved"
   },
   {
     "id": "coc-dagon",
@@ -248,7 +263,12 @@
         ]
       },
       "docs": "README.md"
-    }
+    },
+    "approved_release_tag": "v1.0.0",
+    "approved_commit": "ccebd18594fc7df5827d5982f460cc1fe58e9fd9",
+    "approved_archive_url": "https://github.com/FalconKu/coc-dagon/archive/ccebd18594fc7df5827d5982f460cc1fe58e9fd9.zip",
+    "approved_artifact_sha256": "6c96c6150f75de9307ce71acb58c00ba3929b55272cd9ee3f3a477e2e553fed6",
+    "listing_status": "approved"
   },
   {
     "id": "coc-dagon-shoal",
@@ -317,7 +337,12 @@
         ]
       },
       "docs": "README.md"
-    }
+    },
+    "approved_release_tag": "v1.0.0",
+    "approved_commit": "268e250bbfd9843d64537a5a297c7dc46afd6557",
+    "approved_archive_url": "https://github.com/FalconKu/coc-dagon-shoal/archive/268e250bbfd9843d64537a5a297c7dc46afd6557.zip",
+    "approved_artifact_sha256": "a8b7f21c3d68e626886d23f08fdd439a61a59f94010df9e5049ff8544f745c20",
+    "listing_status": "approved"
   },
   {
     "id": "coc-last-bell",
@@ -391,7 +416,12 @@
         ]
       },
       "docs": "README.md"
-    }
+    },
+    "approved_release_tag": "v1.0.0",
+    "approved_commit": "b5801df6faaa178a6e2f3e1ab0197a6fc07d3a09",
+    "approved_archive_url": "https://github.com/FalconKu/coc-last-bell/archive/b5801df6faaa178a6e2f3e1ab0197a6fc07d3a09.zip",
+    "approved_artifact_sha256": "c0ca8ee367cacd3e9dfe597e65c39576992446a0df092c1e1e7c6df40e36d849",
+    "listing_status": "approved"
   },
   {
     "id": "coc-seventh-letter",
@@ -465,7 +495,12 @@
         ]
       },
       "docs": "README.md"
-    }
+    },
+    "approved_release_tag": "v1.0.0",
+    "approved_commit": "50a48023fe4e0389f601f188237e2392e8dd3c5e",
+    "approved_archive_url": "https://github.com/FalconKu/coc-seventh-letter/archive/50a48023fe4e0389f601f188237e2392e8dd3c5e.zip",
+    "approved_artifact_sha256": "c3ec9dbc9ea688e0dd8203015e1709fb4fa9eaa40d24c075fe4976d710e0611a",
+    "listing_status": "approved"
   },
   {
     "id": "coc-tidebound-choir",
@@ -539,7 +574,12 @@
         ]
       },
       "docs": "README.md"
-    }
+    },
+    "approved_release_tag": "v1.0.0",
+    "approved_commit": "0f8e526071ad7c9090f6179c3c3aa81ce70b7143",
+    "approved_archive_url": "https://github.com/FalconKu/coc-tidebound-choir/archive/0f8e526071ad7c9090f6179c3c3aa81ce70b7143.zip",
+    "approved_artifact_sha256": "d5716d896190127483c8b80ed6a645d833caa6dd102db0016c04d002b278f3d8",
+    "listing_status": "approved"
   },
   {
     "id": "dnd-embervault",
@@ -617,7 +657,12 @@
         ]
       },
       "docs": "README.md"
-    }
+    },
+    "approved_release_tag": "v1.0.0",
+    "approved_commit": "217e6c5b0af329861429ff7ea41779145e6d8f0a",
+    "approved_archive_url": "https://github.com/FalconKu/dnd-embervault/archive/217e6c5b0af329861429ff7ea41779145e6d8f0a.zip",
+    "approved_artifact_sha256": "b229db4ce8d97596b057e52bc6d0fa2cbc03f0968c3a0721e0e791dd73096b60",
+    "listing_status": "approved"
   },
   {
     "id": "dnd-frontier-vault",
@@ -691,7 +736,12 @@
         ]
       },
       "docs": "README.md"
-    }
+    },
+    "approved_release_tag": "v1.0.0",
+    "approved_commit": "51f90202ef87b760de3c5eafbf1eafe30921efe1",
+    "approved_archive_url": "https://github.com/FalconKu/dnd-frontier-vault/archive/51f90202ef87b760de3c5eafbf1eafe30921efe1.zip",
+    "approved_artifact_sha256": "f9e52b028e87781c45bcb1914c10266daa79e42d58005c86abd77d34c4fa4d8a",
+    "listing_status": "approved"
   },
   {
     "id": "dnd-frostwhisper",
@@ -769,7 +819,12 @@
         ]
       },
       "docs": "README.md"
-    }
+    },
+    "approved_release_tag": "v1.0.0",
+    "approved_commit": "4708aa93542ba55f371c0028f9d938b779d413e9",
+    "approved_archive_url": "https://github.com/FalconKu/dnd-frostwhisper/archive/4708aa93542ba55f371c0028f9d938b779d413e9.zip",
+    "approved_artifact_sha256": "d674a19400d1064bfa81d6a60aac31f1c616470785908c2fd3b44be8932cc1d8",
+    "listing_status": "approved"
   },
   {
     "id": "frieren-journey",
@@ -856,7 +911,12 @@
         ]
       },
       "docs": "README_CN.md"
-    }
+    },
+    "approved_release_tag": "v1.2.0",
+    "approved_commit": "31a04e52e77f20521cd020f793edf6aecbef746e",
+    "approved_archive_url": "https://github.com/EOEOY/frieren-journey/archive/31a04e52e77f20521cd020f793edf6aecbef746e.zip",
+    "approved_artifact_sha256": "1b680f9815d486a714a5b78dce9f0a5ffb47862fcc6d05ae50dd049a01adf436",
+    "listing_status": "approved"
   },
   {
     "id": "hyouka",
@@ -943,7 +1003,12 @@
         ]
       },
       "docs": "README_CN.md"
-    }
+    },
+    "approved_release_tag": "v1.2.0",
+    "approved_commit": "b95366b96ba88d2054833cc3c0192a6edb982b39",
+    "approved_archive_url": "https://github.com/EOEOY/hyouka/archive/b95366b96ba88d2054833cc3c0192a6edb982b39.zip",
+    "approved_artifact_sha256": "2cb636ad7f8ada3ce25b032281ed94c8be05838662ab39070daad911c41e9ad5",
+    "listing_status": "approved"
   },
   {
     "id": "kokoro-zh-voice-presets",
@@ -998,7 +1063,12 @@
       "docs": "README.md",
       "license": "Apache-2.0",
       "author": "DiceFrame"
-    }
+    },
+    "approved_release_tag": "v1.0.0",
+    "approved_commit": "724c3b5714704f10f39c14dd269fa01169d9eca1",
+    "approved_archive_url": "https://github.com/diceframe/kokoro-zh-voice-presets/archive/724c3b5714704f10f39c14dd269fa01169d9eca1.zip",
+    "approved_artifact_sha256": "3d025202edbe3d604f05d85b51b973df36c96526ae148efac7b69f28e4692808",
+    "listing_status": "approved"
   },
   {
     "id": "office-night",
@@ -1085,7 +1155,12 @@
         ]
       },
       "docs": "README_CN.md"
-    }
+    },
+    "approved_release_tag": "v1.1.0",
+    "approved_commit": "055dd436b9bcbbfaa8683a294b77d4923d60e0e2",
+    "approved_archive_url": "https://github.com/EOEOY/office-night/archive/055dd436b9bcbbfaa8683a294b77d4923d60e0e2.zip",
+    "approved_artifact_sha256": "de972192d7a0c09575df92c42e2958354eaa4456aa0313cdaf2ff9127c0f88b4",
+    "listing_status": "approved"
   },
   {
     "id": "qq-napcat",
@@ -1140,6 +1215,11 @@
         "game.action"
       ],
       "docs": "README_CN.md"
-    }
+    },
+    "approved_release_tag": "v1.1.0",
+    "approved_commit": "09d24a2680adc288dc478e7536807140da01a26f",
+    "approved_archive_url": "https://github.com/diceframe/qq-napcat/archive/09d24a2680adc288dc478e7536807140da01a26f.zip",
+    "approved_artifact_sha256": "24da149a0ceb771a9c5c2ebd556c77efe474c9c347c6722e469b1a6ee50990d5",
+    "listing_status": "approved"
   }
 ]

@@ -15,11 +15,15 @@ Publish at least one non-draft, non-prerelease GitHub Release. The `plugin.json.
 
 Authors do not upload a plugin ZIP or calculate SHA-256. DiceFrame downloads the repository source snapshot at the immutable Git commit referenced by the Release.
 
-Content packs (worlds, lorebooks, character templates, adventure modules) and themes or voice presets are ordinary plugins too — `plugin_type` is `content-pack`, `theme` or `voice-pack`. They follow exactly the same submission flow, so they also need their own repository and a Release.
+Content packs (worlds, lorebooks, character templates, adventure modules) and themes or voice presets are ordinary plugins too — `plugin_type` is `content-pack`, `theme` or `voice-pack`. Projects that provide an external ruleset runtime use `plugin_type: ruleset-runtime` and must declare `ruleset_runtime`, an `entrypoint`, and `ruleset.execute`; they follow the same submission flow but are always treated as high-risk process plugins.
 
 ## Content pack repository skeleton (recommended)
 
 Copy [`templates/content-pack/`](templates/content-pack) into a new public repository of your own: it already contains `plugin.json`, `config.schema.json`, a README, a LICENSE and a workflow that validates the pack and creates the `v<version>` Release for you.
+
+For a ruleset runtime, copy [`templates/ruleset-runtime/`](templates/ruleset-runtime). Its
+`runtime.py` is only a JSON-lines protocol example and must be replaced with the actual rules
+implementation; do not import DiceFrame source code into the plugin process.
 
 ## First submission
 
@@ -39,7 +43,7 @@ For an ordinary update:
 2. Commit the code and create a Git tag.
 3. Publish a non-draft, non-prerelease GitHub Release.
 
-Declarative plugins are checked and prompted when the user opens the plugin store, and updates are installed only after user confirmation, while permissions and runtime remain unchanged. Process plugins only notify users. Permission expansion, a change from declarative to process execution, repository transfer, or plugin ID change requires another review.
+Declarative plugins are checked and prompted when the user opens the plugin store, and updates are installed only after user confirmation, while permissions and runtime remain unchanged. Process plugins, including `ruleset-runtime`, only notify users. Permission expansion, a change from declarative to process execution, repository transfer, or plugin ID change requires another review.
 
 
 ## Automated checks

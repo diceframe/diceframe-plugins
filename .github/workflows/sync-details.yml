@@ -27,7 +27,7 @@ jobs:
         run: |
           git config user.name "diceframe-registry[bot]"
           git config user.email "diceframe-registry[bot]@users.noreply.github.com"
-          git add plugin_details.json
+          git add plugin_details.json catalog.json
           if git diff --staged --quiet; then
             echo "No metadata changes"
           else
