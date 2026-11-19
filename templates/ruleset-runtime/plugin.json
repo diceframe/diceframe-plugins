@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "id": "my-ruleset-runtime",
+  "name": "我的规则运行时",
+  "version": "0.1.0",
+  "description": "改这里：一句话说明这个外部规则运行时提供的玩法。",
+  "plugin_type": "ruleset-runtime",
+  "config_schema": "config.schema.json",
+  "entrypoint": ["{python}", "runtime.py"],
+  "permissions": [
+    "plugin.config",
+    "process.spawn",
+    "plugin.data",
+    "ruleset.execute"
+  ],
+  "ruleset_runtime": {
+    "runtime_id": "community:my-ruleset-runtime",
+    "runtime_version": 1,
+    "capabilities": {},
+    "timeout_seconds": 5
+  },
+  "docs": "README.md"
+}

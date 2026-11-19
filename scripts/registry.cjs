@@ -9,18 +9,46 @@ const SEMVER_RE = /^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/;
 const LICENSE_FILE_NAMES = ["LICENSE", "LICENSE.md", "LICENSE.txt"];
 const PLUGIN_TYPES = new Set([
   "channel-adapter", "bot-extension", "content-pack", "theme", "voice-pack",
-  "import-export", "provider", "tool",
+  "import-export", "provider", "tool", "ruleset-runtime",
 ]);
 const DECLARATIVE_TYPES = new Set(["content-pack", "theme", "voice-pack"]);
-const INSTALLABLE_TYPES = new Set(["channel-adapter", "bot-extension", "content-pack", "theme", "voice-pack", "tool"]);
+const INSTALLABLE_TYPES = new Set([
+  "channel-adapter", "bot-extension", "content-pack", "theme", "voice-pack", "tool",
+  "ruleset-runtime",
+]);
 const ALLOWED_PERMISSIONS = new Set([
   "process.spawn", "network.client", "diceframe.http", "plugin.config",
   "plugin.secrets", "plugin.data", "content.read", "content.import",
-  "theme.tokens", "map.assets", "voice.assets", "tool.execute", "bot.extend", "tunnel.publish",
+  "theme.tokens", "map.assets", "voice.assets", "tool.execute", "ruleset.execute",
+  "bot.extend", "tunnel.publish",
 ]);
 const MAP_CONTRIBUTION_FIELDS = new Set([
   "map_definitions", "map_locations", "map_icons", "map_backgrounds",
 ]);
+const LISTING_STATUSES = new Set(["approved", "paused", "withdrawn"]);
+
+// Keep the registry-side manifest guard aligned with DiceFrame's
+// src/plugin_host/requirements.py and RulesetCapabilities contract. A runtime
+// package is executable code, so accepting an unknown field here would only
+// move the failure to installation time.
+const RULESET_RUNTIME_FIELDS = new Set([
+  "runtime_id", "runtime_version", "capabilities", "timeout_seconds",
+]);
+const RULESET_CAPABILITY_FIELDS = new Set([
+  "experience_profile", "character_builder", "character_lifecycle",
+  "authoritative_intents", "deterministic_combat", "versioned_state",
+  "session_zero", "tutorial_coach", "narrative_turns", "adventure_formats",
+  "combat_action_effects", "combat_resource_pools", "combat_scheduler",
+  "sequential_checks", "composite_action",
+]);
+const RULESET_BOOLEAN_CAPABILITIES = new Set([
+  "authoritative_intents", "deterministic_combat", "versioned_state", "session_zero",
+  "tutorial_coach", "narrative_turns", "combat_action_effects", "combat_resource_pools",
+  "sequential_checks", "composite_action",
+]);
+const RULESET_SCHEDULERS = new Set(["", "round_robin", "initiative", "threshold"]);
+const RULESET_RUNTIME_ID_MAX = 160;
+const RULESET_RUNTIME_TIMEOUT_MAX = 30;
 
 function field(body, heading) {
   const escaped = heading.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -51,6 +79,180 @@ function cleanStringArray(value, name) {
     throw new Error(`${name} 必须是非空字符串数组`);
   }
   return [...new Set(value.map(item => item.trim()))].sort();
+}
+
+function normalizeRulesetLabel(value) {
+  let label = String(value || "").trim().toLowerCase();
+  if (label.startsWith("core:")) label = label.slice("core:".length);
+  return ({ coc: "coc7", coc7e: "coc7" })[label] || label;
+}
+
+function rulesetTargets(manifest) {
+  const result = [];
+  const requires = manifest && typeof manifest.requires === "object" && !Array.isArray(manifest.requires)
+    ? manifest.requires.rulesets
+    : [];
+  const labels = Array.isArray(requires)
+    ? requires.map(item => item && typeof item === "object" ? item.id : "")
+    : [];
+  if (manifest && Array.isArray(manifest.compatible_rulesets)) labels.push(...manifest.compatible_rulesets);
+  for (const value of labels) {
+    const label = normalizeRulesetLabel(value);
+    if (label && !result.includes(label)) result.push(label);
+  }
+  return result;
+}
+
+function validateContentManifestFields(manifest) {
+  const profile = manifest.content_profile;
+  const delivery = manifest.content_delivery_mode;
+  if (profile !== undefined && !["content-pack", "adventure-module"].includes(String(profile).trim())) {
+    throw new Error(`不支持的 content_profile：${profile}`);
+  }
+  if (delivery !== undefined && !["legacy_autoimport", "catalog"].includes(String(delivery).trim())) {
+    throw new Error(`不支持的 content_delivery_mode：${delivery}`);
+  }
+  const effectiveProfile = String(profile || "content-pack").trim();
+  const effectiveDelivery = String(delivery || "legacy_autoimport").trim();
+  if (effectiveProfile === "adventure-module" && effectiveDelivery !== "catalog") {
+    throw new Error("adventure-module 必须使用 content_delivery_mode: catalog");
+  }
+  const labels = manifest.compatible_rulesets;
+  if (labels !== undefined) {
+    if (!Array.isArray(labels) || labels.length > 6 || labels.some(item => typeof item !== "string" || !item.trim())) {
+      throw new Error("compatible_rulesets 必须是最多 6 条非空字符串数组");
+    }
+    if (labels.some(item => !normalizeRulesetLabel(item))) {
+      throw new Error("compatible_rulesets 不允许空标签");
+    }
+  }
+  if (labels && labels.length && manifest.system_agnostic === true) {
+    throw new Error("system_agnostic: true 与 compatible_rulesets 互斥");
+  }
+  for (const fieldName of ["adventure_packages", "ruleset_catalogs"]) {
+    if (manifest[fieldName] !== undefined && (
+      !Array.isArray(manifest[fieldName]) ||
+      !manifest[fieldName].length ||
+      manifest[fieldName].some(item => typeof item !== "string" || !item.trim())
+    )) {
+      throw new Error(`${fieldName} 必须是非空字符串数组`);
+    }
+  }
+  if (manifest.plugin_type !== "content-pack" && (manifest.adventure_packages !== undefined || manifest.ruleset_catalogs !== undefined)) {
+    throw new Error("adventure_packages 和 ruleset_catalogs 仅支持 content-pack");
+  }
+  if (effectiveDelivery === "catalog" && manifest.entrypoint !== undefined) {
+    throw new Error("catalog 纯内容包不得声明 entrypoint");
+  }
+}
+
+function validateRulesetRequirements(manifest) {
+  const requires = manifest.requires;
+  if (requires === undefined) return [];
+  if (!requires || typeof requires !== "object" || Array.isArray(requires)) {
+    throw new Error("requires 必须是对象");
+  }
+  const rulesets = requires.rulesets;
+  if (rulesets === undefined) return [];
+  if (!Array.isArray(rulesets) || rulesets.length > 32) {
+    throw new Error("requires.rulesets 必须是最多 32 项的数组");
+  }
+  const seen = new Set();
+  return rulesets.map(entry => {
+    if (!entry || typeof entry !== "object" || Array.isArray(entry)) {
+      throw new Error("requires.rulesets entry 必须是对象");
+    }
+    const unknown = Object.keys(entry).filter(key => !["id", "minimum_version"].includes(key));
+    if (unknown.length) throw new Error(`requires.rulesets entry 含未知字段：${unknown[0]}`);
+    const id = String(entry.id || "").trim();
+    if (!id || id.length > RULESET_RUNTIME_ID_MAX) throw new Error("requires.rulesets entry id 无效");
+    const minimum = entry.minimum_version === undefined ? 1 : entry.minimum_version;
+    if (!Number.isInteger(minimum) || minimum < 1) throw new Error("requires.rulesets minimum_version 必须是正整数");
+    if (seen.has(id)) throw new Error(`requires.rulesets 含重复 id：${id}`);
+    seen.add(id);
+    return { id, minimum_version: minimum };
+  });
+}
+
+function validateRulesetRuntimeDeclaration(manifest) {
+  if (manifest.plugin_type !== "ruleset-runtime") return null;
+  const declared = manifest.ruleset_runtime;
+  if (!declared || typeof declared !== "object" || Array.isArray(declared)) {
+    throw new Error("ruleset-runtime 插件必须提供 ruleset_runtime 对象声明");
+  }
+  const unknown = Object.keys(declared).filter(key => !RULESET_RUNTIME_FIELDS.has(key));
+  if (unknown.length) throw new Error(`ruleset_runtime 含未知字段：${unknown[0]}`);
+  const runtimeId = String(declared.runtime_id || "").trim();
+  if (!runtimeId) throw new Error("ruleset_runtime.runtime_id 是必填项");
+  if (runtimeId.length > RULESET_RUNTIME_ID_MAX) throw new Error("ruleset_runtime.runtime_id 过长");
+  const runtimeVersion = declared.runtime_version === undefined ? 1 : declared.runtime_version;
+  if (!Number.isInteger(runtimeVersion) || runtimeVersion < 1) {
+    throw new Error("ruleset_runtime.runtime_version 必须是正整数");
+  }
+  const timeout = declared.timeout_seconds === undefined ? 5 : declared.timeout_seconds;
+  if (typeof timeout !== "number" || !Number.isFinite(timeout) || timeout <= 0 || timeout > RULESET_RUNTIME_TIMEOUT_MAX) {
+    throw new Error(`ruleset_runtime.timeout_seconds 必须位于 (0, ${RULESET_RUNTIME_TIMEOUT_MAX}]`);
+  }
+  const capabilities = declared.capabilities === undefined || declared.capabilities === null
+    ? {}
+    : declared.capabilities;
+  if (!capabilities || typeof capabilities !== "object" || Array.isArray(capabilities)) {
+    throw new Error("ruleset_runtime.capabilities 必须是对象");
+  }
+  const unknownCapabilities = Object.keys(capabilities).filter(key => !RULESET_CAPABILITY_FIELDS.has(key));
+  if (unknownCapabilities.length) throw new Error(`ruleset_runtime.capabilities 含未知字段：${unknownCapabilities[0]}`);
+  for (const [key, value] of Object.entries(capabilities)) {
+    if (value === null || (typeof value !== "boolean" && typeof value !== "string" && !Array.isArray(value))) {
+      throw new Error(`ruleset_runtime.capabilities.${key} 类型无效`);
+    }
+    if (Array.isArray(value) && value.some(item => typeof item !== "string" || !item.trim())) {
+      throw new Error(`ruleset_runtime.capabilities.${key} 必须是字符串数组`);
+    }
+  }
+  for (const key of RULESET_BOOLEAN_CAPABILITIES) {
+    if (capabilities[key] !== undefined && typeof capabilities[key] !== "boolean") {
+      throw new Error(`ruleset_runtime.capabilities.${key} 必须是布尔值`);
+    }
+  }
+  if (capabilities.combat_scheduler !== undefined && !RULESET_SCHEDULERS.has(capabilities.combat_scheduler)) {
+    throw new Error("ruleset_runtime.capabilities.combat_scheduler 无效");
+  }
+  for (const key of ["experience_profile", "character_builder", "character_lifecycle"]) {
+    if (capabilities[key] !== undefined && (typeof capabilities[key] !== "string" || !capabilities[key].trim())) {
+      throw new Error(`ruleset_runtime.capabilities.${key} 必须是非空字符串`);
+    }
+  }
+  return {
+    runtime_id: runtimeId,
+    runtime_version: runtimeVersion,
+    capabilities: { ...capabilities },
+    timeout_seconds: timeout,
+  };
+}
+
+function validateDeclaredContentPaths(manifest, files) {
+  const fileSet = new Set(files.map(item => String(item.path || "").replace(/\\/g, "/")));
+  for (const fieldName of ["adventure_packages", "ruleset_catalogs"]) {
+    const declared = manifest[fieldName];
+    if (declared === undefined) continue;
+    const normalized = declared.map(value => String(value).trim().replace(/\\/g, "/"));
+    const parents = new Set();
+    for (const relative of normalized) {
+      const parts = relative.split("/");
+      if (!relative || relative.startsWith("/") || parts.includes("..") || parts.includes(".")) {
+        throw new Error(`${fieldName} 路径不能是绝对路径或包含 . / ..`);
+      }
+      const prefix = `${relative}/`;
+      if (!files.some(item => String(item.path || "").replace(/\\/g, "/").startsWith(prefix))) {
+        throw new Error(`${fieldName} 路径不存在：${relative}`);
+      }
+      if (fieldName === "adventure_packages" && !fileSet.has(`${relative}/manifest.json`)) {
+        throw new Error(`${fieldName} 缺少 manifest.json：${relative}`);
+      }
+      parents.add(parts.slice(0, -1).join("/"));
+    }
+    if (parents.size > 1) throw new Error(`${fieldName} 必须共享同一父目录`);
+  }
 }
 
 function classifyManifest(manifest) {
@@ -89,12 +291,18 @@ function validateManifest(manifest, expectedId, repositoryUrl) {
   if (!INSTALLABLE_TYPES.has(String(manifest.plugin_type))) throw new Error(`plugin_type ${manifest.plugin_type} 仍是预留能力，暂不收录`);
   if (typeof manifest.name !== "string" || !manifest.name.trim()) throw new Error("plugin.json.name 不能为空");
   if (typeof manifest.description !== "string" || !manifest.description.trim()) throw new Error("plugin.json.description 不能为空");
+  validateContentManifestFields(manifest);
+  validateRulesetRequirements(manifest);
+  validateRulesetRuntimeDeclaration(manifest);
   const capabilities = cleanStringArray(manifest.capabilities, "capabilities");
   const permissions = cleanStringArray(manifest.permissions, "permissions");
   const unknown = permissions.filter(item => !ALLOWED_PERMISSIONS.has(item));
   if (unknown.length) throw new Error(`plugin.json 包含未知权限：${unknown.join(", ")}`);
   const risk = classifyManifest(manifest);
   if (risk.updatePolicy === "blocked") throw new Error(risk.summary);
+  if (manifest.plugin_type === "ruleset-runtime" && !effectivePermissions(manifest).includes("ruleset.execute")) {
+    throw new Error("ruleset-runtime 插件必须声明 ruleset.execute 权限");
+  }
   const repository = String(manifest.repository_url || manifest.repositoryUrl || "").replace(/\/$/, "").replace(/\.git$/, "");
   if (repository && repository.toLowerCase() !== repositoryUrl.toLowerCase()) {
     throw new Error("plugin.json 中声明的仓库地址与投稿地址不一致");
@@ -139,6 +347,8 @@ function effectivePermissions(manifest, schema = {}) {
     inferred.add("tool.execute");
   } else if (manifest.plugin_type === "bot-extension") {
     inferred.add("bot.extend");
+  } else if (manifest.plugin_type === "ruleset-runtime") {
+    inferred.add("ruleset.execute");
   }
   return [...inferred].sort();
 }
@@ -210,6 +420,7 @@ async function loadReleaseSnapshot(repositoryUrl, expectedId, token) {
     /\.(pem|p12|pfx|key)$/i.test(name)
   );
   if (suspicious.length) throw new Error(`仓库包含疑似秘密文件：${suspicious.slice(0, 5).join(", ")}`);
+  validateDeclaredContentPaths(manifest, files);
 
   const configPath = String(manifest.config_schema || "config.schema.json").trim();
   let schema;
@@ -270,8 +481,14 @@ function detailFromSnapshot(entry, snapshot) {
   const added = addedPermissions(entry.approved_permissions, snapshot.permissions);
   const riskChanged = entry.risk_level && entry.risk_level !== snapshot.riskLevel;
   const approvalRequired = added.length > 0 || riskChanged;
+  const listingStatus = String(entry.listing_status || "approved");
+  const listingBlocked = listingStatus !== "approved";
   return {
     id: entry.id,
+    name: String(snapshot.manifest.name || entry.id),
+    version: String(snapshot.manifest.version || ""),
+    description: String(snapshot.manifest.description || ""),
+    plugin_type: String(snapshot.manifest.plugin_type || ""),
     repository_url: entry.repository_url,
     branch: snapshot.branch,
     author: snapshot.owner,
@@ -293,10 +510,21 @@ function detailFromSnapshot(entry, snapshot) {
     risk_level: snapshot.riskLevel,
     update_policy: approvalRequired ? "approval-required" : snapshot.updatePolicy,
     approved_permissions: entry.approved_permissions || [],
+    ...(entry.approved_release_tag ? { approved_release_tag: entry.approved_release_tag } : {}),
+    ...(entry.approved_commit ? { approved_commit: entry.approved_commit } : {}),
+    ...(entry.approved_archive_url ? { approved_archive_url: entry.approved_archive_url } : {}),
+    ...(entry.approved_artifact_sha256 ? { approved_artifact_sha256: entry.approved_artifact_sha256 } : {}),
+    listing_status: listingStatus,
+    ...(entry.listing_status_reason ? { listing_status_reason: entry.listing_status_reason } : {}),
+    ...(entry.listing_status_at ? { listing_status_at: entry.listing_status_at } : {}),
     permission_changes: added,
+    permissions: snapshot.permissions,
+    capabilities: snapshot.capabilities,
     trust_level: entry.trust_level || "community",
-    installable: !approvalRequired,
-    verification_error: approvalRequired ? "新版本扩大了权限或改变了运行方式，需要重新审核" : "",
+    installable: !approvalRequired && !listingBlocked,
+    verification_error: listingBlocked
+      ? (listingStatus === "paused" ? `条目已暂停：${entry.listing_status_reason || "未提供原因"}` : `条目已撤回：${entry.listing_status_reason || "未提供原因"}`)
+      : (approvalRequired ? "新版本扩大了权限或改变了运行方式，需要重新审核" : ""),
     manifest: snapshot.manifest,
   };
 }
@@ -306,6 +534,7 @@ async function generateDetails(entries, token) {
   const warnings = [];
   for (const entry of entries) {
     if (entry.distribution === "bundled") {
+      const listingStatus = String(entry.listing_status || "approved");
       details.push({
         id: entry.id,
         repository_url: entry.repository_url,
@@ -317,6 +546,9 @@ async function generateDetails(entries, token) {
         trust_level: "official",
         installable: false,
         verification_error: "此插件随 DiceFrame 提供并跟随主程序更新",
+        listing_status: listingStatus,
+        ...(entry.listing_status_reason ? { listing_status_reason: entry.listing_status_reason } : {}),
+        ...(entry.listing_status_at ? { listing_status_at: entry.listing_status_at } : {}),
         stars: 0,
         manifest: entry.manifest || {},
       });
@@ -338,6 +570,9 @@ async function generateDetails(entries, token) {
         trust_level: entry.trust_level || "community",
         installable: false,
         verification_error: `同步失败：${error.message}`,
+        listing_status: String(entry.listing_status || "approved"),
+        ...(entry.listing_status_reason ? { listing_status_reason: entry.listing_status_reason } : {}),
+        ...(entry.listing_status_at ? { listing_status_at: entry.listing_status_at } : {}),
         stars: 0,
         manifest: {},
       });
@@ -371,8 +606,22 @@ function validateRegistry(entries, details) {
     cleanStringArray(entry.approved_permissions, `${id}.approved_permissions`).forEach(permission => {
       if (!ALLOWED_PERMISSIONS.has(permission)) throw new Error(`${id} 包含未知已批准权限：${permission}`);
     });
+    if (entry.approved_commit !== undefined && !/^[0-9a-f]{40}$/.test(String(entry.approved_commit))) {
+      throw new Error(`${id}.approved_commit 必须是 40 位小写 commit SHA`);
+    }
+    if (entry.approved_artifact_sha256 !== undefined && !/^[0-9a-f]{64}$/.test(String(entry.approved_artifact_sha256))) {
+      throw new Error(`${id}.approved_artifact_sha256 必须是 64 位小写 SHA-256`);
+    }
+    if (entry.approved_artifact_sha256 !== undefined && entry.approved_commit === undefined) {
+      throw new Error(`${id} 声明 approved_artifact_sha256 时必须同时声明 approved_commit`);
+    }
     const distribution = String(entry.distribution || "repository");
     if (!["repository", "bundled"].includes(distribution)) throw new Error(`${id} 的 distribution 无效`);
+    const listingStatus = String(entry.listing_status || "approved");
+    if (!LISTING_STATUSES.has(listingStatus)) throw new Error(`${id} 的 listing_status 无效`);
+    if (listingStatus !== "approved" && !String(entry.listing_status_reason || "").trim()) {
+      throw new Error(`${id} 暂停或撤回时必须填写 listing_status_reason`);
+    }
     if (distribution === "repository" && !["automatic", "notify"].includes(entry.update_policy)) {
       throw new Error(`${id} 的社区更新策略必须是 automatic 或 notify`);
     }
@@ -382,6 +631,19 @@ function validateRegistry(entries, details) {
   const missing = [...ids].filter(id => !detailIds.includes(id));
   const extra = detailIds.filter(id => !ids.has(id));
   if (missing.length || extra.length) throw new Error(`索引与详情 ID 不一致；缺少：${missing.join(", ") || "无"}；多余：${extra.join(", ") || "无"}`);
+  const detailById = new Map(details.map(item => [String(item.id || ""), item]));
+  for (const entry of entries) {
+    const detail = detailById.get(String(entry.id));
+    for (const fieldName of ["approved_release_tag", "approved_commit", "approved_archive_url", "approved_artifact_sha256", "listing_status", "listing_status_reason", "listing_status_at"]) {
+      if (entry[fieldName] !== undefined && detail[fieldName] !== entry[fieldName]) {
+        throw new Error(`${entry.id} 的 ${fieldName} 与 plugin_details.json 不一致`);
+      }
+    }
+    const listingStatus = String(entry.listing_status || "approved");
+    if (String(detail.listing_status || "approved") !== listingStatus) {
+      throw new Error(`${entry.id} 的 listing_status 与 plugin_details.json 不一致`);
+    }
+  }
   return true;
 }
 
@@ -404,6 +666,13 @@ module.exports = {
   readJson,
   validateManifest,
   validateRegistry,
+  LISTING_STATUSES,
+  normalizeRulesetLabel,
+  rulesetTargets,
+  validateContentManifestFields,
+  validateDeclaredContentPaths,
+  validateRulesetRequirements,
+  validateRulesetRuntimeDeclaration,
   warnUndeclaredRuleset,
   writeJson,
 };

@@ -11,6 +11,7 @@ const {
   readJson,
   writeJson,
 } = require("./registry.cjs");
+const { buildCatalog } = require("./catalog.cjs");
 
 const ROOT = path.resolve(__dirname, "..");
 const EVENT = JSON.parse(fs.readFileSync(process.env.GITHUB_EVENT_PATH, "utf8"));
@@ -148,6 +149,7 @@ async function approve() {
   writeJson(entriesPath, entries);
   const generated = await generateDetails(entries, TOKEN);
   writeJson(path.join(ROOT, "plugin_details.json"), generated.details);
+  writeJson(path.join(ROOT, "catalog.json"), buildCatalog(generated.details));
   fs.appendFileSync(process.env.GITHUB_OUTPUT, `plugin_id=${marker.id}\napproved_by=${approvedBy}\n`, "utf8");
 }
 

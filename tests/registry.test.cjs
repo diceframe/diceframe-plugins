@@ -11,10 +11,13 @@ const {
   loadReleaseSnapshot,
   normalizeRepositoryUrl,
   parseSubmission,
+  rulesetTargets,
   validateRegistry,
   validateManifest,
   warnUndeclaredRuleset,
 } = require("../scripts/registry.cjs");
+const { buildCatalog, validateCatalog } = require("../scripts/catalog.cjs");
+const { setListingStatus } = require("../scripts/set-listing-status.cjs");
 
 const baseManifest = {
   schema_version: 1,
@@ -65,6 +68,71 @@ test("process plugins only notify about updates", () => {
   assert.equal(policy.updatePolicy, "notify");
 });
 
+test("ruleset-runtime manifests use the external runtime contract", () => {
+  const manifest = {
+    ...baseManifest,
+    id: "sample-runtime",
+    plugin_type: "ruleset-runtime",
+    permissions: undefined,
+    entrypoint: ["{python}", "runtime.py"],
+    ruleset_runtime: {
+      runtime_id: "external:sample",
+      runtime_version: 1,
+      capabilities: { authoritative_intents: true, versioned_state: true },
+      timeout_seconds: 5,
+    },
+  };
+  assert.doesNotThrow(() => validateManifest(
+    manifest,
+    "sample-runtime",
+    "https://github.com/example/sample-runtime",
+  ));
+  assert.deepEqual(effectivePermissions(manifest), [
+    "plugin.config", "plugin.data", "process.spawn", "ruleset.execute",
+  ]);
+});
+
+test("ruleset-runtime validation fails closed on missing declaration and permission expansion", () => {
+  const baseRuntime = {
+    ...baseManifest,
+    id: "sample-runtime",
+    plugin_type: "ruleset-runtime",
+    permissions: undefined,
+    entrypoint: ["{python}", "runtime.py"],
+    ruleset_runtime: { runtime_id: "external:sample" },
+  };
+  assert.throws(() => validateManifest(
+    { ...baseRuntime, ruleset_runtime: undefined },
+    "sample-runtime",
+    "https://github.com/example/sample-runtime",
+  ), /ruleset_runtime/);
+  assert.throws(() => validateManifest(
+    { ...baseRuntime, permissions: ["process.spawn"] },
+    "sample-runtime",
+    "https://github.com/example/sample-runtime",
+  ), /ruleset.execute/);
+  assert.throws(() => validateManifest(
+    { ...baseRuntime, ruleset_runtime: { runtime_id: "external:sample", capabilities: { future_flag: true } } },
+    "sample-runtime",
+    "https://github.com/example/sample-runtime",
+  ), /未知字段/);
+});
+
+test("content module profile rejects unsafe combinations and exposes ruleset targets", () => {
+  assert.throws(() => validateManifest({
+    ...baseManifest,
+    content_profile: "adventure-module",
+  }, "demo-pack", "https://github.com/example/demo-pack"), /content_delivery_mode/);
+  assert.deepEqual(rulesetTargets({
+    requires: { rulesets: [{ id: "core:dnd2024" }] },
+    compatible_rulesets: ["coc", "core:coc7"],
+  }), ["dnd2024", "coc7"]);
+  assert.throws(() => validateManifest({
+    ...baseManifest,
+    requires: { rulesets: [{ id: "core:dnd2024", minimum_version: 0 }] },
+  }, "demo-pack", "https://github.com/example/demo-pack"), /minimum_version/);
+});
+
 test("manifest validation rejects unknown permissions", () => {
   assert.throws(
     () => validateManifest({ ...baseManifest, permissions: ["system.everything"] }, "demo-pack", "https://github.com/example/demo"),
@@ -112,6 +180,94 @@ test("detailFromSnapshot carries the GitHub star count", () => {
     published_at: "",
     requires_approval: false,
   });
+});
+
+test("detailFromSnapshot carries an explicitly approved artifact identity", () => {
+  const commit = "a".repeat(40);
+  const digest = "b".repeat(64);
+  const detail = detailFromSnapshot({
+    id: "demo-pack",
+    repository_url: "https://github.com/example/demo-pack",
+    approved_permissions: ["content.read"],
+    approved_release_tag: "v1.0.0",
+    approved_commit: commit,
+    approved_archive_url: `https://github.com/example/demo-pack/archive/${commit}.zip`,
+    approved_artifact_sha256: digest,
+    risk_level: "declarative",
+    trust_level: "community",
+  }, {
+    id: "demo-pack", repositoryUrl: "https://github.com/example/demo-pack",
+    owner: "example", repo: "demo-pack", branch: "main", stars: 0,
+    releaseTag: "v1.0.0", releaseUrl: "https://github.com/example/demo/releases/tag/v1.0.0",
+    commitSha: commit, manifest: baseManifest, riskLevel: "declarative",
+    updatePolicy: "automatic", permissions: ["content.read"],
+  });
+  assert.equal(detail.approved_commit, commit);
+  assert.equal(detail.approved_artifact_sha256, digest);
+});
+
+test("registry rejects an artifact hash without its approved commit", () => {
+  assert.throws(() => validateRegistry([
+    { id: "demo-pack", repository_url: "https://github.com/example/demo", approved_artifact_sha256: "a".repeat(64), distribution: "repository", update_policy: "notify" },
+  ], [{ id: "demo-pack" }]), /approved_commit/);
+});
+
+test("catalog emits only public metadata and the approved artifact identity", () => {
+  const catalog = buildCatalog([{
+    id: "demo-pack", name: "Demo", version: "1.0.0",
+    manifest: { description: "Public summary", plugin_type: "content-pack" },
+    repository_url: "https://github.com/example/demo",
+    installable: true, version: "1.0.0", risk_level: "declarative", update_policy: "automatic",
+    approved_archive_url: "https://github.com/example/demo/archive/a.zip",
+    approved_artifact_sha256: "a".repeat(64),
+    approved_permissions: ["content.read"],
+  }]);
+  assert.deepEqual(catalog.entries[0].artifact, {
+    distribution: "approved-archive",
+    url: "https://github.com/example/demo/archive/a.zip",
+    sha256: "a".repeat(64),
+  });
+  assert.deepEqual(catalog.entries[0].approved_permissions, ["content.read"]);
+  assert.equal(catalog.entries[0].version, "1.0.0");
+  assert.equal(catalog.entries[0].name, "Demo");
+});
+
+test("catalog keeps the approved baseline needed for client-side install checks", () => {
+  const catalog = buildCatalog([{
+    id: "sample-runtime",
+    name: "Sample runtime",
+    latest: { version: "0.1.0", release_tag: "v0.1.0", release_url: "https://example.invalid/release", commit_sha: "a".repeat(40), published_at: "", requires_approval: false },
+    manifest: {
+      description: "External runtime",
+      plugin_type: "ruleset-runtime",
+      permissions: ["ruleset.execute"],
+      ruleset_runtime: { runtime_id: "external:sample" },
+    },
+    approved_permissions: ["plugin.config", "plugin.data", "process.spawn", "ruleset.execute"],
+    repository_url: "https://github.com/example/sample-runtime",
+    installable: true,
+    risk_level: "unrestricted-process",
+    update_policy: "notify",
+  }]);
+  assert.deepEqual(catalog.entries[0].approved_permissions, [
+    "plugin.config", "plugin.data", "process.spawn", "ruleset.execute",
+  ]);
+  assert.equal(catalog.entries[0].plugin_type, "ruleset-runtime");
+  assert.equal(catalog.entries[0].version, "0.1.0");
+  assert.doesNotThrow(() => validateCatalog(catalog, [{ id: "sample-runtime" }]));
+});
+
+test("catalog preserves a paused listing without making it installable", () => {
+  const catalog = buildCatalog([{
+    id: "demo-pack", name: "Demo", version: "1.0.0",
+    manifest: { description: "Public summary", plugin_type: "content-pack" },
+    repository_url: "https://github.com/example/demo",
+    installable: true, listing_status: "paused", listing_status_reason: "版权投诉待核验",
+    risk_level: "declarative", update_policy: "automatic",
+  }]);
+  assert.equal(catalog.entries[0].status, "paused");
+  assert.equal(catalog.entries[0].installable, false);
+  assert.equal(catalog.entries[0].status_reason, "版权投诉待核验");
 });
 
 test("latest marks requires_approval when permissions expand", () => {
@@ -169,6 +325,28 @@ test("registry validation rejects duplicate IDs and mismatched details", () => {
   assert.equal(validateRegistry([entry], [{ id: "demo-pack" }]), true);
   assert.throws(() => validateRegistry([entry, entry], [{ id: "demo-pack" }]), /重复插件 ID/);
   assert.throws(() => validateRegistry([entry], [{ id: "other-pack" }]), /ID 不一致/);
+});
+
+test("registry requires a reason for paused or withdrawn listings", () => {
+  const entry = {
+    id: "demo-pack",
+    repository_url: "https://github.com/example/demo-pack",
+    distribution: "repository",
+    update_policy: "automatic",
+    listing_status: "paused",
+  };
+  assert.throws(() => validateRegistry([entry], [{ id: "demo-pack" }]), /必须填写 listing_status_reason/);
+});
+
+test("listing status updates both index projections and can be approved again", () => {
+  const entries = [{ id: "demo-pack", repository_url: "https://github.com/example/demo", distribution: "repository", update_policy: "automatic" }];
+  const details = [{ id: "demo-pack" }];
+  setListingStatus(entries, details, "demo-pack", "paused", "版权投诉待核验", "2026-11-12T00:00:00Z");
+  assert.equal(entries[0].listing_status, "paused");
+  assert.equal(details[0].listing_status_reason, "版权投诉待核验");
+  setListingStatus(entries, details, "demo-pack", "approved", "", "2026-11-12T01:00:00Z");
+  assert.equal(entries[0].listing_status, "approved");
+  assert.equal(details[0].listing_status_reason, undefined);
 });
 
 // COMPAT-1：索引侧与主仓库校验器识别同一组许可证文件名。

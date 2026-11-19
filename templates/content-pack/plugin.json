@@ -23,10 +23,8 @@
       "content/worlds/*.json"
     ]
   },
-  "requires": {
-    "rulesets": [
-      { "id": "core:dnd2024" }
-    ]
-  },
+  "content_profile": "content-pack",
+  "content_delivery_mode": "legacy_autoimport",
+  "system_agnostic": true,
   "docs": "README.md"
 }

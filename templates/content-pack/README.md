@@ -18,7 +18,8 @@ content/               ← 你的世界 / 资料册 / 角色模板等数据
 ## 三步发布
 
 1. 改 `plugin.json`：`id`、`name`、`description`、`version`（三段式，如 `0.1.0`）、
-   `supported_locales`，以及 `contributes` 里你实际会提供的目录。
+   `supported_locales`，以及 `contributes` 里你实际会提供的目录。模板默认是通用内容包；
+   如果内容只适用于某个系统，删掉 `system_agnostic`，改用下面的规则声明。
 2. 把导出的内容放进 `content/`（世界模板放 `content/worlds/`，资料册放 `content/lorebooks/`）。
 3. 提交并推送 → 等 Action 变绿 → 它自动建 Release。之后去索引仓库提「添加插件」Issue，
    填 `plugin.json` 里的 `id` 和本仓库地址。
@@ -41,6 +42,23 @@ DiceFrame 的「在线内容包」按规则筛选，靠的是 manifest 里的声
 - 只有标签、没有运行时的包可以通过校验并发布；等对应运行时落地后，如果你的内容**真的**
   依赖它的能力，再迁到 `requires.rulesets`，不要为了「看起来更正式」平白加硬依赖
 - 两个字段都不写，索引会给出 warning，客户端只能把它归入「规则未标注」
+
+## 内容包与冒险模组
+
+普通世界、资料册和资源包保持默认的 `content_profile: "content-pack"`。
+如果仓库提供可运行的冒险包，使用：
+
+```json
+{
+  "content_profile": "adventure-module",
+  "content_delivery_mode": "catalog",
+  "adventure_packages": ["adventures/my-adventure"]
+}
+```
+
+冒险模组安装时只注册内容目录，运行冒险时才按需物化；不能通过启用动作把内容静默
+灌入普通世界或角色库。冒险包目录必须包含 `manifest.json`，并通过 DiceFrame 主项目
+的完整内容校验。
 
 ## 内容规范
 

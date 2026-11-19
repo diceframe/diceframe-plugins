@@ -15,11 +15,15 @@
 
 作者不需要上传插件 ZIP，也不需要计算 SHA-256。DiceFrame 使用 Release 所指向的固定 Git commit 下载仓库源码快照。
 
-内容包（世界、资料册、角色模板、冒险模组）和主题、音色预设同样是普通插件——`plugin_type` 是 `content-pack`、`theme` 或 `voice-pack`。它们的投稿流程与其它插件完全一样：需要自己的仓库和一个正式 Release。
+内容包（世界、资料册、角色模板、冒险模组）和主题、音色预设同样是普通插件——`plugin_type` 是 `content-pack`、`theme` 或 `voice-pack`。需要独立规则运行时的项目使用 `plugin_type: ruleset-runtime`，并声明 `ruleset_runtime`、`entrypoint` 和 `ruleset.execute`；它们的投稿流程与其它插件完全一样，但始终按高风险进程处理。
 
 ## 内容包仓库骨架（推荐）
 
 把 [`templates/content-pack/`](templates/content-pack) 复制到你自己的公开仓库：里面已经放好 `plugin.json`、`config.schema.json`、README、LICENSE，以及一个会校验内容包并自动创建 `v<version>` Release 的 workflow。
+
+规则运行时项目复制 [`templates/ruleset-runtime/`](templates/ruleset-runtime)。该模板的
+`runtime.py` 只是 JSON-lines 协议示例，必须替换为你自己的规则实现；不要把 DiceFrame
+源码直接 import 进插件进程。
 
 ## 第一次投稿
 
@@ -39,7 +43,7 @@
 2. 提交代码并创建新的 Git tag。
 3. 创建非草稿、非预发布的 GitHub Release。
 
-声明型插件在权限和运行方式不变时，用户打开插件商店时会自动检查并更新。进程型插件只通知用户。增加权限、从声明型改为进程型、转移仓库或更换插件 ID 时，必须重新提交审核。
+声明型插件在权限和运行方式不变时，用户打开插件商店时会自动检查并更新。进程型插件（包括 `ruleset-runtime`）只通知用户。增加权限、从声明型改为进程型、转移仓库或更换插件 ID 时，必须重新提交审核。
 
 
 ## 自动检查范围

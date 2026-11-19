@@ -1,0 +1,59 @@
+name: Publish ruleset runtime
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Read plugin id and version
+        id: meta
+        run: |
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          import json
+          manifest = json.load(open("plugin.json", encoding="utf-8"))
+          print(f"id={manifest['id']}")
+          print(f"version={manifest['version']}")
+          print(f"tag=v{manifest['version']}")
+          PY
+
+      - name: Validate and package with the trusted core
+        run: |
+          git clone --depth 1 https://github.com/diceframe/diceframe .validation-core
+          python -m pip install -q -r .validation-core/requirements.txt
+          mkdir -p "$RUNNER_TEMP/build"
+          cp -r . "$RUNNER_TEMP/build/${{ steps.meta.outputs.id }}"
+          rm -rf "$RUNNER_TEMP/build/${{ steps.meta.outputs.id }}/.git" \
+                 "$RUNNER_TEMP/build/${{ steps.meta.outputs.id }}/.validation-core"
+          python .validation-core/scripts/package_plugin.py \
+            "$RUNNER_TEMP/build/${{ steps.meta.outputs.id }}" \
+            -o "$PWD/dist" --overwrite
+
+      - name: Create the release when the version is new
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag="${{ steps.meta.outputs.tag }}"
+          if gh release view "$tag" >/dev/null 2>&1; then
+            echo "Release $tag already exists; nothing to do."
+            exit 0
+          fi
+          gh release create "$tag" dist/*.dfplugin \
+            --title "$tag" \
+            --notes "Ruleset runtime ${{ steps.meta.outputs.id }} $tag"
