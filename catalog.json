@@ -21,11 +21,11 @@
       "trust_level": "official",
       "tags": [],
       "permissions": [
-        "tool.execute",
-        "process.spawn",
+        "diceframe.http",
         "network.client",
         "plugin.data",
-        "diceframe.http",
+        "process.spawn",
+        "tool.execute",
         "tunnel.publish"
       ],
       "approved_permissions": [
@@ -87,11 +87,11 @@
       "trust_level": "community",
       "tags": [],
       "permissions": [
-        "tool.execute",
-        "process.spawn",
+        "diceframe.http",
         "network.client",
         "plugin.data",
-        "diceframe.http",
+        "process.spawn",
+        "tool.execute",
         "tunnel.publish"
       ],
       "approved_permissions": [
@@ -159,8 +159,8 @@
         "content.read"
       ],
       "capabilities": [
-        "content.world",
-        "content.map"
+        "content.map",
+        "content.world"
       ],
       "latest": {
         "version": "1.0.3",
@@ -594,8 +594,8 @@
         "content.read"
       ],
       "capabilities": [
-        "content.world",
-        "content.map"
+        "content.map",
+        "content.world"
       ],
       "latest": {
         "version": "1.0.3",
@@ -713,9 +713,9 @@
       "trust_level": "community",
       "tags": [],
       "permissions": [
-        "plugin.config",
+        "content.import",
         "content.read",
-        "content.import"
+        "plugin.config"
       ],
       "approved_permissions": [
         "content.import",
@@ -723,9 +723,9 @@
         "plugin.config"
       ],
       "capabilities": [
+        "content.character-template",
         "content.rule",
-        "content.world",
-        "content.character-template"
+        "content.world"
       ],
       "latest": {
         "version": "1.3.0",
@@ -781,9 +781,9 @@
       "trust_level": "community",
       "tags": [],
       "permissions": [
-        "plugin.config",
+        "content.import",
         "content.read",
-        "content.import"
+        "plugin.config"
       ],
       "approved_permissions": [
         "content.import",
@@ -791,9 +791,9 @@
         "plugin.config"
       ],
       "capabilities": [
+        "content.character-template",
         "content.rule",
-        "content.world",
-        "content.character-template"
+        "content.world"
       ],
       "latest": {
         "version": "1.3.0",
@@ -845,7 +845,7 @@
       "release_url": "https://github.com/diceframe/kokoro-zh-voice-presets/releases/tag/v1.0.0",
       "branch": "main",
       "author": "diceframe",
-      "stars": 0,
+      "stars": 1,
       "trust_level": "community",
       "tags": [],
       "permissions": [
@@ -909,9 +909,9 @@
       "trust_level": "community",
       "tags": [],
       "permissions": [
-        "plugin.config",
+        "content.import",
         "content.read",
-        "content.import"
+        "plugin.config"
       ],
       "approved_permissions": [
         "content.import",
@@ -919,9 +919,9 @@
         "plugin.config"
       ],
       "capabilities": [
+        "content.character-template",
         "content.rule",
-        "content.world",
-        "content.character-template"
+        "content.world"
       ],
       "latest": {
         "version": "1.2.0",
@@ -976,7 +976,14 @@
       "stars": 0,
       "trust_level": "official",
       "tags": [],
-      "permissions": [],
+      "permissions": [
+        "diceframe.http",
+        "network.client",
+        "plugin.config",
+        "plugin.data",
+        "plugin.secrets",
+        "process.spawn"
+      ],
       "approved_permissions": [
         "process.spawn",
         "plugin.data",
